@@ -1,4 +1,4 @@
-# BeeCloud RESTful API 文档 V1
+# BeeCloud RESTful API 文档 V1 (beta)
 
 #### [意见反馈请开issue](https://github.com/beecloud/beecloud-rest-api/issues)
 
