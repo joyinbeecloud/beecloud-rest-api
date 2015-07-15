@@ -1,6 +1,7 @@
 # BeeCloud RESTful API 文档 V1
 
-</br>
+### [意见反馈请开issue](https://github.com/beecloud/beecloud-rest-api/issues)
+
 ## 1. Server 列表
 - Mode : *HTTPS*
 
