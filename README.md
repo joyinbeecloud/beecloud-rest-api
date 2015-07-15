@@ -6,12 +6,16 @@
 
 所有server可无差别使用，也可随机使用，请根据需要选择.
 
+### <font color="red">目前内测阶段开放测试环境：http://58.211.191.123:8080  
+### 以下生产环境的服务器暂未上线.</font>
+
 域名 | 位置 | 
 ---- | ---- | 
 apibj.beecloud.cn| 北京 |
 apisz.beecloud.cn| 深圳 |
 apiqd.beecloud.cn| 青岛 |
 apihz.beecloud.cn| 杭州 |
+
 
 </br>
 ## 2. 支付
