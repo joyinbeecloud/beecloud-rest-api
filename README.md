@@ -17,9 +17,12 @@ apisz.beecloud.cn| 深圳 |
 apiqd.beecloud.cn| 青岛 |
 apihz.beecloud.cn| 杭州 |
 
+<BR>
 
-</br>
 ## 2. 支付
+
+此接口为支付流程的第一步，主要功能在于生成订单，获取必要的参数信息，来进行下一步的支付流程. 对于不同的渠道和支付方式，接口的返回值与后续的操作（例如微信App支付需要调用微信支付SDK的接口，支付宝网页支付需要跳转到获取的一段HTML网址等）都不尽相同，请根据每一个channel的详细描述分别处理.
+
 ### URL:   */1/rest/bill*
 ### Method: *POST*
 #### 请求参数格式: *JSON: Map\<String, Object\>*
@@ -165,7 +168,7 @@ tn | String | 银联支付ticket number
 html | String | 银联form表单
 
 </br>
-## 3.退款
+## 3. 退款
 
 退款接口仅支持对已经支付成功的订单经行退款，且目前对于同一笔订单，仅能退款成功一次（对于同一个退款请求，如果第一次退款申请被驳回，仍可以进行二次退款申请）. 退款金额refund\_fee必须小于或者等于原始支付订单的total\_fee，如果是小于，则表示部分退款.
 
@@ -219,6 +222,7 @@ url | String | 支付宝退款地址，需用户在支付宝平台上手动输�
 
 </br>
 ## 4. 订单查询
+
 ### URL:   */1/rest/bills*
 ### Method: *GET*
 
@@ -272,6 +276,7 @@ created\_time | Long		   | 订单创建时间, 毫秒时间戳, 13位
 
 
 ## 5. 退款查询
+
 ### URL:   */1/rest/refunds*
 ### Method: GET
 
