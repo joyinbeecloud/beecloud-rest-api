@@ -22,10 +22,10 @@ apihz.beecloud.cn| 杭州 |
 ## 2. 支付
 ### URL:   */1/rest/bill*
 ### Method: *POST*
-### 参数: *JSON: Map\<String, Object\>*
+#### 请求参数格式: *JSON: Map\<String, Object\>*
 
-### 请求参数
-- 以下是公共参数：
+#### 请求参数详情:
+- 以下为公共参数：
 
 参数名 | 类型 | 含义 | 描述 | 例子 | 是否必填
 ----  | ---- | ---- | ---- | ---- | ----
@@ -72,8 +72,10 @@ qr\_pay\_mode| String | 二维码类型 | 0,1,3
 1： 订单码-前置模式, 对应 iframe 宽度不能小于 300px, 高度不能小于 600px  
 3： 订单码-迷你前置模式, 对应 iframe 宽度不能小于 75px, 高度不能小于 75px  
 
-### 返回类型：*JSON: Map\<String, Object\>*
-### 返回参数
+<BR>
+
+#### 返回类型: *JSON: Map\<String, Object\>*
+#### 返回参数:
 
 - **公共返回参数**
 
@@ -169,9 +171,9 @@ html | String | 银联form表单
 
 ### URL: */1/rest/refund*
 ### Method: *POST*
-### 参数: *JSON: Map\<String, Object\>*
 
-###参数列表
+#### 请求参数格式: *JSON: Map\<String, Object\>*
+#### 请求参数详情:
 
 - 参数列表
 
@@ -186,8 +188,8 @@ bill_no | String | 商户订单号 | 32个字符内，数字和/或字母组合�
 refund_fee | Integer | 退款金额 | 只能为整数，单位为分，必须小于或等于对应的已支付订单的total_fee | 1 | 是
 optional | Map<String, Object> | 附加数据 | 用户自定义的参数，将会在webhook通知中原样返回，该字段主要用于商户携带订单的自定义数据 | {"key1":"value1","key2":"value2",...} | 否 
 
-### 返回参数类型: *JSON: Map\<String, Object\>*
-### 返回参数列表
+#### 返回类型: *JSON: Map\<String, Object\>*
+#### 返回参数:
 
 - 公共返回参数
 
@@ -219,10 +221,12 @@ url | String | 支付宝退款地址，需用户在支付宝平台上手动输�
 ## 4. 订单查询
 ### URL:   */1/rest/bills*
 ### Method: *GET*
-### 参数: *JSON,以para=**{}**的方式请求*
-### 示例: para={"key_a":1,"key_b":"value_b"}, 需要对para=后面的部分做URL encode.
 
-### 查询参数
+#### 请求参数类型: *JSON,以para=**{}**的方式请求*
+
+示例: para={"key\_a":1,"key\_b":"value\_b"}, 需要对para=后面的部分做URL encode.
+
+#### 请求参数详情:
 参数名 | 类型 | 含义 | 描述 | 例子 | 是否必填
 ----  | ---- | ---- | ---- | ---- | ----
 app_id | String | BeeCloud应用APPID | BeeCloud的唯一标识 | 0950c062-5e41-44e3-8f52-f89d8cf2b6eb | 是
@@ -240,8 +244,8 @@ limit| Integer | 查询的条数 | 默认为10，最大为50。设置为10表示
 2. start\_time, end\_time指的是订单生成的时间，而不是订单支付的时间   
 
 
-### 返回参数类型: *JSON: Map\<String, Object\>*
-### 返回参数列表
+#### 返回类型: *JSON: Map\<String, Object\>*
+#### 返回参数:
 
 - 公共返回参数
 
@@ -270,11 +274,13 @@ created\_time | Long		   | 订单创建时间, 毫秒时间戳, 13位
 ## 5. 退款查询
 ### URL:   */1/rest/refunds*
 ### Method: GET
-### Method: GET
-### 参数:JSON，以para=**{}**的方式请求
-### 示例: para={"key_a":1,"key_b":"value_b"}, 需要对para=后面的部分做URL encode.
 
-## 查询参数
+#### 请求参数类型: JSON，以para=**{}**的方式请求
+
+示例: para={"key\_a":1,"key\_b":"value\_b"}, 需要对para=后面的部分做URL encode.
+
+#### 请求参数详情:
+
 参数名 | 类型 | 含义 | 描述 | 例子 | 是否必填
 ----  | ---- | ---- | ---- | ---- | ----
 app_id | String | BeeCloud应用APPID | BeeCloud的唯一标识 | 0950c062-5e41-44e3-8f52-f89d8cf2b6eb | 是
@@ -293,8 +299,8 @@ limit| Integer | 查询的条数 | 默认为10，最大为50。设置为10，表
 2. start\_time, end\_time指的是订单生成的时间，而不是订单支付的时间。  
 
 
-### 返回参数类型: *JSON, Map<String,Object>*
-### 返回参数列表
+#### 返回类型: *JSON, Map\<String,Object\>*
+#### 返回详情:
 
 - 公共返回参数
 
@@ -321,12 +327,16 @@ result     | bool        | 是否退款
 created\_time | Long       | 退款创建时间, 毫秒时间戳, 13位
 
 ## 6. 退款状态更新
+
 ### URL:   */1/rest/refund/status*
 ### Method: GET
-### 参数:JSON，以para=**{}**的方式请求
-### 示例: para={"key_a":1,"key_b":"value_b"}, 需要对para=后面的部分做URL encode.
 
-## 查询参数
+#### 请求参数类型:JSON，以para=**{}**的方式请求
+
+示例: para={"key\_a":1,"key\_b":"value\_b"}, 需要对para=后面的部分做URL encode.
+
+#### 请求参数详情:
+
 参数名 | 类型 | 含义 | 描述 | 例子 | 是否必填
 ----  | ---- | ---- | ---- | ---- | ----
 app_id | String | BeeCloud应用APPID | BeeCloud的唯一标识 | 0950c062-5e41-44e3-8f52-f89d8cf2b6eb | 是
@@ -335,8 +345,8 @@ app_sign | String | 加密签名 | 算法: md5(app\_id+timestamp+app_key)，不�
 channel| String | 渠道类型 | 根据不同场景选择不同的支付方式 | 目前只支持WX | 是
 refund_no | String | 商户退款单号 | 格式为: 退款日期(8位) + 流水号(3~24 位)。不可重复，且退款日期必须是当天日期。流水号可以接受数字或英文字符，建议使用数字，但不可接受“000”。 | 201506101035040000001 | 是
 
-### 返回参数类型: *JSON, Map<String,Object>*
-### 返回参数列表
+#### 返回类型: *JSON, Map\<String,Object\>*
+#### 返回详情:
 
 - 公共返回参数
 
