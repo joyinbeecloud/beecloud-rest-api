@@ -115,7 +115,7 @@ app_id | String | 微信应用APPID
 partner_id | String | 微信支付商户号
 package  | String | 微信支付打包参数
 nonce_str  | String | 随机字符串
-timestamp | String | 当前时间戳，ms， 13位
+timestamp | String | 当前时间戳，单位是毫秒，13位
 pay_sign  | String | 签名值
 prepay_id  | String | 微信预支付id
 
@@ -132,7 +132,7 @@ code_url | String | 二维码地址
 app_id | String | 微信应用APPID
 package  | String | 微信支付打包参数
 nonce_str  | String | 随机字符串
-timestamp | String | 当前秒时间戳，13位
+timestamp | String | 当前时间戳，单位是毫秒，13位
 pay_sign  | String | 签名
 sign_type  | String | 签名类型，固定为MD5
 
