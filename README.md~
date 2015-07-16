@@ -327,7 +327,6 @@ bill\_no    | String      | 订单号
 refund\_no  | String      | 退款号
 total\_fee  | Integer      | 订单金额，单位为分
 refund\_fee | Integer      | 退款金额，单位为分
-title         | String       | 订单标题
 channel    | String      | WX、WX\_NATIVE、WX\_JSAPI、WX\_APP、ALI、ALI\_APP、ALI\_WEB、ALI\_QRCODE、UN、UN\_APP、UN\_WEB(详见 1. 支付 附注）
 finish     | bool        | 退款是否完成
 result     | bool        | 退款是否成功
