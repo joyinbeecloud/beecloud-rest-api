@@ -273,7 +273,7 @@ total\_fee    | Integer         | 订单金额，单位为分
 channel       | String       | WX、WX\_NATIVE、WX\_JSAPI、WX\_APP、ALI、ALI\_APP、ALI\_WEB、ALI\_QRCODE、UN、UN\_APP、UN\_WEB(详见 1. 支付 附注）
 title         | String       | 订单标题
 spay\_result  | Bool         | 订单是否成功
-created\_time | Long		   | 订单创建时间, 毫秒时间戳, 13位
+created\_time | Long         | 订单创建时间, 毫秒时间戳, 13位
 
 
 ## 5. 退款查询
@@ -328,8 +328,10 @@ bill\_no    | String      | 订单号
 refund\_no  | String      | 退款号
 total\_fee  | Integer      | 订单金额，单位为分
 refund\_fee | Integer      | 退款金额，单位为分
-finish     | bool        | 是否结束
-result     | bool        | 是否退款
+title         | String       | 订单标题
+channel    | String      | WX、WX\_NATIVE、WX\_JSAPI、WX\_APP、ALI、ALI\_APP、ALI\_WEB、ALI\_QRCODE、UN、UN\_APP、UN\_WEB(详见 1. 支付 附注）
+finish     | bool        | 退款是否完成
+result     | bool        | 退款是否成功
 created\_time | Long       | 退款创建时间, 毫秒时间戳, 13位
 
 ## 6. 退款状态更新
