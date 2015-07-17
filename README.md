@@ -348,7 +348,7 @@ app_id | String | BeeCloud应用APPID | BeeCloud的唯一标识 | 0950c062-5e41-
 timestamp | Long | 签名生成时间 | 时间戳，毫秒数 | 1435890533866 | 是
 app_sign | String | 加密签名 | 算法: md5(app\_id+timestamp+app_key)，不区分大小写 | b927899dda6f9a04afc57f21ddf69d69 | 是
 channel| String | 渠道类型 | 根据不同场景选择不同的支付方式 | 目前只支持WX | 是
-refund_no | String | 商户退款单号 | 格式为: 退款日期(8位) + 流水号(3~24 位). 不可重复，且退款日期必须是当天日期. 流水号可以接受数字或英文字符，建议使用数字，但不可接受“000”.  | 201506101035040000001 | 是
+refund_no | String | 商户退款单号 | 提交退款时提供的退款单号  | 201506101035040000001 | 是
 
 #### 返回类型: *JSON, Map\<String,Object\>*
 #### 返回详情:
