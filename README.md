@@ -36,7 +36,7 @@ apihz.beecloud.cn| 杭州 |
 app_id | String | BeeCloud平台的AppID | App在BeeCloud平台的唯一标识 | 0950c062-5e41-44e3-8f52-f89d8cf2b6eb | 是
 timestamp | Long | 签名生成时间 | 时间戳，毫秒数 | 1435890533866 | 是
 app_sign | String | 加密签名 | 算法: md5(app\_id+timestamp+app_key),32位16进制格式,不区分大小写 | b927899dda6f9a04afc57f21ddf69d69 | 是
-channel| String | 渠道类型 | 根据不同场景选择不同的支付方式 | WX\_APP、WX\_NATIVE、WX\_JSAPI、ALI\_APP、ALI\_WEB、ALI\_QRCODE、ALI_WAP、UN\_APP、UN\_WEB(详见附注）| 是
+channel| String | 渠道类型 | 根据不同场景选择不同的支付方式 | WX\_APP、WX\_NATIVE、WX\_JSAPI、ALI\_APP、ALI\_WEB、ALI\_QRCODE、ALI\_OFFLINE_QRCODE、ALI_WAP、UN\_APP、UN\_WEB(详见附注）| 是
 total_fee | Integer | 订单总金额 | 必须是正整数，单位为分 | 1 | 是
 bill_no | String | 商户订单号 | 32个字符内，数字和/或字母组合，请自行确保在商户系统中唯一，同一订单号不可重复提交，否则会造成订单重复 | 201506101035040000001 | 是
 title| String | 订单标题 | UTF8编码格式,32个字节内，最长支持16个汉字 | 白开水 | 是
@@ -50,6 +50,7 @@ WX\_JSAPI: 微信公众号支付
 ALI\_APP: 支付宝手机原生APP支付  
 ALI\_WEB: 支付宝PC网页支付  
 ALI\_QRCODE: 支付宝内嵌二维码支付  
+ALI\_OFFLINE_QRCODE: 支付宝线下二维码支付
 ALI\_WAP: 支付宝移动网页支付  
 UN\_APP: 银联手机原生APP支付  
 UN\_WEB: 银联PC网页支付  
@@ -238,7 +239,7 @@ url | String | 支付宝退款地址，需用户在支付宝平台上手动输�
 app_id | String | BeeCloud应用APPID | BeeCloud的唯一标识 | 0950c062-5e41-44e3-8f52-f89d8cf2b6eb | 是
 timestamp | Long | 签名生成时间 | 时间戳，毫秒数 | 1435890533866 | 是
 app_sign | String | 加密签名 | 算法: md5(app\_id+timestamp+app_key)，32位16进制格式,不区分大小写 | b927899dda6f9a04afc57f21ddf69d69 | 是
-channel| String | 渠道类型 | 根据不同场景选择不同的支付方式 | WX、WX\_NATIVE、WX\_JSAPI、ALI、ALI\_APP、ALI\_WEB、ALI\_QRCODE、ALI_WAP、UN、UN\_APP、UN\_WEB(详见附注）| 是
+channel| String | 渠道类型 | 根据不同场景选择不同的支付方式 | WX、WX\_NATIVE、WX\_JSAPI、ALI、ALI\_APP、ALI\_WEB、ALI\_QRCODE、ALI\_OFFLINE_QRCODE、ALI_WAP、UN、UN\_APP、UN\_WEB(详见附注）| 是
 bill_no | String | 商户订单号 | 发起支付时填写的订单号 | 201506101035040000001 | 否
 start_time | Long | 起始时间 | 毫秒时间戳, 13位 | 1435890530000 | 否
 end_time | Long | 结束时间 | 毫秒时间戳, 13位   | 1435890540000 | 否
@@ -271,7 +272,7 @@ bills | List<Map> | 订单列表
 ----          | ----         | ----
 bill\_no      | String       | 订单号
 total\_fee    | Integer         | 订单金额，单位为分
-channel       | String       | WX、WX\_NATIVE、WX\_JSAPI、WX\_APP、ALI、ALI\_APP、ALI\_WEB、ALI\_QRCODE、ALI_WAP、UN、UN\_APP、UN\_WEB(详见 1. 支付 附注）
+channel       | String       | WX、WX\_NATIVE、WX\_JSAPI、WX\_APP、ALI、ALI\_APP、ALI\_WEB、ALI\_QRCODE、ALI\_OFFLINE_QRCODE、ALI_WAP、UN、UN\_APP、UN\_WEB(详见 1. 支付 附注）
 title         | String       | 订单标题
 spay\_result  | Bool         | 订单是否成功
 created\_time | Long         | 订单创建时间, 毫秒时间戳, 13位
@@ -293,7 +294,7 @@ created\_time | Long         | 订单创建时间, 毫秒时间戳, 13位
 app_id | String | BeeCloud应用APPID | BeeCloud的唯一标识 | 0950c062-5e41-44e3-8f52-f89d8cf2b6eb | 是
 timestamp | Long | 签名生成时间 | 时间戳，毫秒数 | 1435890533866 | 是
 app_sign | String | 加密签名 | 算法: md5(app\_id+timestamp+app_key)，不区分大小写 | b927899dda6f9a04afc57f21ddf69d69 | 是
-channel| String | 渠道类型 | 根据不同场景选择不同的支付方式 | WX、WX\_NATIVE、WX\_JSAPI、ALI、ALI\_APP、ALI\_WEB、ALI\_QRCODE、ALI_WAP、UN、UN\_APP、UN\_WEB(详见附注）| 是
+channel| String | 渠道类型 | 根据不同场景选择不同的支付方式 | WX、WX\_NATIVE、WX\_JSAPI、ALI、ALI\_APP、ALI\_WEB、ALI\_QRCODE、ALI\_OFFLINE_QRCODE、ALI_WAP、UN、UN\_APP、UN\_WEB(详见附注）| 是
 bill_no | String | 商户订单号 | 发起支付时填写的订单号 | 201506101035040000001 | 否
 refund_no | String | 商户退款单号 | 发起退款时填写的退款单号 | 201506101035040000001 | 否
 start_time | Long | 起始时间 | 毫秒时间戳, 13位 | 1435890530000 | 否
@@ -330,7 +331,7 @@ refund\_no  | String      | 退款号
 total\_fee  | Integer      | 订单金额，单位为分
 refund\_fee | Integer      | 退款金额，单位为分
 title         | String       | 订单标题
-channel    | String      | WX、WX\_NATIVE、WX\_JSAPI、WX\_APP、ALI、ALI\_APP、ALI\_WEB、ALI\_QRCODE、UN、UN\_APP、UN\_WEB(详见 1. 支付 附注）
+channel    | String      | WX、WX\_NATIVE、WX\_JSAPI、WX\_APP、ALI、ALI\_APP、ALI\_WEB、ALI\_QRCODE、ALI\_OFFLINE_QRCODE、UN、UN\_APP、UN\_WEB(详见 1. 支付 附注）
 finish     | bool        | 退款是否完成
 result     | bool        | 退款是否成功
 created\_time | Long       | 退款创建时间, 毫秒时间戳, 13位
@@ -367,6 +368,72 @@ err\_detail  | String | 具体错误信息
 refund_status | String | 退款状态
 
 > 公共返回参数取值及含义参见支付公共返回参数部分
+
+#开发中的API
+## 7. 支付宝线下扫码订单查询
+
+### URL:   */1/rest/bill/status*
+### Method: GET
+
+#### 请求参数类型:JSON，以para=**{}**的方式请求
+
+示例: para={"key\_a":1,"key\_b":"value\_b"}, 需要对para=后面的部分做URL encode.
+
+#### 请求参数详情:
+
+参数名 | 类型 | 含义 | 描述 | 例子 | 是否必填
+----  | ---- | ---- | ---- | ---- | ----
+app_id | String | BeeCloud应用APPID | BeeCloud的唯一标识 | 0950c062-5e41-44e3-8f52-f89d8cf2b6eb | 是
+timestamp | Long | 签名生成时间 | 时间戳，毫秒数 | 1435890533866 | 是
+app_sign | String | 加密签名 | 算法: md5(app\_id+timestamp+app_key)，32位16进制格式，不区分大小写 | b927899dda6f9a04afc57f21ddf69d69 | 是
+channel| String | 渠道类型 | 根据不同场景选择不同的支付方式 | 目前只支持ALI\ALI\_OFFLINE_QRCODE_OFFLINE_QRCODE | 是
+bill_no | String | 订单号 | 下单时填写的订单号 | 201506101035040000001 | 是
+
+#### 返回类型: *JSON, Map\<String,Object\>*
+#### 返回详情:
+
+- 公共返回参数
+
+参数名 | 类型 | 含义 
+---- | ---- | ----
+result\_code | Integer | 返回码，0为正常
+result\_msg  | String | 返回信息， OK为正常
+err\_detail  | String | 具体错误信息
+bill_status | String | 订单状态
+
+> 公共返回参数取值及含义参见支付公共返回参数部分
+
+## 8. 支付宝线下扫码取消订单
+
+### URL:   */1/rest/bill/revert*
+### Method: POST JSON
+
+#### 请求参数类型:JSON
+
+#### 请求参数详情:
+
+参数名 | 类型 | 含义 | 描述 | 例子 | 是否必填
+----  | ---- | ---- | ---- | ---- | ----
+app_id | String | BeeCloud应用APPID | BeeCloud的唯一标识 | 0950c062-5e41-44e3-8f52-f89d8cf2b6eb | 是
+timestamp | Long | 签名生成时间 | 时间戳，毫秒数 | 1435890533866 | 是
+app_sign | String | 加密签名 | 算法: md5(app\_id+timestamp+app_key)，32位16进制格式，不区分大小写 | b927899dda6f9a04afc57f21ddf69d69 | 是
+channel| String | 渠道类型 | 根据不同场景选择不同的支付方式 | 目前只支持ALI\_OFFLINE_QRCODE | 是
+bill_no | String | 订单号 | 下单时填写的订单号 | 201506101035040000001 | 是
+
+#### 返回类型: *JSON, Map\<String,Object\>*
+#### 返回详情:
+
+- 公共返回参数
+
+参数名 | 类型 | 含义 
+---- | ---- | ----
+result\_code | Integer | 返回码，0为正常
+result\_msg  | String | 返回信息， OK为正常
+err\_detail  | String | 具体错误信息
+revert_result | bool | 订单是否取消
+
+> 公共返回参数取值及含义参见支付公共返回参数部分
+
 
 
 
