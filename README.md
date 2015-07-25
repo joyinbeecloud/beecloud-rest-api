@@ -47,7 +47,7 @@ WX\_JSAPI: 微信公众号支付
 ALI\_APP: 支付宝手机原生APP支付  
 ALI\_WEB: 支付宝PC网页支付  
 ALI\_QRCODE: 支付宝内嵌二维码支付  
-ALI\_OFFLINE_QRCODE: 支付宝线下二维码支付
+ALI\_OFFLINE_QRCODE: 支付宝线下二维码支付  
 ALI\_WAP: 支付宝移动网页支付  
 UN\_APP: 银联手机原生APP支付  
 UN\_WEB: 银联PC网页支付  
