@@ -1,7 +1,8 @@
-#<a name="webhook">Webhook开发指南</a>
+#<a name="webhook">BeeCloud Webhook开发指南</a>
 ## <a name="application">应用场景</a>
 
 在用户使用秒支付过程中，在获得渠道的确认信息（包括支付结果，退款结果）后，通过主动推送的方式将确认信息推送给客户的server。  
+
 **同一条订单可能会发送多条webhook消息，例如前几条的状态是在等待用户支付，最后一条支付成功， 也有可能同一条订单收到多条成功的消息**
 
 ## <a name="push">推送机制</a>
@@ -31,15 +32,17 @@ HTTP请求类型 : POST
 
 ##<a name="meaning">参数含义</a>
 
-key | value
+key  | value
 ---- | -----
 sign | 服务器端通过计算appID + appSecret + timestamp的MD5生成的签名(32字符十六进制),请在接受数据时自行按照此方式验证sign的正确性，不正确请返回fail
 timestamp | 服务端的时间（毫秒），用以验证sign, MD5计算请参考sign的解释
 channelType| WX/ALI/UN   分别代表微信/支付宝/银联
 transactionType| PAY/REFUND  分别代表支付和退款的结果确认
-messageDetail| {orderId:xxx…..} 用一个map代表处理结果的详细信息，例如支付的订单号，金额， 商品信息
+transactionId | 交易单号，对应支付请求的bill\_no或者退款请求的refund\_no
+transactionFee | 交易金额，是以分为单位的整数，对应支付请求的total\_fee或者退款请求的refund\_fee
 tradeSuccess | 交易类型的时候会有， 此参数为true代表支付成功， 当此参数为false时不代表支付失败，可能后续会发送为true的消息，建议用户拿此参数为true做业务开关
-optional| {} 客户在发起购买或者退款操作时添加的附加信息，JSON格式
+messageDetail| {orderId:xxx…..} 用一个map代表处理结果的详细信息，例如支付的订单号，金额， 商品信息
+optional| 附加参数，为一个JSON格式的Map，客户在发起购买或者退款操作时添加的附加信息
 
 ##<a name="messageDetail">messageDetail样例</a> 
 1.**支付宝:**
