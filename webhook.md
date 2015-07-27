@@ -1,4 +1,4 @@
-#<a name="webhook">BeeCloud Webhook开发指南</a>
+# <a name="webhook">BeeCloud Webhook开发指南</a>
 ## <a name="application">应用场景</a>
 
 在用户使用秒支付过程中，在获得渠道的确认信息（包括支付结果，退款结果）后，通过主动推送的方式将确认信息推送给客户的server。  
@@ -16,21 +16,23 @@ HTTP请求类型 : POST
 数据格式 : JSON
 ```
 
-##<a name="specification">字段说明</a>
+## <a name="specification">字段说明</a>
 
 
   Key             | Type          | Example
 -------------     | ------------- | -------------
-  sign            | string        | 32位小写
-  timestamp       | long          | 1426817510111
-  channelType     | string        | 'WX' or 'ALI' or 'UN'
-  transactionType | string        | 'PAY' or 'REFUND'
-  messageDetail   | map(json)     | {orderId:xxxx}
-  tradeSuccess    | boolean       | true/false
-  optional        | map(json)     |
+  sign            | String        | 32位小写
+  timestamp       | Long          | 1426817510111
+  channelType     | String        | 'WX' or 'ALI' or 'UN'
+  transactionType | String        | 'PAY' or 'REFUND'
+  transactionId   | String        | '201506101035040000001'
+  transactionFee  | Integer       | 1 表示0.01元
+  tradeSuccess    | Boolean       | true/false
+  messageDetail   | Map(JSON)     | {orderId:xxxx}
+  optional        | Map(JSON)     | {"agentId":"Alice"}
 
 
-##<a name="meaning">参数含义</a>
+## <a name="meaning">参数含义</a>
 
 key  | value
 ---- | -----
@@ -44,7 +46,7 @@ tradeSuccess | 交易类型的时候会有， 此参数为true代表支付成功
 messageDetail| {orderId:xxx…..} 用一个map代表处理结果的详细信息，例如支付的订单号，金额， 商品信息
 optional| 附加参数，为一个JSON格式的Map，客户在发起购买或者退款操作时添加的附加信息
 
-##<a name="messageDetail">messageDetail样例</a> 
+## <a name="messageDetail">messageDetail样例</a> 
 1.**支付宝:**
 
 ```
@@ -171,11 +173,11 @@ optional| 附加参数，为一个JSON格式的Map，客户在发起购买或者
   return_code   |  String |  SUCCESS |   通信标示
   result_code    |  String |  SUCCESS |  业务结果
 
-##<a name="result">返回结果</a>
+## <a name="result">返回结果</a>
 
 返回"success"字符串代表正确接收并确认了结果，其他所有返回都代表需要继续重传。
 
-#<a name="config">设置Webhook</a>
+# <a name="config">设置Webhook</a>
 在"控制台->应用->设置->xx支付"中
 
 1. 设置并保存Webhook
