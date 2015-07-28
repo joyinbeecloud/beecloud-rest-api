@@ -32,11 +32,11 @@ apihz.beecloud.cn| 杭州 |
 ----  | ---- | ---- | ---- | ---- | ----
 app_id | String | BeeCloud平台的AppID | App在BeeCloud平台的唯一标识 | 0950c062-5e41-44e3-8f52-f89d8cf2b6eb | 是
 timestamp | Long | 签名生成时间 | 时间戳，毫秒数 | 1435890533866 | 是
-app_sign | String | 加密签名 | 算法: md5(app\_id+timestamp+app_key),32位16进制格式,不区分大小写 | b927899dda6f9a04afc57f21ddf69d69 | 是
+app_sign | String | 加密签名 | 算法: md5(app\_id+timestamp+app\_secret)，32位16进制格式,不区分大小写 | b927899dda6f9a04afc57f21ddf69d69 | 是
 channel| String | 渠道类型 | 根据不同场景选择不同的支付方式 | WX\_APP、WX\_NATIVE、WX\_JSAPI、ALI\_APP、ALI\_WEB、ALI\_QRCODE、ALI\_OFFLINE_QRCODE、ALI_WAP、UN\_APP、UN\_WEB(详见附注）| 是
 total_fee | Integer | 订单总金额 | 必须是正整数，单位为分 | 1 | 是
-bill_no | String | 商户订单号 | 32个字符内，数字和/或字母组合，请自行确保在商户系统中唯一，同一订单号不可重复提交，否则会造成订单重复 | 201506101035040000001 | 是
-title| String | 订单标题 | UTF8编码格式,32个字节内，最长支持16个汉字 | 白开水 | 是
+bill_no | String | 商户订单号 | 8到32位数字和/或字母组合，请自行确保在商户系统中唯一，同一订单号不可重复提交，否则会造成订单重复 | 201506101035040000001 | 是
+title| String | 订单标题 | UTF8编码格式，32个字节内，最长支持16个汉字 | 白开水 | 是
 optional | Map<String, Object> | 附加数据 | 用户自定义的参数，将会在webhook通知中原样返回，该字段主要用于商户携带订单的自定义数据 | {"key1":"value1","key2":"value2",...} | 否
 return_url | String | 同步返回页面| 支付渠道处理完请求后,当前页面自动跳转到商户网站里指定页面的http路径 | beecloud.cn/returnUrl.jsp | 当channel参数为 ALI\_WEB 或 ALI\_QRCODE 或 UN\_WEB时为必填
 
@@ -190,7 +190,7 @@ html | String | 银联form表单
  ---- | ---- | ---- | ---- | ---- | ---- 
 app_id | String | BeeCloud应用APPID | BeeCloud的唯一标识 | 0950c062\-5e41\-44e3\-8f52\-f89d8cf2b6eb | 是 
 timestamp | Long | 签名生成时间 | 时间戳，毫秒数 | 1435890533866 | 是
-app_sign | String | 加密签名 | 算法: md5(app\_id+timestamp+app_key)，32位16进制格式,不区分大小写 | b927899dda6f9a04afc57f21ddf69d69 | 是
+app_sign | String | 加密签名 | 算法: md5(app\_id+timestamp+app\_secret)，32位16进制格式,不区分大小写 | b927899dda6f9a04afc57f21ddf69d69 | 是
 channel| String | 渠道类型 | 根据不同渠道选不同的值 | WX ALI UN | 是
 refund_no | String | 商户退款单号 | 格式为:退款日期(8位) + 流水号(3~24 位)。请自行确保在商户系统中唯一，且退款日期必须是发起退款的当天日期,同一退款单号不可重复提交，否则会造成退款单重复。流水号可以接受数字或英文字符，建议使用数字，但不可接受“000” | 201506101035040000001 | 是
 bill_no | String | 商户订单号 | 发起支付时填写的订单号 | 201506101035040000001 | 是 
@@ -241,7 +241,7 @@ url | String | 支付宝退款地址，需用户在支付宝平台上手动输�
 ----  | ---- | ---- | ---- | ---- | ----
 app_id | String | BeeCloud应用APPID | BeeCloud的唯一标识 | 0950c062-5e41-44e3-8f52-f89d8cf2b6eb | 是
 timestamp | Long | 签名生成时间 | 时间戳，毫秒数 | 1435890533866 | 是
-app_sign | String | 加密签名 | 算法: md5(app\_id+timestamp+app_key)，32位16进制格式,不区分大小写 | b927899dda6f9a04afc57f21ddf69d69 | 是
+app_sign | String | 加密签名 | 算法: md5(app\_id+timestamp+app\_secret)，32位16进制格式,不区分大小写 | b927899dda6f9a04afc57f21ddf69d69 | 是
 channel| String | 渠道类型 | 根据不同场景选择不同的支付方式 | WX、WX\_NATIVE、WX\_JSAPI、ALI、ALI\_APP、ALI\_WEB、ALI\_QRCODE、ALI\_OFFLINE_QRCODE、ALI_WAP、UN、UN\_APP、UN\_WEB(详见附注）| 是
 bill_no | String | 商户订单号 | 发起支付时填写的订单号 | 201506101035040000001 | 否
 start_time | Long | 起始时间 | 毫秒时间戳, 13位 | 1435890530000 | 否
@@ -296,7 +296,7 @@ created\_time | Long         | 订单创建时间, 毫秒时间戳, 13位
 ----  | ---- | ---- | ---- | ---- | ----
 app_id | String | BeeCloud应用APPID | BeeCloud的唯一标识 | 0950c062-5e41-44e3-8f52-f89d8cf2b6eb | 是
 timestamp | Long | 签名生成时间 | 时间戳，毫秒数 | 1435890533866 | 是
-app_sign | String | 加密签名 | 算法: md5(app\_id+timestamp+app_key)，不区分大小写 | b927899dda6f9a04afc57f21ddf69d69 | 是
+app_sign | String | 加密签名 | 算法: md5(app\_id+timestamp+app\_secret)，不区分大小写 | b927899dda6f9a04afc57f21ddf69d69 | 是
 channel| String | 渠道类型 | 根据不同场景选择不同的支付方式 | WX、WX\_NATIVE、WX\_JSAPI、ALI、ALI\_APP、ALI\_WEB、ALI\_QRCODE、ALI\_OFFLINE_QRCODE、ALI_WAP、UN、UN\_APP、UN\_WEB(详见附注）| 是
 bill_no | String | 商户订单号 | 发起支付时填写的订单号 | 201506101035040000001 | 否
 refund_no | String | 商户退款单号 | 发起退款时填写的退款单号 | 201506101035040000001 | 否
@@ -354,7 +354,7 @@ created\_time | Long       | 退款创建时间, 毫秒时间戳, 13位
 ----  | ---- | ---- | ---- | ---- | ----
 app_id | String | BeeCloud应用APPID | BeeCloud的唯一标识 | 0950c062-5e41-44e3-8f52-f89d8cf2b6eb | 是
 timestamp | Long | 签名生成时间 | 时间戳，毫秒数 | 1435890533866 | 是
-app_sign | String | 加密签名 | 算法: md5(app\_id+timestamp+app_key)，32位16进制格式，不区分大小写 | b927899dda6f9a04afc57f21ddf69d69 | 是
+app_sign | String | 加密签名 | 算法: md5(app\_id+timestamp+app\_secret)，32位16进制格式，不区分大小写 | b927899dda6f9a04afc57f21ddf69d69 | 是
 channel| String | 渠道类型 | 根据不同场景选择不同的支付方式 | 目前只支持WX | 是
 refund_no | String | 商户退款单号 | 发起退款时填写的退款单号 | 201506101035040000001 | 是
 
@@ -419,7 +419,7 @@ bill_status | String | 订单状态
 ----  | ---- | ---- | ---- | ---- | ----
 app_id | String | BeeCloud应用APPID | BeeCloud的唯一标识 | 0950c062-5e41-44e3-8f52-f89d8cf2b6eb | 是
 timestamp | Long | 签名生成时间 | 时间戳，毫秒数 | 1435890533866 | 是
-app_sign | String | 加密签名 | 算法: md5(app\_id+timestamp+app_key)，32位16进制格式，不区分大小写 | b927899dda6f9a04afc57f21ddf69d69 | 是
+app_sign | String | 加密签名 | 算法: md5(app\_id+timestamp+app\_secret)，32位16进制格式，不区分大小写 | b927899dda6f9a04afc57f21ddf69d69 | 是
 channel| String | 渠道类型 | 根据不同场景选择不同的支付方式 | 目前只支持ALI\_OFFLINE_QRCODE | 是
 bill_no | String | 订单号 | 下单时填写的订单号 | 201506101035040000001 | 是
 
