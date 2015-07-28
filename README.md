@@ -428,6 +428,13 @@ result\_code | Integer | 返回码，0为正常
 result\_msg  | String | 返回信息， OK为正常
 err\_detail  | String | 具体错误信息
 revert_result | bool | 订单是否取消
+retry_flag | String | 是否可以重试
+
+注：retry_flag 对撤销失败的情况下，是否可以继续发起撤销请求的建议。
+    Y：可继续发起撤销请求；
+    N：不可继续发起撤销请求，即后续的撤销请求也不会成功 
+ 当撤销成功情况下，N：撤销已成功，无需重试 		
+
 
 > 公共返回参数取值及含义参见支付公共返回参数部分
 
