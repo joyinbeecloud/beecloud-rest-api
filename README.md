@@ -148,6 +148,12 @@ order\_string | String | 支付宝签名串
 html | String | 支付宝跳转form，是一段HTML代码，自动提交
 url  | String | 支付宝跳转url，推荐使用html
 
+- ALI_OFFLINE_QRCODE
+
+参数名 | 类型 | 含义 
+---- | ---- | ----
+qr_code | String | 二维码码串,可以用二维码生成工具根据该码串值生成对应的二维码
+
 - ALI_QRCODE
 
 参数名 | 类型 | 含义 
@@ -382,8 +388,8 @@ refund_status | String | 退款状态
 ----  | ---- | ---- | ---- | ---- | ----
 app_id | String | BeeCloud应用APPID | BeeCloud的唯一标识 | 0950c062-5e41-44e3-8f52-f89d8cf2b6eb | 是
 timestamp | Long | 签名生成时间 | 时间戳，毫秒数 | 1435890533866 | 是
-app_sign | String | 加密签名 | 算法: md5(app\_id+timestamp+app\_secret)，32位16进制格式，不区分大小写 | b927899dda6f9a04afc57f21ddf69d69 | 是
-channel| String | 渠道类型 | 根据不同场景选择不同的支付方式 | 目前只支持ALI\ALI\_OFFLINE_QRCODE_OFFLINE_QRCODE | 是
+app_sign | String | 加密签名 | 算法: md5(app\_id+timestamp+app_key)，32位16进制格式，不区分大小写 | b927899dda6f9a04afc57f21ddf69d69 | 是
+channel| String | 渠道类型 | 根据不同场景选择不同的支付方式 | 目前只支持ALI\_OFFLINE\_QRCODE | 是
 bill_no | String | 订单号 | 下单时填写的订单号 | 201506101035040000001 | 是
 
 #### 返回类型: *JSON, Map\<String,Object\>*
@@ -428,6 +434,13 @@ result\_code | Integer | 返回码，0为正常
 result\_msg  | String | 返回信息， OK为正常
 err\_detail  | String | 具体错误信息
 revert_result | bool | 订单是否取消
+retry_flag | String | 是否可以重试
+
+注：retry_flag 对撤销失败的情况下，是否可以继续发起撤销请求的建议。
+    Y：可继续发起撤销请求；
+    N：不可继续发起撤销请求，即后续的撤销请求也不会成功 
+ 当撤销成功情况下，N：撤销已成功，无需重试 		
+
 
 > 公共返回参数取值及含义参见支付公共返回参数部分
 
