@@ -408,8 +408,9 @@ bill_status | String | 订单状态
 
 ## 8. 支付宝线下扫码取消订单
 
-### URL:   */1/rest/bill/revert*
+### URL:   */1/rest/bill/{bill_no}*
 ### Method: POST JSON
+### bill_no : 订单号
 
 #### 请求参数类型:JSON
 
@@ -421,7 +422,7 @@ app_id | String | BeeCloud应用APPID | BeeCloud的唯一标识 | 0950c062-5e41-
 timestamp | Long | 签名生成时间 | 时间戳，毫秒数 | 1435890533866 | 是
 app_sign | String | 加密签名 | 算法: md5(app\_id+timestamp+app\_secret)，32位16进制格式，不区分大小写 | b927899dda6f9a04afc57f21ddf69d69 | 是
 channel| String | 渠道类型 | 根据不同场景选择不同的支付方式 | 目前只支持ALI\_OFFLINE_QRCODE | 是
-bill_no | String | 订单号 | 下单时填写的订单号 | 201506101035040000001 | 是
+method | String | 订单修改的方法 | REVERT代表取消订单 | REVERT | 是
 
 #### 返回类型: *JSON, Map\<String,Object\>*
 #### 返回详情:
