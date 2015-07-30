@@ -372,8 +372,47 @@ refund_status | String | 退款状态
 
 > 公共返回参数取值及含义参见支付公共返回参数部分
 
+## 7. 支付宝批量打款
+### URL: /1/rest/transfers
+### Method: POST
+####请求参数类型: JSON
+####请求参数详情:
+
+参数名 | 类型 | 含义 | 描述 | 例子 | 是否必填
+----  | ---- | ---- | ---- | ---- | ----
+app_id | String | BeeCloud应用APPID | BeeCloud的唯一标识 | 0950c062-5e41-44e3-8f52-f89d8cf2b6eb | 是
+timestamp | Long | 签名生成时间 | 时间戳，毫秒数 | 1435890533866 | 是
+app_sign | String | 加密签名 | 算法: md5(app\_id+timestamp+app_key)，32位16进制格式，不区分大小写 | b927899dda6f9a04afc57f21ddf69d69 | 是
+channel| String | 渠道类型 | ---- | 目前只支持ALI | 是
+batch_no | String | 批量付款批号 | 此次批量付款的唯一标示，11-32位数字字母组合 | 201506101035040000001 | 是
+account_name | String | 付款方的支付宝账户名 | 支付宝账户名称 | 毛毛 | 是
+transfer_data | List<Map> | 付款的详细数据 | 每一个Map对应一笔付款的详细数据, list size 小于等于 1000。 Map的参数结构如下表 | 是
+
+#### 付款详细数据 参数结构
+
+参数名 | 类型 | 含义 | 例子 
+----  | ---- | ---- | ---- 
+transfer_id | String | 付款流水号，32位以内数字字母 | 1507290001 | 
+receiver_account | String | 收款方支付宝账号 | someone@126.com | 
+receiver_name | String | 收款方支付宝账户名 | 某某人 | 
+transfer_fee | int | 付款金额，单位为分 | 100 | 
+transfer_note | String | 付款备注 | 打赏
+
+#### 返回类型: *JSON, Map\<String,Object\>*
+#### 返回详情:
+
+- 返回参数
+
+参数名 | 类型 | 含义 
+---- | ---- | ----
+result\_code | Integer | 返回码，0为正常
+result\_msg  | String | 返回信息， OK为正常
+err\_detail  | String | 具体错误信息
+url | String | 需要跳转到支付宝输入密码确认批量打款
+
+
 #开发中的API
-## 7. 支付宝线下扫码订单查询
+## 8. 支付宝线下扫码订单查询
 
 ### URL:   */1/rest/bill/status*
 ### Method: GET
@@ -406,7 +445,7 @@ bill_status | String | 订单状态
 
 > 公共返回参数取值及含义参见支付公共返回参数部分
 
-## 8. 支付宝线下扫码取消订单
+## 9. 支付宝线下扫码取消订单
 
 ### URL:   */1/rest/bill/{bill_no}*
 ### Method: POST JSON
