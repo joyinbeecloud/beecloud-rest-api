@@ -1,12 +1,15 @@
-## BeeCloud RESTful API 文档 V1 (beta)
+# BeeCloud RESTful API 文档 V1 (beta)
+
+#### [意见反馈请开issue](https://github.com/beecloud/beecloud-rest-api/issues)
+#### [BeeCloud官网](https://beecloud.cn)
 
 ## 1. Server 列表
 - Mode : *HTTPS*
 
 所有server可无差别使用，也可随机使用，请根据需要选择.
 
-域名 | 位置  
----- | ----  
+域名 | 位置
+---- | ----
 apibj.beecloud.cn| 北京 
 apisz.beecloud.cn| 深圳 
 apiqd.beecloud.cn| 青岛 
@@ -20,7 +23,7 @@ apihz.beecloud.cn| 杭州
 
 ### URL:   */1/rest/bill*
 ### Method: *POST*
-#### 请求参数格式: *JSON: Map\<String, Object\>*
+#### 请求参数格式: *JSON: Map*
 
 #### 请求参数详情:
 - 以下为公共参数：
@@ -34,7 +37,7 @@ channel| String | 渠道类型 | 根据不同场景选择不同的支付方式 |
 total_fee | Integer | 订单总金额 | 必须是正整数，单位为分 | 1 | 是
 bill_no | String | 商户订单号 | 8到32位数字和/或字母组合，请自行确保在商户系统中唯一，同一订单号不可重复提交，否则会造成订单重复 | 201506101035040000001 | 是
 title| String | 订单标题 | UTF8编码格式，32个字节内，最长支持16个汉字 | 白开水 | 是
-optional | Map<String, Object> | 附加数据 | 用户自定义的参数，将会在webhook通知中原样返回，该字段主要用于商户携带订单的自定义数据 | {"key1":"value1","key2":"value2",...} | 否
+optional | Map | 附加数据 | 用户自定义的参数，将会在webhook通知中原样返回，该字段主要用于商户携带订单的自定义数据 | {"key1":"value1","key2":"value2",...} | 否
 return_url | String | 同步返回页面| 支付渠道处理完请求后,当前页面自动跳转到商户网站里指定页面的http路径 | beecloud.cn/returnUrl.jsp | 当channel参数为 ALI\_WEB 或 ALI\_QRCODE 或 UN\_WEB时为必填
 
 > 注：channel的参数值含义：  
@@ -74,7 +77,7 @@ qr\_pay\_mode| String | 二维码类型 | 0,1,3
 
 <BR>
 
-#### 返回类型: *JSON: Map\<String, Object\>*
+#### 返回类型: *JSON: Map*
 #### 返回参数:
 
 - **公共返回参数**
@@ -178,13 +181,13 @@ html | String | 银联form表单
 ### URL: */1/rest/refund*
 ### Method: *POST*
 
-#### 请求参数格式: *JSON: Map\<String, Object\>*
+#### 请求参数格式: *JSON: Map*
 #### 请求参数详情:
 
 - 参数列表
 
- 参数名 | 类型 | 含义   | 描述 | 例子 | 是否必填 |
- ---- | ---- | ---- | ---- | ---- | ---- 
+参数名 | 类型 | 含义   | 描述 | 例子 | 是否必填 |
+---- | ---- | ---- | ---- | ---- | ----
 app_id | String | BeeCloud应用APPID | BeeCloud的唯一标识 | 0950c062\-5e41\-44e3\-8f52\-f89d8cf2b6eb | 是 
 timestamp | Long | 签名生成时间 | 时间戳，毫秒数 | 1435890533866 | 是
 app_sign | String | 加密签名 | 算法: md5(app\_id+timestamp+app\_secret)，32位16进制格式,不区分大小写 | b927899dda6f9a04afc57f21ddf69d69 | 是
@@ -192,9 +195,9 @@ channel| String | 渠道类型 | 根据不同渠道选不同的值 | WX ALI UN |
 refund_no | String | 商户退款单号 | 格式为:退款日期(8位) + 流水号(3~24 位)。请自行确保在商户系统中唯一，且退款日期必须是发起退款的当天日期,同一退款单号不可重复提交，否则会造成退款单重复。流水号可以接受数字或英文字符，建议使用数字，但不可接受“000” | 201506101035040000001 | 是
 bill_no | String | 商户订单号 | 发起支付时填写的订单号 | 201506101035040000001 | 是 
 refund_fee | Integer | 退款金额 | 必须为正整数，单位为分，必须小于或等于对应的已支付订单的total_fee | 1 | 是
-optional | Map<String, Object> | 附加数据 | 用户自定义的参数，将会在webhook通知中原样返回，该字段主要用于商户携带订单的自定义数据 | {"key1":"value1","key2":"value2",...} | 否 
+optional | Map | 附加数据 | 用户自定义的参数，将会在webhook通知中原样返回，该字段主要用于商户携带订单的自定义数据 | {"key1":"value1","key2":"value2",...} | 否
 
-#### 返回类型: *JSON: Map\<String, Object\>*
+#### 返回类型: *JSON: Map*
 #### 返回参数:
 
 - 公共返回参数
@@ -251,7 +254,7 @@ limit| Integer | 查询的条数 | 默认为10，最大为50. 设置为10表示�
 2. start\_time, end\_time指的是订单生成的时间，而不是订单支付的时间   
 
 
-#### 返回类型: *JSON: Map\<String, Object\>*
+#### 返回类型: *JSON: Map*
 #### 返回参数:
 
 - 公共返回参数
@@ -307,7 +310,7 @@ limit| Integer | 查询的条数 | 默认为10，最大为50. 设置为10，表�
 2. start\_time, end\_time指的是订单生成的时间，而不是订单支付的时间.   
 
 
-#### 返回类型: *JSON, Map\<String,Object\>*
+#### 返回类型: *JSON, Map*
 #### 返回详情:
 
 - 公共返回参数
@@ -355,7 +358,7 @@ app_sign | String | 加密签名 | 算法: md5(app\_id+timestamp+app\_secret)，
 channel| String | 渠道类型 | 根据不同场景选择不同的支付方式 | 目前只支持WX | 是
 refund_no | String | 商户退款单号 | 发起退款时填写的退款单号 | 201506101035040000001 | 是
 
-#### 返回类型: *JSON, Map\<String,Object\>*
+#### 返回类型: *JSON, Map*
 #### 返回详情:
 
 - 公共返回参数
@@ -389,13 +392,13 @@ transfer_data | List<Map> | 付款的详细数据 | 每一个Map对应一笔付�
 
 参数名 | 类型 | 含义 | 例子 
 ----  | ---- | ---- | ---- 
-transfer_id | String | 付款流水号，32位以内数字字母 | 1507290001 | 
-receiver_account | String | 收款方支付宝账号 | someone@126.com | 
-receiver_name | String | 收款方支付宝账户名 | 某某人 | 
-transfer_fee | int | 付款金额，单位为分 | 100 | 
+transfer_id | String | 付款流水号，32位以内数字字母 | 1507290001
+receiver_account | String | 收款方支付宝账号 | someone@126.com
+receiver_name | String | 收款方支付宝账户名 | 某某人
+transfer_fee | int | 付款金额，单位为分 | 100
 transfer_note | String | 付款备注 | 打赏
 
-#### 返回类型: *JSON, Map\<String,Object\>*
+#### 返回类型: *JSON, Map*
 #### 返回详情:
 
 - 返回参数
@@ -428,7 +431,7 @@ app_sign | String | 加密签名 | 算法: md5(app\_id+timestamp+app_key)，32�
 channel| String | 渠道类型 | 根据不同场景选择不同的支付方式 | 目前只支持ALI\_OFFLINE\_QRCODE | 是
 method | String | 订单修改的方法 | UPDATE代表去渠道更新订单 | UPDATE | 是
 
-#### 返回类型: *JSON, Map\<String,Object\>*
+#### 返回类型: *JSON, Map*
 #### 返回详情:
 
 - 公共返回参数
@@ -460,7 +463,7 @@ app_sign | String | 加密签名 | 算法: md5(app\_id+timestamp+app\_secret)，
 channel| String | 渠道类型 | 根据不同场景选择不同的支付方式 | 目前只支持ALI\_OFFLINE_QRCODE | 是
 method | String | 订单修改的方法 | REVERT代表取消订单 | REVERT | 是
 
-#### 返回类型: *JSON, Map\<String,Object\>*
+#### 返回类型: *JSON, Map*
 #### 返回详情:
 
 - 公共返回参数
@@ -482,10 +485,7 @@ retry_flag | String | 是否可以重试
 > 公共返回参数取值及含义参见支付公共返回参数部分
 
 
-## 联系我们
-- 如果有什么问题，可以到QQ群 **321545822** BeeCloud开发者大联盟 提问
-- 如果发现了bug，欢迎提交[issue](https://github.com/beecloud/beecloud-rest-api/issues)
-- 如果有新的需求，欢迎提交[issue](https://github.com/beecloud/beecloud-rest-api/issues)
 
-## 代码许可
-The MIT License (MIT).
+
+
+
