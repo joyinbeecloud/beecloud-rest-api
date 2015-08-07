@@ -1,4 +1,4 @@
-# BeeCloud RESTful API 文档 V1 (beta)
+# BeeCloud RESTful API 文档
 
 ## 1. Server 列表
 - Mode : *HTTPS*
