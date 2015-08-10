@@ -1,7 +1,10 @@
-# BeeCloud RESTful API
+## BeeCloud RESTful API 文档 V1 (beta)
+
+#### [意见反馈请开issue](https://github.com/beecloud/beecloud-rest-api/issues)
+#### [BeeCloud官网](https://beecloud.cn)
 
 ## 1. Server 列表
-- Mode : *HTTPS*
+#### Mode : *HTTPS*
 
 所有server可无差别使用，也可随机使用，请根据需要选择.
 
@@ -18,8 +21,8 @@ apihz.beecloud.cn| 杭州
 
 此接口为支付流程的第一步，主要功能在于生成订单，获取必要的参数信息，来进行下一步的支付流程. 对于不同的渠道和支付方式，接口的返回值与后续的操作（例如微信App支付需要调用微信支付SDK的接口，支付宝网页支付需要跳转到获取的一段HTML网址等）都不尽相同，请根据每一个channel的详细描述分别处理.
 
-### URL:   */1/rest/bill*
-### Method: *POST*
+#### URL:   */1/rest/bill*
+#### Method: *POST*
 #### 请求参数格式: *JSON: Map*
 
 #### 请求参数详情:
@@ -175,8 +178,8 @@ html | String | 银联form表单
 
 退款接口仅支持对已经支付成功的订单经行退款，且目前对于同一笔订单，仅能退款成功一次（对于同一个退款请求，如果第一次退款申请被驳回，仍可以进行二次退款申请）. 退款金额refund\_fee必须小于或者等于原始支付订单的total\_fee，如果是小于，则表示部分退款.
 
-### URL: */1/rest/refund*
-### Method: *POST*
+#### URL: */1/rest/refund*
+#### Method: *POST*
 
 #### 请求参数格式: *JSON: Map*
 #### 请求参数详情:
@@ -188,7 +191,7 @@ html | String | 银联form表单
 app_id | String | BeeCloud应用APPID | BeeCloud的唯一标识 | 0950c062\-5e41\-44e3\-8f52\-f89d8cf2b6eb | 是 
 timestamp | Long | 签名生成时间 | 时间戳，毫秒数 | 1435890533866 | 是
 app_sign | String | 加密签名 | 算法: md5(app\_id+timestamp+app\_secret)，32位16进制格式,不区分大小写 | b927899dda6f9a04afc57f21ddf69d69 | 是
-channel| String | 渠道类型 | 根据不同渠道选不同的值 | WX ALI UN | 是
+channel| String | 渠道类型 | 根据不同渠道选不同的值 | WX ALI UN | 否
 refund_no | String | 商户退款单号 | 格式为:退款日期(8位) + 流水号(3~24 位)。请自行确保在商户系统中唯一，且退款日期必须是发起退款的当天日期,同一退款单号不可重复提交，否则会造成退款单重复。流水号可以接受数字或英文字符，建议使用数字，但不可接受“000” | 201506101035040000001 | 是
 bill_no | String | 商户订单号 | 发起支付时填写的订单号 | 201506101035040000001 | 是 
 refund_fee | Integer | 退款金额 | 必须为正整数，单位为分，必须小于或等于对应的已支付订单的total_fee | 1 | 是
@@ -226,8 +229,8 @@ url | String | 支付宝退款地址，需用户在支付宝平台上手动输�
 </br>
 ## 4. 订单查询
 
-### URL:   */1/rest/bills*
-### Method: *GET*
+#### URL:   */1/rest/bills*
+#### Method: *GET*
 
 #### 请求参数类型: *JSON, 以para=**{}**的方式请求*
 
@@ -239,7 +242,7 @@ url | String | 支付宝退款地址，需用户在支付宝平台上手动输�
 app_id | String | BeeCloud应用APPID | BeeCloud的唯一标识 | 0950c062-5e41-44e3-8f52-f89d8cf2b6eb | 是
 timestamp | Long | 签名生成时间 | 时间戳，毫秒数 | 1435890533866 | 是
 app_sign | String | 加密签名 | 算法: md5(app\_id+timestamp+app\_secret)，32位16进制格式,不区分大小写 | b927899dda6f9a04afc57f21ddf69d69 | 是
-channel| String | 渠道类型 | 根据不同场景选择不同的支付方式 | WX、WX\_NATIVE、WX\_JSAPI、ALI、ALI\_APP、ALI\_WEB、ALI\_QRCODE、ALI\_OFFLINE_QRCODE、ALI_WAP、UN、UN\_APP、UN\_WEB(详见附注）| 是
+channel| String | 渠道类型 | 根据不同场景选择不同的支付方式 | WX、WX\_NATIVE、WX\_JSAPI、ALI、ALI\_APP、ALI\_WEB、ALI\_QRCODE、ALI\_OFFLINE_QRCODE、ALI_WAP、UN、UN\_APP、UN\_WEB(详见附注）| 否
 bill_no | String | 商户订单号 | 发起支付时填写的订单号 | 201506101035040000001 | 否
 start_time | Long | 起始时间 | 毫秒时间戳, 13位 | 1435890530000 | 否
 end_time | Long | 结束时间 | 毫秒时间戳, 13位   | 1435890540000 | 否
@@ -280,8 +283,8 @@ created\_time | Long         | 订单创建时间, 毫秒时间戳, 13位
 
 ## 5. 退款查询
 
-### URL:   */1/rest/refunds*
-### Method: GET
+#### URL:   */1/rest/refunds*
+#### Method: GET
 
 #### 请求参数类型: JSON，以para=**{}**的方式请求
 
@@ -294,7 +297,7 @@ created\_time | Long         | 订单创建时间, 毫秒时间戳, 13位
 app_id | String | BeeCloud应用APPID | BeeCloud的唯一标识 | 0950c062-5e41-44e3-8f52-f89d8cf2b6eb | 是
 timestamp | Long | 签名生成时间 | 时间戳，毫秒数 | 1435890533866 | 是
 app_sign | String | 加密签名 | 算法: md5(app\_id+timestamp+app\_secret)，不区分大小写 | b927899dda6f9a04afc57f21ddf69d69 | 是
-channel| String | 渠道类型 | 根据不同场景选择不同的支付方式 | WX、WX\_NATIVE、WX\_JSAPI、ALI、ALI\_APP、ALI\_WEB、ALI\_QRCODE、ALI\_OFFLINE_QRCODE、ALI_WAP、UN、UN\_APP、UN\_WEB(详见附注）| 是
+channel| String | 渠道类型 | 根据不同场景选择不同的支付方式 | WX、WX\_NATIVE、WX\_JSAPI、ALI、ALI\_APP、ALI\_WEB、ALI\_QRCODE、ALI\_OFFLINE_QRCODE、ALI_WAP、UN、UN\_APP、UN\_WEB(详见附注）| 否
 bill_no | String | 商户订单号 | 发起支付时填写的订单号 | 201506101035040000001 | 否
 refund_no | String | 商户退款单号 | 发起退款时填写的退款单号 | 201506101035040000001 | 否
 start_time | Long | 起始时间 | 毫秒时间戳, 13位 | 1435890530000 | 否
@@ -338,8 +341,8 @@ created\_time | Long       | 退款创建时间, 毫秒时间戳, 13位
 
 ## 6. 退款状态更新
 
-### URL:   */1/rest/refund/status*
-### Method: GET
+#### URL:   */1/rest/refund/status*
+#### Method: GET
 
 #### 请求参数类型:JSON，以para=**{}**的方式请求
 
@@ -370,8 +373,8 @@ refund_status | String | 退款状态
 > 公共返回参数取值及含义参见支付公共返回参数部分
 
 ## 7. 支付宝批量打款
-### URL: /1/rest/transfers
-### Method: POST
+#### URL: /1/rest/transfers
+#### Method: POST
 ####请求参数类型: JSON
 ####请求参数详情:
 
@@ -411,8 +414,8 @@ url | String | 需要跳转到支付宝输入密码确认批量打款
 #开发中的API
 ## 8. 支付宝线下扫码订单状态查询，更新
 
-### URL:   */1/rest/bill/{bill_no}*
-### Method: POST
+#### URL:   */1/rest/bill/{bill_no}*
+#### Method: POST
 
 #### 请求参数类型:JSON
 
@@ -438,15 +441,15 @@ method | String | 订单修改的方法 | UPDATE代表去渠道更新订单 | UP
 result\_code | Integer | 返回码，0为正常
 result\_msg  | String | 返回信息， OK为正常
 err\_detail  | String | 具体错误信息
-bill_success | Bool | 订单是否成功
+bill_status | Bool | 订单是否成功
 
 > 公共返回参数取值及含义参见支付公共返回参数部分
 
 ## 9. 支付宝线下扫码取消订单
 
-### URL:   */1/rest/bill/{bill_no}*
-### Method: POST JSON
-### bill_no : 订单号
+#### URL:   */1/rest/bill/{bill_no}*
+#### Method: POST JSON
+#### bill_no : 订单号
 
 #### 请求参数类型:JSON
 
