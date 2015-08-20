@@ -30,7 +30,7 @@ apihz.beecloud.cn| 杭州
 app_id | String | BeeCloud平台的AppID | App在BeeCloud平台的唯一标识 | 0950c062-5e41-44e3-8f52-f89d8cf2b6eb | 是
 timestamp | Long | 签名生成时间 | 时间戳，毫秒数 | 1435890533866 | 是
 app_sign | String | 加密签名 | 算法: md5(app\_id+timestamp+app\_secret)，32位16进制格式,不区分大小写 | b927899dda6f9a04afc57f21ddf69d69 | 是
-channel| String | 渠道类型 | 根据不同场景选择不同的支付方式 | WX\_APP、WX\_NATIVE、WX\_JSAPI、ALI\_APP、ALI\_WEB、ALI\_QRCODE、ALI\_OFFLINE_QRCODE、ALI_WAP、UN\_APP、UN\_WEB(详见附注）| 是
+channel| String | 渠道类型 | 根据不同场景选择不同的支付方式 | WX\_APP、WX\_NATIVE、WX\_JSAPI、ALI\_APP、ALI\_WEB、ALI\_QRCODE、ALI\_OFFLINE_QRCODE、ALI_WAP、UN\_APP、UN\_WEB、PAYPAL、JD_WAP、JD_WEB、YEE_WAP、YEE_WEB、KUAIQIAN_WAP、KUAIQIAN_WEB(详见附注）| 是
 total_fee | Integer | 订单总金额 | 必须是正整数，单位为分 | 1 | 是
 bill_no | String | 商户订单号 | 8到32位数字和/或字母组合，请自行确保在商户系统中唯一，同一订单号不可重复提交，否则会造成订单重复 | 201506101035040000001 | 是
 title| String | 订单标题 | UTF8编码格式，32个字节内，最长支持16个汉字 | 白开水 | 是
@@ -48,6 +48,13 @@ ALI\_OFFLINE_QRCODE: 支付宝线下二维码支付
 ALI\_WAP: 支付宝移动网页支付  
 UN\_APP: 银联手机原生APP支付  
 UN\_WEB: 银联PC网页支付  
+JD\_WAP: 京东移动网页支付   
+JD\_WEB: 京东PC网页支付  
+YEE\_WAP: 易宝移动网页支付 
+YEE\_WEB: 易宝PC网页支付 
+KUAIQIAN\_WAP: 快钱移动网页支付  
+KUAIQIAN\_WEB: 快钱PC网页支付  
+PAYPAL: PAYPAL(贝宝)支付
 
 - 以下是`微信公众号支付(WX_JSAPI)`的**<mark>必填</mark>**参数
 
@@ -71,6 +78,15 @@ qr\_pay\_mode| String | 二维码类型 | 0,1,3
 0： 订单码-简约前置模式, 对应 iframe 宽度不能小于 600px, 高度不能小于 300px   
 1： 订单码-前置模式, 对应 iframe 宽度不能小于 300px, 高度不能小于 600px  
 3： 订单码-迷你前置模式, 对应 iframe 宽度不能小于 75px, 高度不能小于 75px  
+
+- 以下是`易宝移动网页支付(YEE_WEB)`的**<mark>必填</mark>**参数
+
+参数名 | 类型 | 含义 | 例子
+---- | ---- | ---- | ----
+productcatalog| String | 商品类别码 | 1
+
+> 注： 商品类别码含义   
+1:  虚拟产品  3:  公共事业缴费  4:  手机充值  6:  公益事业  7:  实物电商  8:  彩票业务  10: 行政教育  11: 线下服务业  13: 微信实物电商  14: 微信虚拟电商  15: 保险行业  16: 基金行业  17: 电子票务  18: 金融投资  
 
 <BR>
 
@@ -143,7 +159,7 @@ order\_string | String | 支付宝签名串
 参数名 | 类型 | 含义 
 ---- | ---- | ----
 html | String | 支付宝跳转form，是一段HTML代码，自动提交
-url  | String | 支付宝跳转url，推荐使用html
+url  | String | 支付宝跳转url
 
 - ALI_OFFLINE_QRCODE
 
@@ -164,11 +180,17 @@ url  | String | 支付宝内嵌二维码地址，是一个URL
 ---- | ---- | ----
 tn | String | 银联支付ticket number
 
-- UN_WEB
+- UN_WEB、JD_WAP、JD_WEB、KUAIQIAN_WAP、KUAIQIAN_WEB、YEE_WAP、YEE_WEB
 
 参数名 | 类型 | 含义 
 ---- | ---- | ----
-html | String | 银联form表单
+html | String | 支付页自动提交form表单内容
+
+- YEE_WAP、YEE_WEB
+
+参数名 | 类型 | 含义 
+---- | ---- | ----
+url | String | 支付页跳转地址
 
 </br>
 ## 3. 退款
@@ -239,7 +261,7 @@ url | String | 支付宝退款地址，需用户在支付宝平台上手动输�
 app_id | String | BeeCloud应用APPID | BeeCloud的唯一标识 | 0950c062-5e41-44e3-8f52-f89d8cf2b6eb | 是
 timestamp | Long | 签名生成时间 | 时间戳，毫秒数 | 1435890533866 | 是
 app_sign | String | 加密签名 | 算法: md5(app\_id+timestamp+app\_secret)，32位16进制格式,不区分大小写 | b927899dda6f9a04afc57f21ddf69d69 | 是
-channel| String | 渠道类型 | 根据不同场景选择不同的支付方式 | WX、WX\_APP、WX\_NATIVE、WX\_JSAPI、ALI、ALI\_APP、ALI\_WEB、ALI\_QRCODE、ALI\_OFFLINE_QRCODE、ALI_WAP、UN、UN\_APP、UN\_WEB(详见附注）| 否
+channel| String | 渠道类型 | 根据不同场景选择不同的支付方式 | WX、WX\_APP、WX\_NATIVE、WX\_JSAPI、ALI、ALI\_APP、ALI\_WEB、ALI\_QRCODE、ALI\_OFFLINE\_QRCODE、ALI_WAP、UN、UN\_APP、UN\_WEB、PAYPAL、JD_WAP、JD_WEB、YEE_WAP、YEE_WEB、KUAIQIAN_WAP、KUAIQIAN_WEB、JD、YEE、KUAIQIAN(详见附注）| 否
 bill_no | String | 商户订单号 | 发起支付时填写的订单号 | 201506101035040000001 | 否
 start_time | Long | 起始时间 | 毫秒时间戳, 13位 | 1435890530000 | 否
 end_time | Long | 结束时间 | 毫秒时间戳, 13位   | 1435890540000 | 否
@@ -247,7 +269,7 @@ skip | Integer| 查询起始位置 | 默认为0. 设置为10表示忽略满足�
 limit| Integer | 查询的条数 | 默认为10，最大为50. 设置为10表示只返回满足条件的10条数据 | 10 | 否
 
 > 注：  
-1. bill\_no, trace\_id, start\_time, end\_time等查询条件互相为**<mark>且</mark>**关系  
+1. bill\_no, start\_time, end\_time等查询条件互相为**<mark>且</mark>**关系  
 2. start\_time, end\_time指的是订单生成的时间，而不是订单支付的时间   
 
 
@@ -272,7 +294,7 @@ bills | List<Map> | 订单列表
 ----          | ----         | ----
 bill\_no      | String       | 订单号
 total\_fee    | Integer         | 订单金额，单位为分
-channel       | String       | WX、WX\_NATIVE、WX\_JSAPI、WX\_APP、ALI、ALI\_APP、ALI\_WEB、ALI\_QRCODE、ALI\_OFFLINE_QRCODE、ALI_WAP、UN、UN\_APP、UN\_WEB(详见 1. 支付 附注）
+channel       | String       | WX\_NATIVE、WX\_JSAPI、WX\_APP、ALI\_APP、ALI\_WEB、ALI\_QRCODE、ALI\_OFFLINE_QRCODE、ALI_WAP、UN\_APP、UN\_WEB、PAYPAL、JD_WAP、JD_WEB、YEE_WAP、YEE_WEB、KUAIQIAN_WAP、KUAIQIAN_WEB(详见 1. 支付 附注）
 title         | String       | 订单标题
 spay\_result  | Bool         | 订单是否成功
 created\_time | Long         | 订单创建时间, 毫秒时间戳, 13位
@@ -294,7 +316,7 @@ created\_time | Long         | 订单创建时间, 毫秒时间戳, 13位
 app_id | String | BeeCloud应用APPID | BeeCloud的唯一标识 | 0950c062-5e41-44e3-8f52-f89d8cf2b6eb | 是
 timestamp | Long | 签名生成时间 | 时间戳，毫秒数 | 1435890533866 | 是
 app_sign | String | 加密签名 | 算法: md5(app\_id+timestamp+app\_secret)，不区分大小写 | b927899dda6f9a04afc57f21ddf69d69 | 是
-channel| String | 渠道类型 | 根据不同场景选择不同的支付方式 | WX、WX\_NATIVE、WX\_JSAPI、ALI、ALI\_APP、ALI\_WEB、ALI\_QRCODE、ALI\_OFFLINE_QRCODE、ALI_WAP、UN、UN\_APP、UN\_WEB(详见附注）| 否
+channel| String | 渠道类型 | 根据不同场景选择不同的支付方式 | WX、WX\_NATIVE、WX\_JSAPI、ALI、ALI\_APP、ALI\_WEB、ALI\_QRCODE、ALI\_OFFLINE_QRCODE、ALI_WAP、UN、UN\_APP、UN\_WEB、PAYPAL、JD_WAP、JD_WEB、YEE_WAP、YEE_WEB、KUAIQIAN_WAP、KUAIQIAN_WEB、JD、YEE、KUAIQIAN(详见1.支付附注）| 否
 bill_no | String | 商户订单号 | 发起支付时填写的订单号 | 201506101035040000001 | 否
 refund_no | String | 商户退款单号 | 发起退款时填写的退款单号 | 201506101035040000001 | 否
 start_time | Long | 起始时间 | 毫秒时间戳, 13位 | 1435890530000 | 否
@@ -331,7 +353,7 @@ refund\_no  | String      | 退款号
 total\_fee  | Integer      | 订单金额，单位为分
 refund\_fee | Integer      | 退款金额，单位为分
 title         | String       | 订单标题
-channel    | String      | WX、WX\_NATIVE、WX\_JSAPI、WX\_APP、ALI、ALI\_APP、ALI\_WEB、ALI\_QRCODE、ALI\_OFFLINE_QRCODE、UN、UN\_APP、UN\_WEB(详见 1. 支付 附注）
+channel    | String      | WX\_NATIVE、WX\_JSAPI、WX\_APP、ALI\_APP、ALI\_WEB、ALI\_QRCODE、ALI\_OFFLINE_QRCODE、UN\_APP、UN\_WEB、PAYPAL、JD_WAP、JD_WEB、YEE_WAP、YEE_WEB、KUAIQIAN_WAP、KUAIQIAN_WEB(详见 1. 支付 附注）
 finish     | bool        | 退款是否完成
 result     | bool        | 退款是否成功
 created\_time | Long       | 退款创建时间, 毫秒时间戳, 13位
@@ -352,7 +374,7 @@ created\_time | Long       | 退款创建时间, 毫秒时间戳, 13位
 app_id | String | BeeCloud应用APPID | BeeCloud的唯一标识 | 0950c062-5e41-44e3-8f52-f89d8cf2b6eb | 是
 timestamp | Long | 签名生成时间 | 时间戳，毫秒数 | 1435890533866 | 是
 app_sign | String | 加密签名 | 算法: md5(app\_id+timestamp+app\_secret)，32位16进制格式，不区分大小写 | b927899dda6f9a04afc57f21ddf69d69 | 是
-channel| String | 渠道类型 | 根据不同场景选择不同的支付方式 | 目前只支持WX | 是
+channel| String | 渠道类型 | 根据不同场景选择不同的支付方式 | 目前只支持WX、YEE、KUAIQIAN | 是
 refund_no | String | 商户退款单号 | 发起退款时填写的退款单号 | 201506101035040000001 | 是
 
 #### 返回类型: *JSON, Map*
@@ -406,78 +428,6 @@ result\_code | Integer | 返回码，0为正常
 result\_msg  | String | 返回信息， OK为正常
 err\_detail  | String | 具体错误信息
 url | String | 需要跳转到支付宝输入密码确认批量打款
-
-
-#开发中的API
-## 8. 支付宝线下扫码订单状态查询，更新
-
-#### URL:   */1/rest/bill/{bill_no}*
-#### Method: POST
-
-#### 请求参数类型:JSON
-
-#### 请求参数详情:
-
-参数名 | 类型 | 含义 | 描述 | 例子 | 是否必填
-----  | ---- | ---- | ---- | ---- | ----
-app_id | String | BeeCloud应用APPID | BeeCloud的唯一标识 | 0950c062-5e41-44e3-8f52-f89d8cf2b6eb | 是
-timestamp | Long | 签名生成时间 | 时间戳，毫秒数 | 1435890533866 | 是
-app_sign | String | 加密签名 | 算法: md5(app\_id+timestamp+app_key)，32位16进制格式，不区分大小写 | b927899dda6f9a04afc57f21ddf69d69 | 是
-channel| String | 渠道类型 | 根据不同场景选择不同的支付方式 | 目前只支持ALI\_OFFLINE\_QRCODE | 是
-method | String | 订单修改的方法 | UPDATE代表去渠道更新订单 | UPDATE | 是
-
-#### 返回类型: *JSON, Map*
-#### 返回详情:
-
-- 公共返回参数
-
-参数名 | 类型 | 含义 
----- | ---- | ----
-result\_code | Integer | 返回码，0为正常
-result\_msg  | String | 返回信息， OK为正常
-err\_detail  | String | 具体错误信息
-bill_status | Bool | 订单是否成功
-
-> 公共返回参数取值及含义参见支付公共返回参数部分
-
-## 9. 支付宝线下扫码取消订单
-
-#### URL:   */1/rest/bill/{bill_no}*
-#### Method: POST JSON
-#### bill_no : 订单号
-
-#### 请求参数类型:JSON
-
-#### 请求参数详情:
-
-参数名 | 类型 | 含义 | 描述 | 例子 | 是否必填
-----  | ---- | ---- | ---- | ---- | ----
-app_id | String | BeeCloud应用APPID | BeeCloud的唯一标识 | 0950c062-5e41-44e3-8f52-f89d8cf2b6eb | 是
-timestamp | Long | 签名生成时间 | 时间戳，毫秒数 | 1435890533866 | 是
-app_sign | String | 加密签名 | 算法: md5(app\_id+timestamp+app\_secret)，32位16进制格式，不区分大小写 | b927899dda6f9a04afc57f21ddf69d69 | 是
-channel| String | 渠道类型 | 根据不同场景选择不同的支付方式 | 目前只支持ALI\_OFFLINE_QRCODE | 是
-method | String | 订单修改的方法 | REVERT代表取消订单 | REVERT | 是
-
-#### 返回类型: *JSON, Map*
-#### 返回详情:
-
-- 公共返回参数
-
-参数名 | 类型 | 含义 
----- | ---- | ----
-result\_code | Integer | 返回码，0为正常
-result\_msg  | String | 返回信息， OK为正常
-err\_detail  | String | 具体错误信息
-revert_result | bool | 订单是否取消
-retry_flag | String | 是否可以重试
-
-注：retry_flag 对撤销失败的情况下，是否可以继续发起撤销请求的建议。
-    Y：可继续发起撤销请求；
-    N：不可继续发起撤销请求，即后续的撤销请求也不会成功 
- 当撤销成功情况下，N：撤销已成功，无需重试 		
-
-
-> 公共返回参数取值及含义参见支付公共返回参数部分
 
 ## 联系我们
 - 如果有什么问题，可以到QQ群 **321545822** BeeCloud开发者大联盟 提问
