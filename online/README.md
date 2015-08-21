@@ -480,7 +480,7 @@ retry_flag | String | 是否可以重试
 > 公共返回参数取值及含义参见支付公共返回参数部分
 
 ## 联系我们
-- 如果有什么问题，可以到QQ群 **321545822** BeeCloud开发者大联盟 提问
+- 如果有什么问题，可以到BeeCloud开发者1群:**321545822** 或 BeeCloud开发者2群:**427128840** 提问
 - 如果发现了bug，欢迎提交[issue](https://github.com/beecloud/beecloud-rest-api/issues)
 - 如果有新的需求，欢迎提交[issue](https://github.com/beecloud/beecloud-rest-api/issues)
 
