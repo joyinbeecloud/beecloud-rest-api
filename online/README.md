@@ -483,6 +483,9 @@ retry_flag | String | 是否可以重试
 - 如果有什么问题，可以到BeeCloud开发者1群:**321545822** 或 BeeCloud开发者2群:**427128840** 提问
 - 如果发现了bug，欢迎提交[issue](https://github.com/beecloud/beecloud-rest-api/issues)
 - 如果有新的需求，欢迎提交[issue](https://github.com/beecloud/beecloud-rest-api/issues)
+- 
+## 在线模拟
+BeeCloud提供在线模拟REST调用-[链接](https://beecloud.cn/restful/demo.php)
 
 ## 代码许可
 The MIT License (MIT).
