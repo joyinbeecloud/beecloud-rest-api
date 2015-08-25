@@ -3,7 +3,7 @@
 BeeCloud REST API提供支付，退款，订单查询，退款查询等支付相关的功能，所有第三方支付（如支付宝，微信支付，银联支付等）都统一在本API中.
 
 #### 在线模拟
-BeeCloud提供在线模拟REST调用，方便开发者调试：[REST API测试](https://beecloud.cn/restful/demo.php)
+BeeCloud提供在线模拟REST调用，方便开发者调试：[REST API测试](https://beecloud.cn/rest/)
 
 
 ## 1. Server 列表
