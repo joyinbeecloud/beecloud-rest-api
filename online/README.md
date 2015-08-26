@@ -50,11 +50,11 @@ UN\_APP: 银联手机原生APP支付
 UN\_WEB: 银联PC网页支付  
 JD\_WAP: 京东移动网页支付   
 JD\_WEB: 京东PC网页支付  
-YEE\_WAP: 易宝移动网页支付 
-YEE\_WEB: 易宝PC网页支付 
+YEE\_WAP: 易宝移动网页支付  
+YEE\_WEB: 易宝PC网页支付  
 KUAIQIAN\_WAP: 快钱移动网页支付  
 KUAIQIAN\_WEB: 快钱PC网页支付  
-PAYPAL: PAYPAL(贝宝)支付
+PAYPAL: PAYPAL支付
 
 - 以下是`微信公众号支付(WX_JSAPI)`的**<mark>必填</mark>**参数
 
