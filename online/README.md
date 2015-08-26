@@ -169,7 +169,7 @@ url  | String | 支付宝内嵌二维码地址，是一个URL
 ---- | ---- | ----
 tn | String | 银联支付ticket number
 
-- UN_WEB、JD_WAP、JD_WEB、KUAIQIAN_WAP、KUAIQIAN_WEB、YEE_WAP、YEE_WEB
+- UN_WEB、JD_WAP、JD_WEB、KUAIQIAN_WAP、KUAIQIAN_WEB
 
 参数名 | 类型 | 含义 
 ---- | ---- | ----
