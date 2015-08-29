@@ -54,7 +54,8 @@ YEE\_WAP: 易宝移动网页支付
 YEE\_WEB: 易宝PC网页支付  
 KUAIQIAN\_WAP: 快钱移动网页支付  
 KUAIQIAN\_WEB: 快钱PC网页支付  
-PAYPAL: PAYPAL支付
+PAYPAL\_LIVE: PAYPAL真实生产环境支付
+PAYPAL\_SANDBOX: PAYPAL沙箱环境支付
 
 - 以下是`微信公众号支付(WX_JSAPI)`的**<mark>必填</mark>**参数
 
