@@ -1,4 +1,8 @@
-## BeeCloud RESTful API
+## BeeCloud REST API
+
+## 简介
+
+BeeCloud REST API文档的官方GitHub地址是 [https://github.com/beecloud/beecloud-rest-api](https://github.com/beecloud/beecloud-rest-api)
 
 BeeCloud REST API提供支付，退款，订单查询，退款查询等支付相关的功能，所有第三方支付（如支付宝，微信支付，银联支付等）都统一在本API中.
 
