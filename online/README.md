@@ -90,6 +90,7 @@ qr\_pay\_mode| String | 二维码类型 | 0,1,3
 result_code | Integer | 返回码，0为正常
 result_msg  | String | 返回信息， OK为正常
 err_detail  | String | 具体错误信息
+id  | String | 成功发起支付后返回支付表记录唯一标识
 
 - **公共返回参数取值列表及其含义**
 
@@ -216,6 +217,7 @@ optional | Map | 附加数据 | 用户自定义的参数，将会在webhook通�
 result\_code | Integer | 返回码，0为正常
 result\_msg  | String | 返回信息，OK为正常
 err\_detail  | String | 具体错误信息
+id  | String | 成功发起退款后返回退款表记录唯一标识
 
 - 公共返回参数取值及含义参见支付公共返回参数部分, 以下是退款所特有的
 
@@ -418,6 +420,100 @@ result\_code | Integer | 返回码，0为正常
 result\_msg  | String | 返回信息， OK为正常
 err\_detail  | String | 具体错误信息
 url | String | 需要跳转到支付宝输入密码确认批量打款
+
+## 8. 退款订单查询(指定ID)
+
+#### URL:   */1/rest/refund/{id}*
+#### Method: *GET*
+#### id : 退款订单唯一标识
+
+#### 请求参数类型: *JSON, 以para=**{}**的方式请求*
+
+示例: para={"key\_a":1,"key\_b":"value\_b"}, 需要对para=后面的部分做URL encode.
+
+#### 请求参数详情:
+参数名 | 类型 | 含义 | 描述 | 例子 | 是否必填
+----  | ---- | ---- | ---- | ---- | ----
+app_id | String | BeeCloud应用APPID | BeeCloud的唯一标识 | 0950c062-5e41-44e3-8f52-f89d8cf2b6eb | 是
+timestamp | Long | 签名生成时间 | 时间戳，毫秒数 | 1435890533866 | 是
+app_sign | String | 加密签名 | 算法: md5(app\_id+timestamp+app\_secret)，32位16进制格式,不区分大小写 | b927899dda6f9a04afc57f21ddf69d69 | 是
+
+
+#### 返回类型: *JSON: Map*
+#### 返回参数:
+
+- 公共返回参数
+
+参数名 | 类型 | 含义 
+---- | ---- | ----
+result\_code | Integer| 返回码，0为正常
+result\_msg  | String | 返回信息， OK为正常
+err\_detail  | String | 具体错误信息，有错误时，不会返回refund结果
+refund | Map | 退款结果
+
+- refund说明，每个Map的key\-value
+
+参数名      | 类型         | 含义 
+----       | ----        | ----
+bill\_no | String | 支付订单号
+channel | String | WX、ALI、UN、JD、KUAIQIAN(详见 1. 支付 附注）
+sub\_channel | String | WX\_NATIVE、WX\_JSAPI、WX\_APP、ALI\_APP、ALI\_WEB、ALI\_QRCODE、ALI\_OFFLINE_QRCODE、ALI_WAP、UN\_APP、UN\_WEB
+finish | Bool | 退款是否完成
+createdat | Long | 订单创建时间, 毫秒时间戳, 13位
+optional | String | 可选参数
+result | Bool| 退款是否成功
+title | String | 商品标题
+total_fee | Integer | 订单金额，单位为分
+refund_fee | Integer | 退款金额，单位为分
+refund_no | String | 退款单号
+updatedat | Long | 订单更新时间, 毫秒时间戳, 13位
+
+## 9. 支付订单查询(指定ID)
+
+#### URL:   */1/rest/bill/{id}*
+#### Method: *GET*
+#### id : 支付订单唯一标识
+
+#### 请求参数类型: *JSON, 以para=**{}**的方式请求*
+
+示例: para={"key\_a":1,"key\_b":"value\_b"}, 需要对para=后面的部分做URL encode.
+
+#### 请求参数详情:
+参数名 | 类型 | 含义 | 描述 | 例子 | 是否必填
+----  | ---- | ---- | ---- | ---- | ----
+app_id | String | BeeCloud应用APPID | BeeCloud的唯一标识 | 0950c062-5e41-44e3-8f52-f89d8cf2b6eb | 是
+timestamp | Long | 签名生成时间 | 时间戳，毫秒数 | 1435890533866 | 是
+app_sign | String | 加密签名 | 算法: md5(app\_id+timestamp+app\_secret)，32位16进制格式,不区分大小写 | b927899dda6f9a04afc57f21ddf69d69 | 是
+
+
+#### 返回类型: *JSON: Map*
+#### 返回参数:
+
+- 公共返回参数
+
+参数名 | 类型 | 含义 
+---- | ---- | ----
+result\_code | Integer| 返回码，0为正常
+result\_msg  | String | 返回信息， OK为正常
+err\_detail  | String | 具体错误信息，有错误时，不会返回pay结果
+pay | Map | 支付结果
+
+- pay说明，每个Map的key\-value
+
+参数名      | 类型         | 含义 
+----       | ----        | ----
+bill\_no | String | 支付订单号
+channel | String | WX、ALI、UN、JD、KUAIQIAN(详见 1. 支付 附注）
+sub\_channel | String | WX\_NATIVE、WX\_JSAPI、WX\_APP、ALI\_APP、ALI\_WEB、ALI\_QRCODE、ALI\_OFFLINE_QRCODE、ALI_WAP、UN\_APP、UN\_WEB
+channel\_trade\_no | String | 渠道返回的订单号
+createdat | Long | 订单创建时间, 毫秒时间戳, 13位
+optional | String | 可选参数
+spay\_result | Bool| 订单是否成功
+title | String | 商品标题
+total\_fee | Integer | 订单金额，单位为分
+updatedat | Long | 订单更新时间, 毫秒时间戳, 13位
+channel\_trade\_no | String | 渠道返回的交易号，未支付成功时，是不含该参数的
+
 
 ## 联系我们
 - 如果有什么问题，可以到QQ群 **321545822** BeeCloud开发者大联盟 提问
