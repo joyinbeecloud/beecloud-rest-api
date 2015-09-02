@@ -1,4 +1,8 @@
-## BeeCloud 线下 RESTful API (产品开发中）
+## BeeCloud 线下 REST API (产品开发中）
+
+## 简介
+
+BeeCloud REST API文档的官方GitHub地址是 [https://github.com/beecloud/beecloud-rest-api](https://github.com/beecloud/beecloud-rest-api)
 
 ## Part1. 文档
 
