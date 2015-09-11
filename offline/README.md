@@ -105,7 +105,7 @@ pay_result  | Bool | 用户是否支付
 
 ### 3. 订单状态查询
 
-#### URL:   */1/rest/offline/bill/{bill_no}*
+#### URL:   */1/rest/offline/bill/status*
 #### Method: POST
 
 #### 请求参数类型:JSON
@@ -117,8 +117,8 @@ pay_result  | Bool | 用户是否支付
 app_id | String | BeeCloud应用APPID | BeeCloud的唯一标识 | 0950c062-5e41-44e3-8f52-f89d8cf2b6eb | 是
 timestamp | Long | 签名生成时间 | 时间戳，毫秒数 | 1435890533866 | 是
 app_sign | String | 加密签名 | 算法: md5(app\_id+timestamp+app_key)，32位16进制格式，不区分大小写 | b927899dda6f9a04afc57f21ddf69d69 | 是
+bill_no | String | 订单号 | 要查询的订单号 | -|是
 channel| String | 渠道类型 | 根据不同场景选择不同的支付方式 | WX\_NATIVE、WX_SCAN、ALI\_OFFLINE\_QRCODE、ALI_SCAN(详见支付附注） | 否
-method | String | 订单修改的方法 | UPDATE代表去渠道更新订单 | UPDATE | 是
 
 #### 返回类型: *JSON, Map*
 #### 返回详情:
