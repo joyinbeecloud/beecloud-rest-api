@@ -90,6 +90,15 @@ qr\_pay\_mode| String | 二维码类型 | 0,1,3
 1： 订单码-前置模式, 对应 iframe 宽度不能小于 300px, 高度不能小于 600px  
 3： 订单码-迷你前置模式, 对应 iframe 宽度不能小于 75px, 高度不能小于 75px  
 
+- 以下是`易宝点卡支付(YEE_NOBANKCARD)`的**<mark>必填</mark>**参数
+
+参数名 | 类型 | 含义 
+---- | ---- | ----
+cardno | String | 点卡卡号，每种卡的要求不一样，例如易宝支持的QQ币卡号是9位的，江苏省内部的QQ币卡号是15位，易宝不支付
+cardpwd | String | 点卡密码，简称卡密
+frqid | String | 支付渠道编码，骏网一卡通(JUNNET),盛大卡(SNDACARD),神州行(SZX),征途卡(ZHENGTU),Q币卡(QQCARD),联通卡(UNICOM),久游卡(JIUYOU),易充卡(YICHONGCARD),网易卡(NETEASE),完美卡(WANMEI),搜狐卡(SOHU),电信卡(TELECOM),纵游一卡通(ZONGYOU),天下一卡通(TIANXIA),天宏一卡通(TIANHONG),32 一卡通(THIRTYTWOCARD)
+> 注： total_fee(订单金额)必须和充值卡面额，否则会造成**<mark>金额丢失(渠道方决定)</mark>**
+
 #### 返回类型: *JSON: Map*
 #### 返回参数:
 
