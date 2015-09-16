@@ -46,7 +46,7 @@ auth_code | String | 用户授权码| 当商户用扫码枪扫用户的条形码
 > 注1：channel的参数值含义：  
 WX\_NATIVE: 微信二维码支付   
 ALI\_OFFLINE\_QRCODE: 支付宝二维码支付  
-WX_SCAN: 微信条形码支付
+WX_SCAN: 微信条形码支付  
 ALI_SCAN: 支付宝条形码支付 
 
 
@@ -91,15 +91,6 @@ result_code | result_msg             | 含义
 参数名 | 类型 | 含义 
 ---- | ---- | ----
 qr_code | String | 二维码地址
-
-- WX_JSAPI
-
-参数名 | 类型 | 含义 
----- | ---- | ----
-submit_result | Bool | 是否下单
-submit_msg  | String | 下单返回信息
-pay_result  | Bool | 用户是否支付
-
 
 </br>
 
