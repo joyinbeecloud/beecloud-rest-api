@@ -64,11 +64,11 @@ YEE\_WAP: 易宝移动网页支付
 YEE\_WEB: 易宝PC网页支付  
 KUAIQIAN\_WAP: 快钱移动网页支付  
 KUAIQIAN\_WEB: 快钱PC网页支付  
-PAYPAL\_LIVE: PAYPAL生产环境支付
-PAYPAL\_SANDBOX: PAYPAL沙箱环境支付<br>
-BD\_APP: 百度手机原生APP支付<br>
-BD\_WAP: 百度移动网页支付 
-BD\_WEB: 百度pc网页支付
+PAYPAL\_LIVE: PAYPAL生产环境支付   
+PAYPAL\_SANDBOX: PAYPAL沙箱环境支付   
+BD\_APP: 百度手机原生APP支付   
+BD\_WAP: 百度移动网页支付   
+BD\_WEB: 百度pc网页支付   
 
 - 以下是`微信公众号支付(WX_JSAPI)`的**<mark>必填</mark>**参数
 
