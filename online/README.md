@@ -46,6 +46,8 @@ bill_no | String | 商户订单号 | 8到32位数字和/或字母组合，请自
 title| String | 订单标题 | UTF8编码格式，32个字节内，最长支持16个汉字 | 白开水 | 是
 optional | Map | 附加数据 | 用户自定义的参数，将会在webhook通知中原样返回，该字段主要用于商户携带订单的自定义数据 | {"key1":"value1","key2":"value2",...} | 否
 return_url | String | 同步返回页面| 支付渠道处理完请求后,当前页面自动跳转到商户网站里指定页面的http路径 | beecloud.cn/returnUrl.jsp | 当channel参数为 ALI\_WEB 或 ALI\_QRCODE 或 UN\_WEB时为必填
+bill_timeout | Integer | 订单失效时间 | 必须为非零正整数，单位为秒，建议不小于于30 | 121 | 否, **<mark>京东(JD)、快钱(KQ)不支持该参数</mark>** 
+
 
 > 注：channel的参数值含义：  
 WX\_APP: 微信手机原生APP支付  
@@ -100,14 +102,8 @@ qr\_pay\_mode| String | 二维码类型 | 0,1,3
 ---- | ---- | ----
 cardno | String | 点卡卡号，每种卡的要求不一样，例如易宝支持的QQ币卡号是9位的，江苏省内部的QQ币卡号是15位，易宝不支付
 cardpwd | String | 点卡密码，简称卡密
-frqid | String | 支付渠道编码，骏网一卡通(JUNNET),盛大卡(SNDACARD),神州行(SZX),征途卡(ZHENGTU),Q币卡(QQCARD),联通卡(UNICOM),久游卡(JIUYOU),易充卡(YICHONGCARD),网易卡(NETEASE),完美卡(WANMEI),搜狐卡(SOHU),电信卡(TELECOM),纵游一卡通(ZONGYOU),天下一卡通(TIANXIA),天宏一卡通(TIANHONG),32 一卡通(THIRTYTWOCARD)
+frqid | String | 点卡类型编码，骏网一卡通(JUNNET),盛大卡(SNDACARD),神州行(SZX),征途卡(ZHENGTU),Q币卡(QQCARD),联通卡(UNICOM),久游卡(JIUYOU),易充卡(YICHONGCARD),网易卡(NETEASE),完美卡(WANMEI),搜狐卡(SOHU),电信卡(TELECOM),纵游一卡通(ZONGYOU),天下一卡通(TIANXIA),天宏一卡通(TIANHONG),32 一卡通(THIRTYTWOCARD)
 > 注： total_fee(订单金额)必须和充值卡面额，否则会造成**<mark>金额丢失(渠道方决定)</mark>**
-
-- 以下是除`京东、快钱`渠道以外的**<mark>选填</mark>**参数
-
-参数名 | 类型 | 含义 | 例子
----- | ---- | ---- | ----
-bill_timeout| Integer | 订单失效时间，必须为非零正整数，单位为秒 | 121
 
 #### 返回类型: *JSON: Map*
 #### 返回参数:
