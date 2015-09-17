@@ -86,11 +86,11 @@ result_code | result_msg             | 含义
 
 **<mark>以下字段在result_code为0时有返回</mark>**
 
-- WX_NATIVE
+- WX_NATIVE | ALI_OFFLINE_QRCODE
 
 参数名 | 类型 | 含义 
 ---- | ---- | ----
-qr_code | String | 二维码地址
+code_url | String | 二维码地址
 
 </br>
 
