@@ -13,6 +13,7 @@ BeeCloud REST API文档的官方GitHub地址是 [https://github.com/beecloud/bee
 
 域名 | 位置
 ---- | ----
+apidynamic.beecloud.cn| 随机DNS解析到以下一台上
 apibj.beecloud.cn| 北京 
 apisz.beecloud.cn| 深圳 
 apiqd.beecloud.cn| 青岛 
