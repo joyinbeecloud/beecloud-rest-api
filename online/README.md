@@ -17,6 +17,7 @@ BeeCloud提供在线模拟REST调用，方便开发者调试：[REST API测试](
 
 域名 | 位置
 ---- | ----
+apidynamic.beecloud.cn | 随机DNS解析到以下一台上
 apibj.beecloud.cn| 北京 
 apisz.beecloud.cn| 深圳 
 apiqd.beecloud.cn| 青岛 
