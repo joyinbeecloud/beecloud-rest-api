@@ -154,7 +154,7 @@ method | String | 订单修改的方法 | REVERT代表取消订单 | REVERT | �
 result\_code | Integer | 返回码，0为正常
 result\_msg  | String | 返回信息， OK为正常
 err\_detail  | String | 具体错误信息
-revert_result | bool | 订单是否取消	
+revert_status | bool | 订单是否取消	
 
 > 公共返回参数取值及含义参见支付公共返回参数部分
 
