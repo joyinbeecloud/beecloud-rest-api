@@ -309,7 +309,7 @@ err\_detail  | String | 具体错误信息
  
 参数名 | 类型 | 含义 
 ---- | ---- | ----
-result_map | Map<String, Map<String, Object>> |批量同意单笔结果集合，key:单笔记录id, value:此笔记录结果
+result_map | Map&lt;String, Map&lt;String, Object&gt;&gt; |批量同意单笔结果集合，key:单笔记录id, value:此笔记录结果
 
 
 </br>
