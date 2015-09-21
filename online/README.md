@@ -86,7 +86,7 @@ openid| String | 用户相对于微信公众号的唯一id | 0950c062-5e41-44e3-
 ---- | ---- | ---- | ----
 show_url| String | 商品展示地址以http://开头 | http://beecloud.cn
 
-- 以下是`支付宝内嵌二维码支付(ALI_QRCODE)`的**<mark>选填</mark>**参数
+- 以下是`支付宝内嵌二维码支付(ALI_QRCODE)`的**<mark>必填</mark>**参数
 
 参数名 | 类型 | 含义 | 例子
 ---- | ---- | ---- | ----
@@ -238,6 +238,7 @@ refund_no | String | 商户退款单号 | 格式为:退款日期(8位) + 流水�
 bill_no | String | 商户订单号 | 发起支付时填写的订单号 | 201506101035040000001 | 是 
 refund_fee | Integer | 退款金额 | 必须为正整数，单位为分，必须小于或等于对应的已支付订单的total_fee | 1 | 是
 optional | Map | 附加数据 | 用户自定义的参数，将会在webhook通知中原样返回，该字段主要用于商户携带订单的自定义数据 | {"key1":"value1","key2":"value2",...} | 否
+need_approval| Bool | 是否为预退款 | 预退款need_approval值传true,直接退款不传此参数或者传false | true | 否
 
 #### 返回类型: *JSON: Map*
 #### 返回参数:
@@ -249,7 +250,7 @@ optional | Map | 附加数据 | 用户自定义的参数，将会在webhook通�
 result\_code | Integer | 返回码，0为正常
 result\_msg  | String | 返回信息，OK为正常
 err\_detail  | String | 具体错误信息
-id  | String | 成功发起退款后返回退款表记录唯一标识
+id  | String | 成功发起预退款或者直接退款后返回退款表记录唯一标识
 
 - 公共返回参数取值及含义参见支付公共返回参数部分, 以下是退款所特有的
 
@@ -270,7 +271,49 @@ url | String | 支付宝退款地址，需用户在支付宝平台上手动输�
 
 
 </br>
-## 4. 订单查询
+## 4. 预退款批量审核
+
+批量审核接口仅支持预退款，批量审核分为批量驳回和批量同意。
+
+#### URL: */1/rest/approve*
+#### Method: *POST*
+
+#### 请求参数格式: *JSON: Map*
+#### 请求参数详情:
+
+- 参数列表
+
+参数名 | 类型 | 含义   | 描述 | 例子 | 是否必填 |
+---- | ---- | ---- | ---- | ---- | ----
+app_id | String | BeeCloud应用APPID | BeeCloud的唯一标识 | 0950c062\-5e41\-44e3\-8f52\-f89d8cf2b6eb | 是 
+timestamp | Long | 签名生成时间 | 时间戳，毫秒数 | 1435890533866 | 是
+app_sign | String | 加密签名 | 算法: md5(app\_id+timestamp+app\_secret)，32位16进制格式,不区分大小写 | b927899dda6f9a04afc57f21ddf69d69 | 是
+channel| String | 渠道类型 | 根据不同渠道选不同的值 | WX ALI UN KUAIQIAN BD JD YEE | 否
+ids | List<String> | 退款记录id列表 | 批量审核的退款记录的唯一标识符集合 | ["d9690a6e-ae99-44b7-9904-bd9d43fcc21b", "6f263aa6-111d-4c95-b51e-001b3f7e6ddf", "  7d1f69e4-3ff2-4b7d-b764-eb018620e00d"] | 是
+agree| Bool | 同意或者驳回 | 批量驳回传false，批量同意传true | true | 是
+deny_reason| String | 驳回理由 | 批量驳回原因 | "审核不通过" | 否
+
+#### 返回类型: *JSON: Map*
+#### 返回参数:
+
+- 公共返回参数
+
+参数名 | 类型 | 含义 
+---- | ---- | ----
+result\_code | Integer | 返回码，0为正常
+result\_msg  | String | 返回信息，OK为正常
+err\_detail  | String | 具体错误信息
+
+
+**当agree为true时，以下字段在result_code为0时有返回**
+ 
+参数名 | 类型 | 含义 
+---- | ---- | ----
+result_map | Map<String, Map<String, Object>> |批量同意单笔结果集合，key:单笔记录id, value:此笔记录结果
+
+
+</br>
+## 5. 订单查询
 
 #### URL:   */1/rest/bills*
 #### Method: *GET*
@@ -324,7 +367,7 @@ spay\_result  | Bool         | 订单是否成功
 created\_time | Long         | 订单创建时间, 毫秒时间戳, 13位
 
 
-## 5. 退款查询
+## 6. 退款查询
 
 #### URL:   */1/rest/refunds*
 #### Method: GET
@@ -382,7 +425,7 @@ finish     | bool        | 退款是否完成
 result     | bool        | 退款是否成功
 created\_time | Long       | 退款创建时间, 毫秒时间戳, 13位
 
-## 6. 退款状态更新
+## 7. 退款状态更新
 
 #### URL:   */1/rest/refund/status*
 #### Method: GET
@@ -415,7 +458,7 @@ refund_status | String | 退款状态
 
 > 公共返回参数取值及含义参见支付公共返回参数部分
 
-## 7. 支付宝批量打款
+## 8. 支付宝批量打款
 #### URL: /1/rest/transfers
 #### Method: POST
 ####请求参数类型: JSON
@@ -453,7 +496,7 @@ result\_msg  | String | 返回信息， OK为正常
 err\_detail  | String | 具体错误信息
 url | String | 需要跳转到支付宝输入密码确认批量打款
 
-## 8. 退款订单查询(指定ID)
+## 9. 退款订单查询(指定ID)
 
 #### URL:   */1/rest/refund/{id}*
 #### Method: *GET*
@@ -500,7 +543,7 @@ refund_fee | Integer | 退款金额，单位为分
 refund_no | String | 退款单号
 updatedat | Long | 订单更新时间, 毫秒时间戳, 13位
 
-## 9. 支付订单查询(指定ID)
+## 10. 支付订单查询(指定ID)
 
 #### URL:   */1/rest/bill/{id}*
 #### Method: *GET*
