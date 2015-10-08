@@ -360,11 +360,14 @@ bills | List<Map> | 订单列表
 参数名         | 类型          | 含义 
 ----          | ----         | ----
 bill\_no      | String       | 订单号
+trade\_no     | String | 渠道返回的交易号，未支付成功时，是不含该参数的
 total\_fee    | Integer         | 订单金额，单位为分
-channel       | String       | WX\_NATIVE、WX\_JSAPI、WX\_APP、ALI\_APP、ALI\_WEB、ALI\_QRCODE、ALI\_OFFLINE_QRCODE、ALI_WAP、UN\_APP、UN\_WEB、JD_WAP、JD_WEB、YEE_WAP、YEE_WEB、KUAIQIAN_WAP、KUAIQIAN_WEB、PAYPAL\_SANDBOX、PAYPAL\_LIVE、BD\_APP、BD\_WAP、BD\_WEB(详见 1. 支付 附注）
+channel | String | WX、ALI、UN、JD、KUAIQIAN、YEE、BD、PAYPAL(详见 1. 支付 附注）
+sub\_channel | String | WX\_NATIVE、WX\_JSAPI、WX\_APP、ALI\_APP、ALI\_WEB、ALI\_QRCODE、ALI\_OFFLINE_QRCODE、ALI_WAP、UN\_APP、UN\_WEB、YEE\_WEB、YEE\_WAP、BD\_WEB、BD\_APP、BD\_WAP、PAYPAL\_SANDBOX、PAYPAL\_LIVE
 title         | String       | 订单标题
 spay\_result  | Bool         | 订单是否成功
 created\_time | Long         | 订单创建时间, 毫秒时间戳, 13位
+optional | String | 可选参数
 
 
 ## 6. 退款查询
@@ -578,15 +581,14 @@ pay | Map | 支付结果
 参数名      | 类型         | 含义 
 ----       | ----        | ----
 bill\_no | String | 支付订单号
+trade\_no | String | 渠道返回的交易号，未支付成功时，是不含该参数的
 channel | String | WX、ALI、UN、JD、KUAIQIAN、YEE、BD、PAYPAL(详见 1. 支付 附注）
 sub\_channel | String | WX\_NATIVE、WX\_JSAPI、WX\_APP、ALI\_APP、ALI\_WEB、ALI\_QRCODE、ALI\_OFFLINE_QRCODE、ALI_WAP、UN\_APP、UN\_WEB、YEE\_WEB、YEE\_WAP、BD\_WEB、BD\_APP、BD\_WAP、PAYPAL\_SANDBOX、PAYPAL\_LIVE
-channel\_trade\_no | String | 渠道返回的交易号，未支付成功时，是不含该参数的
-createdat | Long | 订单创建时间, 毫秒时间戳, 13位
+created_time | Long | 订单创建时间, 毫秒时间戳, 13位
 optional | String | 可选参数
 spay\_result | Bool| 订单是否成功
 title | String | 商品标题
 total\_fee | Integer | 订单金额，单位为分
-updatedat | Long | 订单更新时间, 毫秒时间戳, 13位
 
 
 
