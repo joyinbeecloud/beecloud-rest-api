@@ -423,10 +423,13 @@ refund\_no  | String      | 退款号
 total\_fee  | Integer      | 订单金额，单位为分
 refund\_fee | Integer      | 退款金额，单位为分
 title         | String       | 订单标题
-channel    | String      | WX\_NATIVE、WX\_JSAPI、WX\_APP、ALI\_APP、ALI\_WEB、ALI\_QRCODE、ALI\_OFFLINE_QRCODE、UN\_APP、UN\_WEB、PAYPAL\_SANDBOX、PAYPAL\_LIVE、JD_WAP、JD_WEB、YEE_WAP、YEE_WEB、KUAIQIAN_WAP、KUAIQIAN_WEB、BD\_APP、BD\_WEB、BD\_WAP(详见 1. 支付 附注）
+channel | String | WX、ALI、UN、JD、KUAIQIAN、BD、YEE、PAYPAL(详见 1. 支付 附注）
+sub\_channel | String | WX\_NATIVE、WX\_JSAPI、WX\_APP、ALI\_APP、ALI\_WEB、ALI\_QRCODE、ALI\_OFFLINE_QRCODE、ALI_WAP、UN\_APP、UN\_WEB、YEE\_WEB、YEE\_WAP、BD\_WEB、BD\_WAP、BD\_APP、PAYPAL\_SANDBOX、PAYPAL\_LIVE
 finish     | bool        | 退款是否完成
 result     | bool        | 退款是否成功
 created\_time | Long       | 退款创建时间, 毫秒时间戳, 13位
+optional | String | 可选参数
+
 
 ## 7. 退款状态更新
 
@@ -537,14 +540,13 @@ bill\_no | String | 支付订单号
 channel | String | WX、ALI、UN、JD、KUAIQIAN、BD、YEE、PAYPAL(详见 1. 支付 附注）
 sub\_channel | String | WX\_NATIVE、WX\_JSAPI、WX\_APP、ALI\_APP、ALI\_WEB、ALI\_QRCODE、ALI\_OFFLINE_QRCODE、ALI_WAP、UN\_APP、UN\_WEB、YEE\_WEB、YEE\_WAP、BD\_WEB、BD\_WAP、BD\_APP、PAYPAL\_SANDBOX、PAYPAL\_LIVE
 finish | Bool | 退款是否完成
-createdat | Long | 订单创建时间, 毫秒时间戳, 13位
+created_time | Long | 退款创建时间, 毫秒时间戳, 13位
 optional | String | 可选参数
 result | Bool| 退款是否成功
 title | String | 商品标题
 total_fee | Integer | 订单金额，单位为分
 refund_fee | Integer | 退款金额，单位为分
 refund_no | String | 退款单号
-updatedat | Long | 订单更新时间, 毫秒时间戳, 13位
 
 ## 10. 支付订单查询(指定ID)
 
