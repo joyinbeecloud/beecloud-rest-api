@@ -580,14 +580,14 @@ pay | Map | 支付结果
 bill\_no | String | 支付订单号
 channel | String | WX、ALI、UN、JD、KUAIQIAN、YEE、BD、PAYPAL(详见 1. 支付 附注）
 sub\_channel | String | WX\_NATIVE、WX\_JSAPI、WX\_APP、ALI\_APP、ALI\_WEB、ALI\_QRCODE、ALI\_OFFLINE_QRCODE、ALI_WAP、UN\_APP、UN\_WEB、YEE\_WEB、YEE\_WAP、BD\_WEB、BD\_APP、BD\_WAP、PAYPAL\_SANDBOX、PAYPAL\_LIVE
-channel\_trade\_no | String | 渠道返回的订单号
+channel\_trade\_no | String | 渠道返回的交易号，未支付成功时，是不含该参数的
 createdat | Long | 订单创建时间, 毫秒时间戳, 13位
 optional | String | 可选参数
 spay\_result | Bool| 订单是否成功
 title | String | 商品标题
 total\_fee | Integer | 订单金额，单位为分
 updatedat | Long | 订单更新时间, 毫秒时间戳, 13位
-channel\_trade\_no | String | 渠道返回的交易号，未支付成功时，是不含该参数的
+
 
 
 ## 联系我们
