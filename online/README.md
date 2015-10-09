@@ -312,6 +312,12 @@ err\_detail  | String | 具体错误信息
 result_map | Map&lt;String, Map&lt;String, Object&gt;&gt; |批量同意单笔结果集合，key:单笔记录id; value:此笔记录结果,value参考公共返回参数
 
 
+**当channel为`ALI`时，以下字段在agree为true时有返回**
+ 
+参数名 | 类型 | 含义 
+---- | ---- | ----
+url | String | 支付宝退款地址，需用户在支付宝平台上手动输入支付密码处理
+
 </br>
 ## 5. 订单查询
 
