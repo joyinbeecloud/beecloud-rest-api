@@ -104,7 +104,7 @@ qr\_pay\_mode| String | 二维码类型 | 0,1,3
 cardno | String | 点卡卡号，每种卡的要求不一样，例如易宝支持的QQ币卡号是9位的，江苏省内部的QQ币卡号是15位，易宝不支付
 cardpwd | String | 点卡密码，简称卡密
 frqid | String | 点卡类型编码，骏网一卡通(JUNNET),盛大卡(SNDACARD),神州行(SZX),征途卡(ZHENGTU),Q币卡(QQCARD),联通卡(UNICOM),久游卡(JIUYOU),易充卡(YICHONGCARD),网易卡(NETEASE),完美卡(WANMEI),搜狐卡(SOHU),电信卡(TELECOM),纵游一卡通(ZONGYOU),天下一卡通(TIANXIA),天宏一卡通(TIANHONG),32 一卡通(THIRTYTWOCARD)
-> 注： total_fee(订单金额)必须和充值卡面额，否则会造成**<mark>金额丢失(渠道方决定)</mark>**
+> 注： total_fee(订单金额)必须和充值卡面额相同，否则会造成**<mark>金额丢失(渠道方决定)</mark>**
 
 #### 返回类型: *JSON: Map*
 #### 返回参数:
