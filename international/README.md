@@ -97,7 +97,7 @@ PAYPAL_SAVED_CREDITCARD|	使用存储的行用卡id支付（信用卡信息存�
 参数 | 含义 
 ---- | ---- | 
 bill_no|	下单时传输的订单号  
-state	|  订单状态 approved/cancle..，只有approved为支付成功
+result	|  订单状态 approved/cancle..，只有approved为支付成功
   
 
 #### 返回类型: *JSON: Map*
