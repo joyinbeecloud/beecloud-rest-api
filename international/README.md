@@ -83,6 +83,15 @@ Thai baht	|THB
 Turkish lira|	TRY  
 United States dollar|	USD  
 
+- 以下是`channel`参数 的对照表
+
+channel | 含义 
+---- | ---- | 
+PAYPAL_PAYPAL|	跳转到paypal使用paypal内支付  
+PAYPAL_CREDITCARD	|直接使用信用卡支付（paypal渠道） 
+PAYPAL_SAVED_CREDITCARD|	使用存储的行用卡id支付（信用卡信息存储在PAYPAL)  
+
+
 
 
 
