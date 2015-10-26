@@ -91,9 +91,14 @@ PAYPAL_PAYPAL|	跳转到paypal使用paypal内支付
 PAYPAL_CREDITCARD	|直接使用信用卡支付（paypal渠道） 
 PAYPAL_SAVED_CREDITCARD|	使用存储的行用卡id支付（信用卡信息存储在PAYPAL)  
 
+- return_url说明  
+   当channel为PAYPAL\_PAYPAL时， 用户支付完成后页面会跳转到return_url， 并带上以下参数(应只做展示用)
 
-
-
+参数 | 含义 
+---- | ---- | 
+bill_no|	下单时传输的订单号  
+state	|  订单状态 approved/cancle..，只有approved为支付成功
+  
 
 #### 返回类型: *JSON: Map*
 #### 返回参数:
