@@ -27,7 +27,7 @@ total_fee | Integer | 订单总金额 | 必须是正整数，单位为分，最�
 bill_no | String | 商户订单号 | 8到30位数字和/或字母组合，请**<mark>务必</mark>**确保在商户系统中唯一，同一订单号不可重复提交，否则会造成订单重复 | 201506101035040000001 | 是
 title| String | 订单标题 | UTF8编码格式，32个字节内，最长支持16个汉字 | 白开水 | 是
 optional | Map | 附加数据 | 用户自定义的参数，将会在webhook通知中原样返回，该字段主要用于商户携带订单的自定义数据 | {"key1":"value1","key2":"value2",...} | 否
-return_url | String | 同步返回页面| 支付渠道处理完请求后,当前页面自动跳转到商户网站里指定页面的http路径,不要以包含localhost，否则渠道会认为非法 | beecloud.cn/returnUrl.jsp | 当为MS_WEB时，必填
+return_url | String | 同步返回页面| 支付渠道处理完请求后,当前页面自动跳转到商户网站里指定页面的http路径,不要包含localhost，否则渠道会认为非法 | www.baidu.com | 当为MS_WEB时，必填
 > 注：channel的参数值含义：  
 MS\_WEB: 民生网关  
  
@@ -56,7 +56,7 @@ result_code | result_msg             | 含义
 7           | CHANNEL\_ERROR         | 渠道内部错误
 14          | RUN\_TIME_ERROR        | 实时未知错误，请与技术联系帮助查看
 
-> **<mark>当result_code不为0时，如需详细信息，请查看err\_detail字段**
+> **<mark>当result_code不为0时，如需详细信息，请查看err\_detail字段</mark>**
 
 **<mark>以下字段在result_code为0时有返回</mark>**
 - MS\_WEB
@@ -86,9 +86,9 @@ subject| String | 商品种类| 该参数，是从民生电商处获得 | 117200
 title| String | 订单标题 | UTF8编码格式，32个字节内，最长支持16个汉字 | 白开水 | 是
 channel| String | 渠道类型 | 根据不同场景选择不同的支付方式 | MS_WAP| 是
 total_fee | Integer | 订单总金额 | 必须是正整数，单位为分，最低100分 | 100 | 是
-bill_no | String | 商户订单号 | 8到30位数字和/或字母组合，请自行确保在商户系统中唯一，同一订单号不可重复提交，否则会造成订单重复 | 201506101035040000001 | 是
+bill_no | String | 商户订单号 | 8到30位数字和/或字母组合，请**<mark>务必</mark>**自行确保在商户系统中唯一，同一订单号不可重复提交，否则会造成订单重复 | 201506101035040000001 | 是
 cust_id | String | 客户号 | 28位以内的数字或字母的组合 | 1111111111111 | 是
-cust_name | String | 客户姓名 | UTF8编码格式，30个字节内，最长支持16个汉字 | 黄晓明 | 是
+cust_name | String | 客户姓名 | UTF8编码格式，30个字节内，最长支持15个汉字 | 黄晓明 | 是
 cust\_id\_no | String | 证件号 | 身份证号，军官证等 | 88888888888888888， | 是
 cust\_id\_type| String | 客户证件类型，详细请见**<mark>下方证件类型码</mark>** | 0-18 | 0代表身份证 | 是
 card_no| String | 银行卡号 | 借记卡和信用卡的卡号 | 6666666666666666666 | 是
@@ -163,7 +163,7 @@ card_no| String | 银行卡号 | 借记卡和信用卡的卡号 | 66666666666666
 bank_no| String | 银行编号 | 需要快捷支付的银行号，详细请见**<mark>上方的银行列表</mark>** | 01040000，中国银行 | 是
 expired_date | String | 信用卡有效日期| 信用卡的有效日期 | 0216 | **<mark>使用借记卡时可以不填，信用卡时必填</mark>**
 cvv2| String | 信用卡验证码| 信用卡背后的三位验证码 | 110 |  **<mark>使用借记卡时可以不填，信用卡时必填</mark>**
-cust_name | String | 客户姓名 |UTF8编码格式，30个字节内，最长支持16个汉字 | 黄晓明 | 是
+cust_name | String | 客户姓名 |UTF8编码格式，30个字节内，最长支持15个汉字 | 黄晓明 | 是
 cust\_id\_no | String | 证件号 | 身份证号，军官证等 | 88888888888888888 | 是
 cust\_id\_type| String | 客户证件类型 | 0-18，详细请见**<mark>上方证件类型码</mark>** | 0代表身份证 | 是
 cust_id | String | 客户号 | 28位以内的数字或字母的组合 | 1111111111111 | 是
@@ -236,7 +236,7 @@ err_detail  | String | 具体错误信息
 ---- | ---- | ----
 txnType | String | 交易类型，QP0001，指消费，
 txnStat | String |交易状态，0-处理中；1-成功；2-失败
-amount| String |金额
+amount| String |金额，单位是元
 merTransTime | String | 商户交易时间，格式为yyyyMMddHHmmss，例如：20140825010101
 merOrderId | String | 商户订单号
 
@@ -278,9 +278,9 @@ err_detail  | String | 具体错误信息，当为渠道错误时，除了验签
 payOrderId | String | 平台交易号
 merOrderId | String | 商户订单号
 merSendTime  | String | 平台接受订单时间
-amountSum | String |金额
+amountSum | String |金额，单位是元
 payBank  | String |  支付银行
-state | String | 状态
+state | String | 状态，0:未付款；1:成功相符；2:成功不符；3:失败；
 type | String |交易类型
 
 - **<mark>查询出错信息对照表</mark>**
@@ -290,7 +290,7 @@ Error id	|信息
 
 ## 6. 订单查询（网关之批量订单查询）
 
-此接口为网关的单笔订单查询，主要功能在于获得单笔订单信息.
+此接口为网关的批量订单查询，主要功能在于获得批量订单信息.
 
 #### URL:   */1/rest/minsheng/querys*
 #### Method: *GET*
@@ -332,7 +332,7 @@ bills | List<Map> | 订单列表
 payOrderId | String | 平台交易号
 merOrderId | String | 商户订单号
 merSendTime  | String | 平台接受订单时间
-amountSum | String |金额
+amountSum | String |金额，单位是元
 payBank  | String |  支付银行，具体支持银行请参考“宝易互通所支持银行缩写表”
 state | String | 状态，0:未付款；1:成功相符；2:成功不符；3:失败；
 type | String |交易类型，0:非会员交易；5:会员即时到账交易；6:会员担保交易支付
@@ -342,7 +342,8 @@ type | String |交易类型，0:非会员交易；5:会员即时到账交易；6
 银行缩写         | 银行名称          
 ----          | ----  
 CCB	| 中国建设银行B2C支付渠道ABC	| 中国农业银行B2C支付渠道ICBC	| 中国工商银行B2C支付渠道BOC	| 交通银行B2C支付渠道
-GDB	|广东发展银行B2C支付渠道CMB	|招商银行B2C支付渠道CMSB	|中国民生银行B2C支付渠道SPDB	|上海浦东发展银行B2C支付渠道HXB	|华夏银行B2C支付渠道FUDIAN	|富滇银行B2C支付渠道POST	|中国邮政B2C支付渠道BCN	|中国银行CITIC	|中信银行B2C支付渠道（与银行对接中）SZDB	|深圳发展银行B2C支付渠道CIB	|兴业银行B2C支付渠道CEB	|光大银行B2C支付渠道B2B_CCB	|中国建设银行B2B支付渠道B2B_ABC	|中国农业银行B2B支付渠道B2B_ICBC	|中国工商银行B2B支付渠道B2B_ZSYH	|招商银行B2B支付渠道（与银行对接中）B2B_SPDB	|浦发银行B2B支付渠道（与银行对接中）MEM	|所有会员支付B2B	|所有b2b支付B2C	|所有B2C支付  
+GDB	|广东发展银行B2C支付渠道CMB	|招商银行B2C支付渠道CMSB	|中国民生银行B2C支付渠道SPDB	|上海浦东发展银行B2C支付渠道HXB	|华夏银行B2C支付渠道FUDIAN	|富滇银行B2C支付渠道POST	|中国邮政B2C支付渠道BCN	|中国银行CITIC	|中信银行B2C支付渠道（与银行对接中）SZDB	|深圳发展银行B2C支付渠道CIB	|兴业银行B2C支付渠道CEB	|光大银行B2C支付渠道B2B_CCB	|中国建设银行B2B支付渠道B2B_ABC	|中国农业银行B2B支付渠道B2B_ICBC	|中国工商银行B2B支付渠道B2B_ZSYH	|招商银行B2B支付渠道（与银行对接中）B2B_SPDB	|浦发银行B2B支付渠道（与银行对接中）MEM	|所有会员支付B2B	|所有b2b支付B2C	|所有B2C支付
+BOS| 上海银行  
 
 ## 7. 退款（网关）
 
@@ -361,7 +362,7 @@ app_id | String | BeeCloud平台的AppID | App在BeeCloud平台的唯一标识 |
 timestamp | Long | 签名生成时间 | 时间戳，毫秒数 | 1435890533866 | 是
 app_sign | String | 加密签名 | 算法: md5(app\_id+timestamp+app\_secret)，32位16进制格式,不区分大小写 | b927899dda6f9a04afc57f21ddf69d69 | 是
 bill_no | String | 商户订单号 | 8到30位数字和/或字母组合，请自行确保在商户系统中唯一，同一订单号不可重复提交，否则会造成订单重复 | 201506101035040000001 | 是
-refund_no | String | 商户退款单号 | 格式为:退款日期(8位) + 流水号(3~24 位)。请**<mark>务必</mark>**确保在商户系统中唯一，且退款日期必须是发起退款的当天日期,同一退款单号不可重复提交，否则会造成退款单重复。流水号可以接受数字或英文字符，建议使用数字，但不可接受“000” | 
+refund_no | String | 商户退款单号 | 格式为:退款日期(8位) + 流水号(3~24 位)。请**<mark>务必</mark>**确保在商户系统中唯一，且退款日期必须是发起退款的当天日期,同一退款单号不可重复提交，否则会造成退款单重复。可以接受数字或英文字符，建议使用数字，但不可接受“000” | 
 refund_fee |Integer | 退款金额 | 必须是正整数，单位为分，最低100分 | 100 | 是
 
 #### 返回类型: *JSON: Map*
@@ -372,8 +373,8 @@ refund_fee |Integer | 退款金额 | 必须是正整数，单位为分，最低1
 ---- | ---- | ----
 result_code | Integer | 返回码，0为正常
 result_msg  | String | 返回信息， OK为正常
-err_detail  | String | 具体错误信息，
-id  | String | 成功发起支付后返回支付表记录唯一标识，当为渠道错误时，除了验签出错，网络异常和MD5异常之外，错误信息会返回码，具体请参数下面“退款返回信息对照表”
+err_detail  | String | 具体错误信息，当为渠道错误时，除了验签出错，网络异常和MD5异常之外，错误信息会有返回码，具体请参考下面“退款返回信息对照表”
+id  | String | 成功发起退款后返回退款表记录唯一标识，
  **<mark>当result_code不为0时，如需详细信息，请查看err\_detail字段**
 
 **<mark>以下字段在result_code为0时有返回</mark>**
@@ -414,8 +415,8 @@ end_date | String | 结束时间 | 格式：yyyy-MM-dd，共10位 |2015-10-10|�
 ---- | ---- | ----
 result_code | Integer | 返回码，0为正常
 result_msg  | String | 返回信息， OK为正常
-err_detail  | String | 具体错误信息,当为渠道错误时，除了验签出错，网络异常和MD5异常之外，错误信息会返回码，具体请参数下面“退款信息返回信息对照表”
-count | Integer | 查询订单结果数量
+err_detail  | String | 具体错误信息,当为渠道错误时，除了验签出错，网络异常和MD5异常之外，错误信息会有返回码，具体请参考下面“退款查询返回信息对照表”
+count | Integer | 查询退款结果的数量
 refunds | List<Map> | 订单列表
 > 公共返回参数取值及含义参见支付公共返回参数部分  
 
@@ -431,14 +432,14 @@ refundId | String | 退款流水号
 merchantId | String | 商户号
 payorderId    | String | 原平台交易号
 merOrderId   | String |商户订单号
-amount  | String |  原订单金额
-refundAmount | String | 退款申请金额
+amount  | String |  原订单金额，单位元
+refundAmount | String | 退款申请金额，单位元
 state | String |状态 0:新申请; 1:成功; 2:拒绝; 4:平台拒绝; 5:撤销申请
 applyDate | String | 申请时间
 startflag | String | 发起标记 0:商户; 1:平台
 
 
-- 退款信息返回信息对照表
+- 退款查询返回信息对照表
 
 返回码|	含义
 ----  | ---- 
@@ -470,7 +471,7 @@ channel\_refund\_no| String | 平台退款流水号 | 平台退款流水号,在�
 ---- | ---- | ----
 result_code | Integer | 返回码，0为正常
 result_msg  | String | 返回信息， OK为正常
-err_detail  | String | 具体错误信息,当为渠道错误时，除了验签出错，网络异常和MD5异常之外，错误信息会返回码，具体请参数上面“退款信息返回信息对照表”
+err_detail  | String | 具体错误信息,当为渠道错误时，除了验签出错，网络异常和MD5异常之外，错误信息会有返回码，具体请参考上面“退款查询返回信息对照表”
 
 **<mark>当result_code不为0时，如需详细信息，请查看err\_detail字段**
 
@@ -486,7 +487,7 @@ refund_status | String | **<mark>退款状态</mark>**   PROCESSING:退款中；
 "transaction_id":"be495cb4e4cedc9790c974",
 "retry_counter":0,
 "channelType":"MS",
-"sub_channel_type":"MS_WAP",
+"sub_channel_type":"MS\_WAP",
 "optional":{},
 "transaction_type":"PAY",
 "notify_url":"https://apihz.beecloud.cn/1/pay/webhook/receiver/c37d661d-7e61-49ea-96a5-68c34e83db3b",
@@ -531,6 +532,7 @@ transaction_type | PAY/REFUND  分别代表支付和退款的结果确认
 transaction_fee | 交易金额，是以分为单位的整数，对应支付请求的total\_fee或者退款请求的refund\_fee
 trade_success | true  交易成功
 channel_type | MS 民生
+sub_channel_type | MS\_WAP 民生快捷
 message_detail | {orderId:xxx…..} 用一个map代表处理结果的详细信息，例如支付的订单号，金额， 商品信息
 optional| 附加参数，为一个JSON格式的Map，客户在发起购买或者退款操作时添加的附加信息
 
@@ -539,7 +541,7 @@ optional| 附加参数，为一个JSON格式的Map，客户在发起购买或者
   Key             | 类型           | Example               | 含义
 -------------     | ------------- | -------------         | -------
 refNo | String | QP201510231008298527 | 系统参考号，即渠道交易号
-amount| String| 1.00| 金额
+amount| String| 1.00| 金额，单位元
 storableCardNo| String| 6217907388| 短卡号
 custId| String | iGfK3cetpDVsdSV18bmfcwUAMLiw1c8wN0kTUjDnGdE= | 通过数据密钥加密，custId经过md5加密之后的值
 tranCode | String | QP0001 | 交易响应码
@@ -550,7 +552,7 @@ merOrderId | String | 20151023101407 | 订单号
 "transaction_id":"a030d58be4d333ec46118f7d266",
 "retry_counter":0,
 "channelType":"MS",
-"sub_channel_type":"MS_WEB",
+"sub_channel_type":"MS\_WEB",
 "optional":{},
 "transaction_type":"PAY",
 "notify_url":"https://apihz.beecloud.cn/1/pay/webhook/receiver/c37d661d-7e61-49ea-96a5-68c34e83db3b",
@@ -599,6 +601,7 @@ transaction_type | PAY/REFUND  分别代表支付和退款的结果确认
 transaction_fee | 交易金额，是以分为单位的整数，对应支付请求的total\_fee或者退款请求的refund\_fee
 trade_success | true  交易成功
 channel_type | MS 民生
+sub_channel_type | MS\_WEB 民生网关
 message_detail | {orderId:xxx…..} 用一个map代表处理结果的详细信息，例如支付的订单号，金额， 商品信息
 optional| 附加参数，为一个JSON格式的Map，客户在发起购买或者退款操作时添加的附加信息
 
@@ -617,7 +620,7 @@ merrecvtime| String | 2015-10-23 10:26:05 | 返回到商户时间
 
 ## 11. 测试环境和生产环境配置参数（网关支付）
 
-在测试环境下，以上1-9涉及的接口，都需要向民生那边发起请求。而后端**<mark>务必<mark>**配置这些请求的地址。具体地址如下：
+在测试环境下，以上1-9涉及的接口，都需要向民生那边发起请求。而**<mark>在后端beecloud.properties务必<mark>**配置这些请求的地址。具体地址如下：
 
   Key            | 含义         | 类型           
 ------------- | -------------    | -------------
@@ -634,5 +637,6 @@ msWebQueryUrl | 网关订单批量查询地址 |http://netpay.umbpay.com.cn:8086
 ## 12. 注意点
 
 - 退款时，民生没有给异步通知，因此需要通过退款查询来更改退款状态；
-- 批量订单，当交易量非常大的时候，民生提示这样操作会相当耗资源，因此建议使用民生商户平台导出的账单；
-- 
+- 批量订单查询，当交易量非常大的时候，民生提示这样操作会相当耗资源，因此建议去民生商户平台导出账单；
+- 11中的请求地址，需要民生给出。所以暂时没写到文档中。
+- 订单号（bill_no）和退款单号(refund_no),请**<mark>务必<mark>**保证唯一
