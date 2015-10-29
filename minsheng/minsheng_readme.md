@@ -187,6 +187,8 @@ result_code | Integer | 返回码，0为正常
 result_msg  | String | 返回信息， OK为正常
 err_detail  | String | 具体错误信息
 id  | String | 成功发起支付后返回支付表记录唯一标识
+client_date| String | 交易发起时间，跟id一起返回
+
 > 公共返回参数取值及含义参见支付(网关)公共返回参数部分
 
 > **<mark>当result_code不为0时，如需详细信息，请查看err\_detail字段**
@@ -215,7 +217,8 @@ refNo | String | 系统参考号,快捷后台唯一标示的记录,
 app_id | String | BeeCloud平台的AppID | App在BeeCloud平台的唯一标识 | 0950c062-5e41-44e3-8f52-f89d8cf2b6eb | 是
 timestamp | Long | 签名生成时间 | 时间戳，毫秒数 | 1435890533866 | 是
 app_sign | String | 加密签名 | 算法: md5(app\_id+timestamp+app\_secret)，32位16进制格式,不区分大小写 | b927899dda6f9a04afc57f21ddf69d69 | 是
-channel\_trade\_no | String | 渠道交易号，**<mark>就是快捷支付返回的refNo</mark>** | 由快捷支付时返回的| 201510101000001 | 是
+bill_no | String | 商户订单号 | 8到30位数字和/或字母组合，请**<mark>务必</mark>**确保在商户系统中唯一，同一订单号不可重复提交，否则会造成订单重复 | 201506101035040000001 | 是
+mer_trans_date | String | 商户交易时间 | 商户端交易日期，YYYYMMDDHHMMSS格式，快捷支付时返回 | 20150610000000 | 是
 
 #### 返回类型: *JSON: Map*
 #### 返回参数:
@@ -239,6 +242,7 @@ txnStat | String |交易状态，0-处理中；1-成功；2-失败
 amount| String |金额，单位是元
 merTransTime | String | 商户交易时间，格式为yyyyMMddHHmmss，例如：20140825010101
 merOrderId | String | 商户订单号
+custId | String | 支付时商户号经过MD5加密之后的值
 
 ## 5. 订单查询（网关之单笔订单查询）
 
@@ -546,6 +550,7 @@ storableCardNo| String| 6217907388| 短卡号
 custId| String | iGfK3cetpDVsdSV18bmfcwUAMLiw1c8wN0kTUjDnGdE= | 通过数据密钥加密，custId经过md5加密之后的值
 tranCode | String | QP0001 | 交易响应码
 merOrderId | String | 20151023101407 | 订单号
+tranRespCode | String | 00 |C0-提交成功；00-成功
 
 ## 10. WebHooK（网关支付）
 {"retryCounter":0,
@@ -634,9 +639,12 @@ msWebQueryUrl | 网关订单批量查询地址 |http://netpay.umbpay.com.cn:8086
 
 在生产环境下，也需要后端配置这些请求的地址。但这些地址需要民生那边给出。
 
-## 12. 注意点
+## 12. **<mark>注意点<mark>**
 
-- 退款时，民生没有给异步通知，因此需要通过退款查询来更改退款状态；
-- 批量订单查询，当交易量非常大的时候，民生提示这样操作会相当耗资源，因此建议去民生商户平台导出账单；
-- 11中的请求地址，需要民生给出。所以暂时没写到文档中。
-- 订单号（bill_no）和退款单号(refund_no),请**<mark>务必<mark>**保证唯一
+- 退款时，民生没有给异步通知，因此需要通过退款查询来更改退款状态;
+- 批量订单查询，当交易量非常大的时候，民生提示这样操作会相当耗资源，因此建议去民生商户平台导出账单;
+- 11中的请求地址，需要民生给出。所以暂时没写到文档中;
+- 订单号（bill_no）和退款单号(refund_no),请**<mark>务必<mark>**保证唯一;
+- 快捷支付，异步通知只有一次。万一因网络原因收不到异步通知，需要通过快捷单笔查询来更新订单状态;
+- 快捷支付，有时tranRespCode会返回C0，这时需要通过快捷单笔查询来更新订单状态;
+- 网关支付，异步通知共有6次，万一因网络原因，6次都没收到，这时需要网关单笔查询来更新订单状态
