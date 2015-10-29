@@ -288,7 +288,7 @@ url | String | 支付宝退款地址，需用户在支付宝平台上手动输�
 app_id | String | BeeCloud应用APPID | BeeCloud的唯一标识 | 0950c062\-5e41\-44e3\-8f52\-f89d8cf2b6eb | 是 
 timestamp | Long | 签名生成时间 | 时间戳，毫秒数 | 1435890533866 | 是
 app_sign | String | 加密签名 | 算法: md5(app\_id+timestamp+app\_secret)，32位16进制格式,不区分大小写 | b927899dda6f9a04afc57f21ddf69d69 | 是
-channel| String | 渠道类型 | 根据不同渠道选不同的值 | WX ALI UN KUAIQIAN BD JD YEE | 否
+channel| String | 渠道类型 | 根据不同渠道选不同的值 | WX ALI UN KUAIQIAN BD JD YEE | 是
 ids | List<String> | 退款记录id列表 | 批量审核的退款记录的唯一标识符集合 | ["d9690a6e-ae99-44b7-9904-bd9d43fcc21b", "6f263aa6-111d-4c95-b51e-001b3f7e6ddf", "  7d1f69e4-3ff2-4b7d-b764-eb018620e00d"] | 是
 agree| Bool | 同意或者驳回 | 批量驳回传false，批量同意传true | true | 是
 deny_reason| String | 驳回理由 | 批量驳回原因 | "审核不通过" | 否
