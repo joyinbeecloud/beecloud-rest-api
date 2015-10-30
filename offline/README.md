@@ -85,13 +85,15 @@ result_code | result_msg             | 含义
 
 > **当result_code不为0时，如需详细信息，请查看err\_detail字段**
 
-**<mark>以下字段在result_code为0时有返回</mark>**
+**<mark>以下字段在result_code为0时有返回</mark>**  
+
+- ALI\_SCAN | WX\_SCAN
 
 参数名 | 类型 | 含义 
 ---- | ---- | ----
 pay_result | boolean | 是否支付成功，false代表在等待用户输入密码，需查询
 
-- WX_NATIVE | ALI_OFFLINE_QRCODE
+- WX\_NATIVE | ALI\_OFFLINE_QRCODE
 
 参数名 | 类型 | 含义 
 ---- | ---- | ----
