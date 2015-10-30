@@ -86,6 +86,9 @@ result_code | result_msg             | 含义
 > **当result_code不为0时，如需详细信息，请查看err\_detail字段**
 
 **<mark>以下字段在result_code为0时有返回</mark>**
+参数名 | 类型 | 含义 
+---- | ---- | ----
+pay_result | boolean | 是否支付成功，false代表在等待用户输入密码，需查询
 
 - WX_NATIVE | ALI_OFFLINE_QRCODE
 
@@ -218,9 +221,9 @@ created\_time | Long         | 订单创建时间, 毫秒时间戳, 13位
 ####第一步： 商户（例如超市）中， 用户结账时使用支付宝或者微信的条形码支付，向收银员展示条形码；  
 ####第二步： 商户收银员使用扫码枪扫描用户的条形码获得授权码auth_code，并连同订单信息 使用下单接口；  
 ####第三步： 下单接口可能有三种返回状态：  
-1. submit\_result = False(测试过程中出现，生产环境一般不会，如出现请重新调用下单）  
-2. submit\_result = True && pay\_result = True （对应用户的此次支付无需输入密码情况）代表支付成功。 **<mark>可以结束此次支付**</mark>  
-3. submit\_result = True && pay\_result = False （对应用户需要输入密码确认，代表用户还在支付过程。） **<mark>需进行第四步</mark>**  
+1. resul\_code != 0, 代表支付发起失败，请参考err_detail字段  
+2. resul\_code == 0 && pay\_result = True （对应用户的此次支付无需输入密码情况）代表支付成功。 **<mark>可以结束此次支付**</mark>  
+3. resul\_code == 0 && pay\_result = False （对应用户需要输入密码确认，代表用户还在支付过程。） **<mark>需进行第四步</mark>**  
    
 ####第四步： 如果下单返回是3状态， 则需要循环调用订单状态查询接口， 直至返回结果是支付成功则**<mark>可以结束此次支付**</mark>；或者超过时间或者重试次数 调用 撤销订单接口
 
