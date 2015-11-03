@@ -46,7 +46,7 @@ total_fee | Integer | total fee of payment | must be whole number，in fen(0.01R
 bill_no | String | the distinct ID for payment | combinations of 8-32 numbers and / or letter; Error will occur if repeated | 201506101035040000001 | YES
 title| String | title for this payment | UTF8 Encoding，within 32 ASCII(within 16 Chinese character)| 白开水 | YES
 optional | Map | user defined data | defined by you，and returned in [webhook](https://github.com/beecloud/beecloud-webhook) with same key-"optional" | {"key1":"value1","key2":"value2",...} | NO
-return_url | String | the webpage customer will see when payment succeed | After payment being paid, webpage of the Third Party's payment will jump to this url automatically | beecloud.cn/returnUrl.jsp | required if channel in ALI\_WEB or ALI\_QRCODE or UN\_WEB or JD\_WAP or JD\_WEB
+return_url | String | the webpage customer will see when payment succeed | After payment being paid, webpage of the Third Party's payment will jump to this url automatically | http://beecloud.cn/returnUrl.jsp | required if channel in ALI\_WEB or ALI\_QRCODE or UN\_WEB or JD\_WAP or JD\_WEB
 bill_timeout | Integer | payment's timeout time | must be whole number，in seconds，nice to be greater than 30 | 121 | NO, **<mark>JD and KUAIQIAN do not support this param</mark>** 
 
 >NOTE: Channel description:  
