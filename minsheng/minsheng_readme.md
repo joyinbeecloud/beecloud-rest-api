@@ -27,7 +27,7 @@ total_fee | Integer | 订单总金额 | 必须是正整数，单位为分，最�
 bill_no | String | 商户订单号 | 8到30位数字和/或字母组合，请**<mark>务必</mark>**确保在商户系统中唯一，同一订单号不可重复提交，否则会造成订单重复 | 201506101035040000001 | 是
 title| String | 订单标题 | UTF8编码格式，32个字节内，最长支持16个汉字 | 白开水 | 是
 optional | Map | 附加数据 | 用户自定义的参数，将会在webhook通知中原样返回，该字段主要用于商户携带订单的自定义数据 | {"key1":"value1","key2":"value2",...} | 否
-return_url | String | 同步返回页面| 支付渠道处理完请求后,当前页面自动跳转到商户网站里指定页面的http路径,不要包含localhost，否则渠道会认为非法 | www.baidu.com | 当为MS_WEB时，必填
+return_url | String | 同步返回页面| 支付渠道处理完请求后,当前页面自动跳转到商户网站里指定页面的http路径,不要包含localhost，否则渠道会认为非法 | http://www.126.com/ | 当为MS_WEB时，必填
 > 注：channel的参数值含义：  
 MS\_WEB: 民生网关  
  
