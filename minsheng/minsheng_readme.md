@@ -87,7 +87,7 @@ channel| String | 渠道类型 | 根据不同场景选择不同的支付方式 |
 total_fee | Integer | 订单总金额 | 必须是正整数，单位为分，最低100分 | 100 | 是
 bill_no | String | 商户订单号 | 8到30位数字和/或字母组合，请**<mark>务必</mark>**自行确保在商户系统中唯一，同一订单号不可重复提交，否则会造成订单重复 | 201506101035040000001 | 是
 type | String | 保存卡信息的标记 | card：未保存卡信息；saved_card：以保存卡信息。第一次支付，只能填card;第二次支付，填saved_card | saved_card | 是
-cust_id | String | 客户号 | 22位以内的数字或字母的组合 | 1111111111111 | 是
+cust_id | String | 客户号 | 24位以内的数字或字母的组合 | 1111111111111 | 是
 card_info| Map\<String,Object\> |卡的具体信息| type为card 时必填|\<cust_name,黄晓明\>，参考下方card_info简介 |是
 bank_no| String | 银行编号 | 需要快捷支付的银行号，详细请见**<mark>下方的银行列表</mark>** | 01040000，中国银行 | 是
 expired_date| String | 信用卡有效日期| 信用卡的有效日期 | 0216 | **<mark>使用借记卡时可以不填，信用卡时必填</mark>**
@@ -178,7 +178,7 @@ optional | Map | 附加数据 | 用户自定义的参数，将会在webhook通�
 flag| String |鉴权和支付的标志位| 用于区分快捷的鉴权操作和支付操作 | 支付时:pay | 是
 card_info| Map\<String,Object\> |卡的具体信息| type为card 时必填|\<cust_name,黄晓明\>，参考下方card_info简介 |是
 type | String | 保存卡信息的标记 | card：未保存卡信息；saved_card：以保存卡信息。第一次支付，只能填card;第二次支付，填saved_card | saved_card | 是
-cust_id | String | 客户号 | 22位以内的数字或字母的组合 | 1111111111111 | 是
+cust_id | String | 客户号 | 24位以内的数字或字母的组合 | 1111111111111 | 是
 
 > 注：channel的参数值含义：  
 MS\_WAP: 民生快捷  
