@@ -1,17 +1,17 @@
-# BeeCloud SANDBOX 设计(实现中)
+# BeeCloud Sandbox API 设计 (实现中)
 
 ## 简介
 
-###BeeCloud 测试模式文档，目前只提供下单和查询的SANDBOX模式
+###BeeCloud Sandbox测试模式文档，目前只提供下单和查询的Sandbox模式
 本文档包括四个部分：  
 
 - 第一部分：  总体设计及架构
 - 第二部分：  服务器列表
-- 第三部分：  SANDBOX RESTFul API
+- 第三部分：  Sandbox RESTful API
 - 第四部分：  SDK设计
 
 ## 一. 总体设计及架构
-整个SANDBOX系统还是分为 *API* 和 *SDK* 两个部分。  
+整个Sandbox系统分为 *API* 和 *SDK* 两个部分。  
 
 ### API需要完成以下几个功能:   
 
@@ -25,7 +25,7 @@
 
 ### SDK需要完成以下几个功能:
 
-1. 提供setSandBox(bool sandBox)方法， 默认是live模式
+1. 提供setSandbox(bool sandbox)方法， 默认是live模式
 2. 提供完整的请求方法（参数调用上与live模式完全相同)
 3. 检验请求结果的正确性
 4. 提供模拟的页面跳转，二维码展示（PC端); 控件弹出（APP端）
@@ -35,7 +35,7 @@
 #### PC类工作流程
 
 ##### i. 从SDK端发起
-1. 程序启动调用 setSandBox(true)
+1. 程序启动调用 setSandbox(true)
 2. 调用下单接口 pay(ALI\_WEB, "201500103321", 1);
 3. if sand\_box\_mode = true,  then call method pay\_sand\_box(ALI_WEB, "201500103321", 1);
 
@@ -50,7 +50,7 @@
 #### APP类工作流程
 
 ##### i. 从SDK端发起
-1. 程序启动调用 setSandBox(true)
+1. 程序启动调用 setSandbox(true)
 2. 调用下单接口 pay(ALI\_APP, "201500103321", 1);
 3. if sand\_box\_mode = true,  then call method pay\_sand\_box(ALI_WEB, "201500103321", 1);
 
@@ -643,21 +643,20 @@ err\_detail  | String | 具体错误信息
 url | String | 需要跳转到支付宝输入密码确认批量打款
 
 
-
 ## 四. SDK设计
 #### 需要结合 第一部分总体设计章节中提到的SDK需要实现的功能以及工作流程中SDK的部分实现
 #### 详情请参考各个SDK的repository:
 
-1. [JAVA](https://github.com/beecloud/beecloud_java)
-2. [PYTHON](https://github.com/beecloud/beecloud_python)
-3. [.NET](https://github.com/beecloud/beecloud_dotnet)
-4. [PHP](https://github.com/beecloud/beecloud_php)
-5. [IOS](https://github.com/beecloud/beecloud_ios)
-6. [ANDROID](https://github.com/beecloud/beecloud_android)
+1. [Java](https://github.com/beecloud/beecloud-java)
+2. [Python](https://github.com/beecloud/beecloud-python)
+3. [.NET](https://github.com/beecloud/beecloud-dotnet)
+4. [PHP](https://github.com/beecloud/beecloud-php)
+5. [iOS](https://github.com/beecloud/beecloud-ios)
+6. [Android](https://github.com/beecloud/beecloud-android)
 
 
 ## 联系我们
-- 如果有什么问题，可以到BeeCloud开发者1群:**321545822** 或 BeeCloud开发者2群:**427128840** 提问
+- 如果有什么问题，可以到BeeCloud开发者1群:**321545822** 或 BeeCloud开发者2群:**427128840** 或 BeeCloud开发者3群：**102350518** 提问
 - 如果发现了bug，欢迎提交[issue](https://github.com/beecloud/beecloud-rest-api/issues)
 - 如果有新的需求，欢迎提交[issue](https://github.com/beecloud/beecloud-rest-api/issues)
 
