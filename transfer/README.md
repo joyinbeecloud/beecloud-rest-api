@@ -65,7 +65,7 @@ ALI_TRANSFER: 支付宝企业打款
 ---- | ---- | ---- | ----
 send_name| String | 红包发送者名称 32位 | BeeCloud
 wishing | String | 红包祝福语 128 位| BeeCloud祝福开发者工作顺利!
-活动名称 | String | 红包活动名称 32位 | BeeCloud开发者红包轰动
+act_name | String | 红包活动名称 32位 | BeeCloud开发者红包轰动
 
 > ####5. 返回结果 (JSON, Map)
 >> 
