@@ -53,7 +53,7 @@ desc | String | 打款说明 | 此次打款的说明 | 赔偿 | 是
 channel_user\_id | String | 用户id | 支付渠道方内收款人的标示, 微信为openid, 支付宝为支付宝账户 | someone@126.com |是
 channel_user\_name | String | 用户名| 支付渠道内收款人账户名， 支付宝必填 | 支付宝某人 | 否
 redpack_info | Map | 红包信息 | 微信红包的详细描述，详见附注, 微信红包必填 | - | 否
-account_name|String|打款账号名称|打款账号名全称，支付宝必填|苏州比可网络科技有限公司|否
+account_name|String|打款方账号名称|打款方账号名全称，支付宝必填|苏州比可网络科技有限公司|否
 
 
 >> 注1：channel的参数值含义：  
