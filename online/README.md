@@ -311,7 +311,7 @@ err\_detail  | String | 具体错误信息
  
 参数名 | 类型 | 含义 
 ---- | ---- | ----
-result_map | Map&lt;String, String&gt; |批量同意单笔结果集合，key:单笔记录id; value:此笔记录结果
+result_map | Map&lt;String, String&gt; |批量同意单笔结果集合，key:单笔记录id; value:此笔记录结果。 当退款处理成功时，value值为"OK"；当退款处理失败时， value值为具体的错误信息。
 
 
 **当channel为`ALI`时，以下字段在agree为true时有返回**
