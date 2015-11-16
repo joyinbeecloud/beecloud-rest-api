@@ -1,4 +1,4 @@
-## BeeCloud REST API
+## BeeCloud REST API Version 2
 
 ## 简介
 
@@ -29,7 +29,7 @@ apihz.beecloud.cn| 杭州
 
 此接口为支付流程的第一步，主要功能在于生成订单，获取必要的参数信息，来进行下一步的支付流程. 对于不同的渠道和支付方式，接口的返回值与后续的操作（例如微信App支付需要调用微信支付SDK的接口，支付宝网页支付需要跳转到获取的一段HTML网址等）都不尽相同，请根据每一个channel的详细描述分别处理.
 
-#### URL:   */1/rest/bill*
+#### URL:   */2/rest/bill*
 #### Method: *POST*
 #### 请求参数格式: *JSON: Map*
 
@@ -220,7 +220,9 @@ orderInfo | String | 百度支付order info
 
 退款接口仅支持对已经支付成功的订单经行退款，且目前对于同一笔订单，仅能退款成功一次（对于同一个退款请求，如果第一次退款申请被驳回，仍可以进行二次退款申请）. 退款金额refund\_fee必须小于或者等于原始支付订单的total\_fee，如果是小于，则表示部分退款.
 
-#### URL: */1/rest/refund*
+退款接口包含预退款功能，当need_approval字段的值为true时，该接口开启预退款功能，预退款仅创建退款记录，并不真正发起退款，需后续审核接口，审核同意或者否决，才真正发起退款或者预退款被否决。
+
+#### URL: */2/rest/refund*
 #### Method: *POST*
 
 #### 请求参数格式: *JSON: Map*
@@ -232,7 +234,7 @@ orderInfo | String | 百度支付order info
 ---- | ---- | ---- | ---- | ---- | ----
 app_id | String | BeeCloud应用APPID | BeeCloud的唯一标识 | 0950c062\-5e41\-44e3\-8f52\-f89d8cf2b6eb | 是 
 timestamp | Long | 签名生成时间 | 时间戳，毫秒数 | 1435890533866 | 是
-app_sign | String | 加密签名 | 算法: md5(app\_id+timestamp+app\_secret)，32位16进制格式,不区分大小写 | b927899dda6f9a04afc57f21ddf69d69 | 是
+app_sign | String | 加密签名 | 算法: md5(app\_id+timestamp+master\_secret)，32位16进制格式,不区分大小写 | b927899dda6f9a04afc57f21ddf69d69 | 是
 channel| String | 渠道类型 | 根据不同渠道选不同的值 | WX ALI UN KUAIQIAN BD JD YEE | 否
 refund_no | String | 商户退款单号 | 格式为:退款日期(8位) + 流水号(3~24 位)。请自行确保在商户系统中唯一，且退款日期必须是发起退款的当天日期,同一退款单号不可重复提交，否则会造成退款单重复。流水号可以接受数字或英文字符，建议使用数字，但不可接受“000” | 201506101035040000001 | 是
 bill_no | String | 商户订单号 | 发起支付时填写的订单号 | 201506101035040000001 | 是 
@@ -263,7 +265,7 @@ result\_code | result\_msg                | 含义
 12          | REFUND\_AMOUNT\_TOO\_LARGE | 提交的退款金额超出可退额度
 13          | NO\_SUCH\_REFUND           | 没有该退款记录
 
-**当channel为`ALI_APP`、`ALI_WEB`、`ALI_QRCODE`时，以下字段在result_code为0时有返回**
+**当channel为`ALI_APP`、`ALI_WEB`、`ALI_QRCODE`，并且非预退款时，以下字段在result_code为0时有返回**
  
 参数名 | 类型 | 含义 
 ---- | ---- | ----
@@ -275,8 +277,8 @@ url | String | 支付宝退款地址，需用户在支付宝平台上手动输�
 
 批量审核接口仅支持预退款，批量审核分为批量驳回和批量同意。
 
-#### URL: */1/rest/approve*
-#### Method: *POST*
+#### URL: */2/rest/refund*
+#### Method: *PUT*
 
 #### 请求参数格式: *JSON: Map*
 #### 请求参数详情:
@@ -287,7 +289,7 @@ url | String | 支付宝退款地址，需用户在支付宝平台上手动输�
 ---- | ---- | ---- | ---- | ---- | ----
 app_id | String | BeeCloud应用APPID | BeeCloud的唯一标识 | 0950c062\-5e41\-44e3\-8f52\-f89d8cf2b6eb | 是 
 timestamp | Long | 签名生成时间 | 时间戳，毫秒数 | 1435890533866 | 是
-app_sign | String | 加密签名 | 算法: md5(app\_id+timestamp+app\_secret)，32位16进制格式,不区分大小写 | b927899dda6f9a04afc57f21ddf69d69 | 是
+app_sign | String | 加密签名 | 算法: md5(app\_id+timestamp+master\_secret)，32位16进制格式,不区分大小写 | b927899dda6f9a04afc57f21ddf69d69 | 是
 channel| String | 渠道类型 | 根据不同渠道选不同的值 | WX ALI UN KUAIQIAN BD JD YEE | 是
 ids | List<String> | 退款记录id列表 | 批量审核的退款记录的唯一标识符集合 | ["d9690a6e-ae99-44b7-9904-bd9d43fcc21b", "6f263aa6-111d-4c95-b51e-001b3f7e6ddf", "  7d1f69e4-3ff2-4b7d-b764-eb018620e00d"] | 是
 agree| Bool | 同意或者驳回 | 批量驳回传false，批量同意传true | true | 是
@@ -309,7 +311,7 @@ err\_detail  | String | 具体错误信息
  
 参数名 | 类型 | 含义 
 ---- | ---- | ----
-result_map | Map&lt;String, Map&lt;String, Object&gt;&gt; |批量同意单笔结果集合，key:单笔记录id; value:此笔记录结果,value参考公共返回参数
+result_map | Map&lt;String, String&gt; |批量同意单笔结果集合，key:单笔记录id; value:此笔记录结果
 
 
 **当channel为`ALI`时，以下字段在agree为true时有返回**
@@ -321,7 +323,7 @@ url | String | 支付宝退款地址，需用户在支付宝平台上手动输�
 </br>
 ## 5. 订单查询
 
-#### URL:   */1/rest/bills*
+#### URL:   */2/rest/bills*
 #### Method: *GET*
 
 #### 请求参数类型: *JSON, 以para=**{}**的方式请求*
@@ -336,6 +338,8 @@ timestamp | Long | 签名生成时间 | 时间戳，毫秒数 | 1435890533866 | 
 app_sign | String | 加密签名 | 算法: md5(app\_id+timestamp+app\_secret)，32位16进制格式,不区分大小写 | b927899dda6f9a04afc57f21ddf69d69 | 是
 channel| String | 渠道类型 | 根据不同场景选择不同的支付方式 | WX、WX\_APP、WX\_NATIVE、WX\_JSAPI、ALI、ALI\_APP、ALI\_WEB、ALI\_QRCODE、ALI\_OFFLINE\_QRCODE、ALI_WAP、UN、UN\_APP、UN\_WEB、PAYPAL、PAYPAL\_SANDBOX、PAYPAL\_LIVE、JD_WAP、JD_WEB、YEE_WAP、YEE_WEB、KUAIQIAN_WAP、KUAIQIAN_WEB、JD、YEE、KUAIQIAN、BD、BD\_APP、BD\_WEB、BD\_WAP(详见附注）| 否
 bill_no | String | 商户订单号 | 发起支付时填写的订单号 | 201506101035040000001 | 否
+spay_result | Bool | 订单是否成功 | 标识订单是否支付成功 | true | 否
+need_detail | Bool | 是否需要返回渠道详细信息 | 决定是否需要返回渠道的回调信息，true为需要 | true | 否
 start_time | Long | 起始时间 | 毫秒时间戳, 13位 | 1435890530000 | 否
 end_time | Long | 结束时间 | 毫秒时间戳, 13位   | 1435890540000 | 否
 skip | Integer| 查询起始位置 | 默认为0. 设置为10表示忽略满足条件的前10条数据| 0 | 否
@@ -365,17 +369,24 @@ bills | List<Map> | 订单列表
 
 参数名         | 类型          | 含义 
 ----          | ----         | ----
+id      | String       | 订单记录的唯一标识，可用于查询单笔记录
 bill\_no      | String       | 订单号
 total\_fee    | Integer         | 订单金额，单位为分
-channel       | String       | WX\_NATIVE、WX\_JSAPI、WX\_APP、ALI\_APP、ALI\_WEB、ALI\_QRCODE、ALI\_OFFLINE_QRCODE、ALI_WAP、UN\_APP、UN\_WEB、JD_WAP、JD_WEB、YEE_WAP、YEE_WEB、KUAIQIAN_WAP、KUAIQIAN_WEB、PAYPAL\_SANDBOX、PAYPAL\_LIVE、BD\_APP、BD\_WAP、BD\_WEB(详见 1. 支付 附注）
+trade\_no    | String         | 渠道交易号， 当支付成功时有值
+channel       | String       | 渠道类型 WX、ALI、UN、JD、YEE、KUAIQIAN、PAYPAL、BD
+sub_channel         | String       | 子渠道类型 WX\_NATIVE、WX\_JSAPI、WX\_APP、ALI\_APP、ALI\_WEB、ALI\_QRCODE、ALI\_OFFLINE_QRCODE、ALI_WAP、UN\_APP、UN\_WEB、JD_WAP、JD_WEB、YEE_WAP、YEE_WEB、KUAIQIAN_WAP、KUAIQIAN_WEB、PAYPAL\_SANDBOX、PAYPAL\_LIVE、BD\_APP、BD\_WAP、BD\_WEB(详见 2. 支付 附注）
 title         | String       | 订单标题
 spay\_result  | Bool         | 订单是否成功
-created\_time | Long         | 订单创建时间, 毫秒时间戳, 13位
+create_time | Long         | 订单创建时间, 毫秒时间戳, 13位
+optional | String | 附加数据,用户自定义的参数，将会在webhook通知中原样返回，该字段是JSON格式的字符串 {"key1":"value1","key2":"value2",...}
+message_detail | String         | 渠道详细信息， 当need_detail传入true时返回
+revert_result  | Bool         | 订单是否撤销
+refund_result  | Bool         | 订单是否已经退款
 
 
 ## 6. 退款查询
 
-#### URL:   */1/rest/refunds*
+#### URL:   */2/rest/refunds*
 #### Method: GET
 
 #### 请求参数类型: JSON，以para=**{}**的方式请求
@@ -389,11 +400,13 @@ created\_time | Long         | 订单创建时间, 毫秒时间戳, 13位
 app_id | String | BeeCloud应用APPID | BeeCloud的唯一标识 | 0950c062-5e41-44e3-8f52-f89d8cf2b6eb | 是
 timestamp | Long | 签名生成时间 | 时间戳，毫秒数 | 1435890533866 | 是
 app_sign | String | 加密签名 | 算法: md5(app\_id+timestamp+app\_secret)，不区分大小写 | b927899dda6f9a04afc57f21ddf69d69 | 是
-channel| String | 渠道类型 | 根据不同场景选择不同的支付方式 | WX、WX\_NATIVE、WX\_JSAPI、ALI、ALI\_APP、ALI\_WEB、ALI\_QRCODE、ALI\_OFFLINE_QRCODE、ALI_WAP、UN、UN\_APP、UN\_WEB、PAYPAL、PAYPAL\_SANDBOX、PAYPAL\_LIVE、JD_WAP、JD_WEB、YEE_WAP、YEE_WEB、KUAIQIAN_WAP、KUAIQIAN_WEB、JD、YEE、KUAIQIAN、BD、BD\_APP、BD\_WEB、BD\_WAP(详见1.支付附注）| 否
+channel| String | 渠道类型 | 根据不同场景选择不同的支付方式 | WX、WX\_NATIVE、WX\_JSAPI、ALI、ALI\_APP、ALI\_WEB、ALI\_QRCODE、ALI\_OFFLINE_QRCODE、ALI_WAP、UN、UN\_APP、UN\_WEB、PAYPAL、PAYPAL\_SANDBOX、PAYPAL\_LIVE、JD_WAP、JD_WEB、YEE_WAP、YEE_WEB、KUAIQIAN_WAP、KUAIQIAN_WEB、JD、YEE、KUAIQIAN、BD、BD\_APP、BD\_WEB、BD\_WAP(详见2.支付附注）| 否
 bill_no | String | 商户订单号 | 发起支付时填写的订单号 | 201506101035040000001 | 否
 refund_no | String | 商户退款单号 | 发起退款时填写的退款单号 | 201506101035040000001 | 否
 start_time | Long | 起始时间 | 毫秒时间戳, 13位 | 1435890530000 | 否
 end_time | Long | 结束时间 | 毫秒时间戳, 13位   | 1435890540000 | 否
+need_approval | Bool | 需要审核 | 标识退款记录是否为预退款   | true | 否
+need_detail | Bool | 是否需要返回渠道详细信息 | 决定是否需要返回渠道的回调信息，true为需要 | true | 否
 skip | Integer | 查询起始位置 | 默认为0. 设置为10，表示忽略满足条件的前10条数据| 0 | 否
 limit| Integer | 查询的条数 | 默认为10，最大为50. 设置为10，表示只查询满足条件的10条数据 | 10 | 否
 
@@ -421,20 +434,24 @@ refunds | List<Map> | 退款列表
 
 参数名      | 类型         | 含义 
 ----       | ----        | ----
+id      | String       | 退款记录的唯一标识，可用于查询单笔记录
 bill\_no    | String      | 订单号
 refund\_no  | String      | 退款号
 total\_fee  | Integer      | 订单金额，单位为分
 refund\_fee | Integer      | 退款金额，单位为分
 title         | String       | 订单标题
-channel    | String      | WX\_NATIVE、WX\_JSAPI、WX\_APP、ALI\_APP、ALI\_WEB、ALI\_QRCODE、ALI\_OFFLINE_QRCODE、UN\_APP、UN\_WEB、PAYPAL\_SANDBOX、PAYPAL\_LIVE、JD_WAP、JD_WEB、YEE_WAP、YEE_WEB、KUAIQIAN_WAP、KUAIQIAN_WEB、BD\_APP、BD\_WEB、BD\_WAP(详见 1. 支付 附注）
+channel    | String      | 渠道类型 WX、ALI、UN、JD、YEE、KUAIQIAN、BD
+sub\_channel    | String      | 子渠道类型 WX\_NATIVE、WX\_JSAPI、WX\_APP、ALI\_APP、ALI\_WEB、ALI\_QRCODE、ALI\_OFFLINE_QRCODE、UN\_APP、UN\_WEB、JD_WAP、JD_WEB、YEE_WAP、YEE_WEB、KUAIQIAN_WAP、KUAIQIAN_WEB、BD\_APP、BD\_WEB、BD\_WAP(详见 1. 支付 附注）
 finish     | bool        | 退款是否完成
 result     | bool        | 退款是否成功
-created\_time | Long       | 退款创建时间, 毫秒时间戳, 13位
+optional | String | 附加数据,用户自定义的参数，将会在webhook通知中原样返回，该字段是JSON格式的字符串 {"key1":"value1","key2":"value2",...}
+message\_detail | String         | 渠道详细信息， 当need_detail传入true时返回
+create\_time | Long       | 退款创建时间, 毫秒时间戳, 13位
 
 
 ## 7. 退款状态更新
 
-#### URL:   */1/rest/refund/status*
+#### URL:   */2/rest/refund/status*
 #### Method: GET
 
 #### 请求参数类型:JSON，以para=**{}**的方式请求
@@ -466,7 +483,7 @@ refund_status | String | 退款状态
 > 公共返回参数取值及含义参见支付公共返回参数部分
 
 ## 8. 支付宝批量打款
-#### URL: /1/rest/transfers
+#### URL: /2/rest/transfers
 #### Method: POST
 ####请求参数类型: JSON
 ####请求参数详情:
@@ -475,7 +492,7 @@ refund_status | String | 退款状态
 ----  | ---- | ---- | ---- | ---- | ----
 app_id | String | BeeCloud应用APPID | BeeCloud的唯一标识 | 0950c062-5e41-44e3-8f52-f89d8cf2b6eb | 是
 timestamp | Long | 签名生成时间 | 时间戳，毫秒数 | 1435890533866 | 是
-app_sign | String | 加密签名 | 算法: md5(app\_id+timestamp+app_key)，32位16进制格式，不区分大小写 | b927899dda6f9a04afc57f21ddf69d69 | 是
+app_sign | String | 加密签名 | 算法: md5(app\_id+timestamp+master\_secret)，32位16进制格式，不区分大小写 | b927899dda6f9a04afc57f21ddf69d69 | 是
 channel| String | 渠道类型 | ---- | 目前只支持ALI | 是
 batch_no | String | 批量付款批号 | 此次批量付款的唯一标示，11-32位数字字母组合 | 201506101035040000001 | 是
 account_name | String | 付款方的支付宝账户名 | 支付宝账户名称 | 毛毛 | 是
@@ -505,7 +522,7 @@ url | String | 需要跳转到支付宝输入密码确认批量打款
 
 ## 9. 退款订单查询(指定ID)
 
-#### URL:   */1/rest/refund/{id}*
+#### URL:   */2/rest/refund/{id}*
 #### Method: *GET*
 #### id : 退款订单唯一标识
 
@@ -537,22 +554,23 @@ refund | Map | 退款结果
 
 参数名      | 类型         | 含义 
 ----       | ----        | ----
+id      | String       | 退款记录的唯一标识，可用于查询单笔记录
 bill\_no | String | 支付订单号
-channel | String | WX、ALI、UN、JD、KUAIQIAN、BD、YEE、PAYPAL(详见 1. 支付 附注）
-sub\_channel | String | WX\_NATIVE、WX\_JSAPI、WX\_APP、ALI\_APP、ALI\_WEB、ALI\_QRCODE、ALI\_OFFLINE_QRCODE、ALI_WAP、UN\_APP、UN\_WEB、YEE\_WEB、YEE\_WAP、BD\_WEB、BD\_WAP、BD\_APP、PAYPAL\_SANDBOX、PAYPAL\_LIVE
+channel | String | WX、ALI、UN、JD、KUAIQIAN、BD、YEE
+sub\_channel | String | WX\_NATIVE、WX\_JSAPI、WX\_APP、ALI\_APP、ALI\_WEB、ALI\_QRCODE、ALI\_OFFLINE_QRCODE、ALI_WAP、UN\_APP、UN\_WEB、YEE\_WEB、YEE\_WAP、BD\_WEB、BD\_WAP、BD\_APP (详见 2. 支付 附注）
 finish | Bool | 退款是否完成
-createdat | Long | 退款创建时间, 毫秒时间戳, 13位
-optional | String | 可选参数
+create_time | Long | 退款创建时间, 毫秒时间戳, 13位
+optional | String | 附加数据,用户自定义的参数，将会在webhook通知中原样返回，该字段是JSON格式的字符串 {"key1":"value1","key2":"value2",...}
 result | Bool| 退款是否成功
 title | String | 商品标题
 total_fee | Integer | 订单金额，单位为分
 refund_fee | Integer | 退款金额，单位为分
 refund_no | String | 退款单号
-updatedat | Long | 订单更新时间, 毫秒时间戳, 13位
+message\_detail | String         | 渠道详细信息
 
 ## 10. 支付订单查询(指定ID)
 
-#### URL:   */1/rest/bill/{id}*
+#### URL:   */2/rest/bill/{id}*
 #### Method: *GET*
 #### id : 支付订单唯一标识
 
@@ -584,16 +602,19 @@ pay | Map | 支付结果
 
 参数名      | 类型         | 含义 
 ----       | ----        | ----
+id      | String       | 订单记录的唯一标识，可用于查询单笔记录
 bill\_no | String | 支付订单号
-channel | String | WX、ALI、UN、JD、KUAIQIAN、YEE、BD、PAYPAL(详见 1. 支付 附注）
-sub\_channel | String | WX\_NATIVE、WX\_JSAPI、WX\_APP、ALI\_APP、ALI\_WEB、ALI\_QRCODE、ALI\_OFFLINE_QRCODE、ALI_WAP、UN\_APP、UN\_WEB、YEE\_WEB、YEE\_WAP、BD\_WEB、BD\_APP、BD\_WAP、PAYPAL\_SANDBOX、PAYPAL\_LIVE
-channel\_trade\_no | String | 渠道返回的交易号，未支付成功时，是不含该参数的
-createdat | Long | 订单创建时间, 毫秒时间戳, 13位
-optional | String | 可选参数
+channel | String | WX、ALI、UN、JD、KUAIQIAN、YEE、BD、PAYPAL
+sub\_channel | String | WX\_NATIVE、WX\_JSAPI、WX\_APP、ALI\_APP、ALI\_WEB、ALI\_QRCODE、ALI\_OFFLINE_QRCODE、ALI_WAP、UN\_APP、UN\_WEB、YEE\_WEB、YEE\_WAP、BD\_WEB、BD\_APP、BD\_WAP、PAYPAL\_SANDBOX、PAYPAL\_LIVE (详见 2. 支付 附注）
+trade\_no | String | 渠道返回的交易号，当支付成功时有值
+create\_time | Long | 订单创建时间, 毫秒时间戳, 13位
+optional | String | 附加数据,用户自定义的参数，将会在webhook通知中原样返回，该字段是JSON格式的字符串 {"key1":"value1","key2":"value2",...}
 spay\_result | Bool| 订单是否成功
 title | String | 商品标题
 total\_fee | Integer | 订单金额，单位为分
-updatedat | Long | 订单更新时间, 毫秒时间戳, 13位
+message\_detail | String         | 渠道详细信息
+revert\_result  | Bool         | 订单是否撤销
+refund\_result  | Bool         | 订单是否已经退款
 
 
 ## 联系我们
