@@ -74,7 +74,6 @@ act_name | String | 红包活动名称 32位 | BeeCloud开发者红包轰动
 result_code | Integer | 返回码，0为正常
 result_msg  | String | 返回信息， OK为正常
 err_detail  | String | 具体错误信息
-id  | String | 成功发起打款后返回打款表记录唯一标识
 url | String | 支付宝需要跳转到支付宝链接输入支付密码确认
 >> 
 >> 注1: 错误码（错误详细信息 参考 **err_detail**字段)
@@ -131,7 +130,6 @@ transfer_note | String | 打款备注 | 赔款
 result_code | Integer | 返回码，0为正常
 result_msg  | String | 返回信息， OK为正常
 err_detail  | String | 具体错误信息
-id  | String | 成功发起打款后返回打款表记录唯一标识
 url | String | 支付宝需要跳转到支付宝链接输入支付密码确认
 >> 
 >> 支付宝返回result\_code 0 需要跳转到url 地址的页面去输入支付宝支付密码
