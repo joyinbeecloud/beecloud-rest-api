@@ -220,7 +220,7 @@ orderInfo | String | 百度支付order info
 
 退款接口仅支持对已经支付成功的订单进行退款，且目前对于同一笔订单，仅能退款成功一次（对于同一个退款请求，如果第一次退款申请被驳回，仍可以进行二次退款申请）。 退款金额refund\_fee必须小于或者等于原始支付订单的total\_fee，如果是小于，则表示部分退款.
 
-退款接口包含预退款功能，当need_approval字段的值为true时，该接口开启预退款功能，预退款仅创建退款记录，并不真正发起退款，需后续审核接口，审核同意或者否决，才真正发起退款或者预退款被否决。
+退款接口包含预退款功能，当need_approval字段的值为true时，该接口开启预退款功能，预退款仅创建退款记录，并不真正发起退款，需后续审核接口，审核同意或者否决，才真正发起退款或者拒绝预退款。
 
 #### URL: */2/rest/refund*
 #### Method: *POST*
@@ -265,7 +265,7 @@ result\_code | result\_msg                | 含义
 12          | REFUND\_AMOUNT\_TOO\_LARGE | 提交的退款金额超出可退额度
 13          | NO\_SUCH\_REFUND           | 没有该退款记录
 
-**当channel为`ALI_APP`、`ALI_WEB`、`ALI_QRCODE`，并且非预退款时，以下字段在result_code为0时有返回**
+**当channel为`ALI_APP`、`ALI_WEB`、`ALI_QRCODE`，并且为非预退款时，以下字段在result_code为0时有返回**
  
 参数名 | 类型 | 含义 
 ---- | ---- | ----
