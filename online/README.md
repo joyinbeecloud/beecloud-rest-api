@@ -220,7 +220,7 @@ orderInfo | String | 百度支付order info
 
 退款接口仅支持对已经支付成功的订单进行退款，且目前对于同一笔订单，仅能退款成功一次（对于同一个退款请求，如果第一次退款申请被驳回，仍可以进行二次退款申请）。 退款金额refund\_fee必须小于或者等于原始支付订单的total\_fee，如果是小于，则表示部分退款.
 
-退款接口包含预退款功能，当need_approval字段的值为true时，该接口开启预退款功能，预退款仅创建退款记录，并不真正发起退款，需后续审核接口，审核同意或者否决，才真正发起退款或者拒绝预退款。
+退款接口包含预退款功能，当need_approval字段的值为true时，该接口开启预退款功能，预退款仅创建退款记录，并不真正发起退款，需后续调用审核接口，或者通过BeeCloud控制台的预退款界面，审核同意或者否决，才真正发起退款或者拒绝预退款。
 
 #### URL: */2/rest/refund*
 #### Method: *POST*
@@ -265,7 +265,7 @@ result\_code | result\_msg                | 含义
 12          | REFUND\_AMOUNT\_TOO\_LARGE | 提交的退款金额超出可退额度
 13          | NO\_SUCH\_REFUND           | 没有该退款记录
 
-**当channel为`ALI_APP`、`ALI_WEB`、`ALI_QRCODE`，并且为非预退款时，以下字段在result_code为0时有返回**
+**当channel为`ALI_APP`、`ALI_WEB`、`ALI_QRCODE`，并且不是预退款时，以下字段在result_code为0时有返回**
  
 参数名 | 类型 | 含义 
 ---- | ---- | ----
@@ -311,7 +311,7 @@ err\_detail  | String | 具体错误信息
  
 参数名 | 类型 | 含义 
 ---- | ---- | ----
-result_map | Map&lt;String, String&gt; |批量同意单笔结果集合，key:单笔记录id; value:此笔记录结果。 当退款处理成功时，value值为"OK"；当退款处理失败时， value值为具体的错误信息。
+result_map | Map<String, String>; |批量同意单笔结果集合，key:单笔记录id; value:此笔记录结果。 当退款处理成功时，value值为"OK"；当退款处理失败时， value值为具体的错误信息。
 
 
 **当channel为`ALI`时，以下字段在agree为true时有返回**
@@ -380,7 +380,7 @@ spay\_result  | Bool         | 订单是否成功
 create_time | Long         | 订单创建时间, 毫秒时间戳, 13位
 optional | String | 附加数据,用户自定义的参数，将会在webhook通知中原样返回，该字段是JSON格式的字符串 {"key1":"value1","key2":"value2",...}
 message_detail | String         | 渠道详细信息， 当need_detail传入true时返回
-revert_result  | Bool         | 订单是否撤销
+revert_result  | Bool         | 订单是否已经撤销
 refund_result  | Bool         | 订单是否已经退款
 
 </br>
@@ -536,6 +536,8 @@ count | Integer | 查询退款结果数量
 <br>
 ## 9. 退款状态更新
 
+退款状态更新接口提供查询退款状态以更新退款状态的功能，用于对退款后不发送回调的渠道（WX、YEE、KUAIQIAN、BD）退款后的状态更新。
+
 #### URL:   */2/rest/refund/status*
 #### Method: GET
 
@@ -661,7 +663,7 @@ spay\_result | Bool| 订单是否成功
 title | String | 商品标题
 total\_fee | Integer | 订单金额，单位为分
 message\_detail | String         | 渠道详细信息
-revert\_result  | Bool         | 订单是否撤销
+revert\_result  | Bool         | 订单是否已经撤销
 refund\_result  | Bool         | 订单是否已经退款
 
 
