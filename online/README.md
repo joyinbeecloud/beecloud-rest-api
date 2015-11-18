@@ -383,8 +383,49 @@ message_detail | String         | 渠道详细信息， 当need_detail传入true
 revert_result  | Bool         | 订单是否撤销
 refund_result  | Bool         | 订单是否已经退款
 
+</br>
+## 6. 订单总数查询
 
-## 6. 退款查询
+#### URL:   */2/rest/bills/count*
+#### Method: *GET*
+
+#### 请求参数类型: *JSON, 以para=**{}**的方式请求*
+
+示例: para={"key\_a":1,"key\_b":"value\_b"}, 需要对para=后面的部分做URL encode.
+
+#### 请求参数详情:
+参数名 | 类型 | 含义 | 描述 | 例子 | 是否必填
+----  | ---- | ---- | ---- | ---- | ----
+app_id | String | BeeCloud应用APPID | BeeCloud的唯一标识 | 0950c062-5e41-44e3-8f52-f89d8cf2b6eb | 是
+timestamp | Long | 签名生成时间 | 时间戳，毫秒数 | 1435890533866 | 是
+app_sign | String | 加密签名 | 算法: md5(app\_id+timestamp+app\_secret)，32位16进制格式,不区分大小写 | b927899dda6f9a04afc57f21ddf69d69 | 是
+channel| String | 渠道类型 | 根据不同场景选择不同的支付方式 | WX、WX\_APP、WX\_NATIVE、WX\_JSAPI、ALI、ALI\_APP、ALI\_WEB、ALI\_QRCODE、ALI\_OFFLINE\_QRCODE、ALI_WAP、UN、UN\_APP、UN\_WEB、PAYPAL、PAYPAL\_SANDBOX、PAYPAL\_LIVE、JD_WAP、JD_WEB、YEE_WAP、YEE_WEB、KUAIQIAN_WAP、KUAIQIAN_WEB、JD、YEE、KUAIQIAN、BD、BD\_APP、BD\_WEB、BD\_WAP(详见附注）| 否
+bill_no | String | 商户订单号 | 发起支付时填写的订单号 | 201506101035040000001 | 否
+spay_result | Bool | 订单是否成功 | 标识订单是否支付成功 | true | 否
+start_time | Long | 起始时间 | 毫秒时间戳, 13位 | 1435890530000 | 否
+end_time | Long | 结束时间 | 毫秒时间戳, 13位   | 1435890540000 | 否
+
+> 注：  
+1. bill\_no, start\_time, end\_time等查询条件互相为**<mark>且</mark>**关系  
+2. start\_time, end\_time指的是订单生成的时间，而不是订单支付的时间   
+
+
+#### 返回类型: *JSON: Map*
+#### 返回参数:
+
+- 公共返回参数
+
+参数名 | 类型 | 含义 
+---- | ---- | ----
+result\_code | Integer| 返回码，0为正常
+result\_msg  | String | 返回信息， OK为正常
+err\_detail  | String | 具体错误信息
+count | Integer | 查询订单结果数量
+
+> 公共返回参数取值及含义参见支付公共返回参数部分  
+
+<br>
+## 7. 退款查询
 
 #### URL:   */2/rest/refunds*
 #### Method: GET
@@ -448,8 +489,52 @@ optional | String | 附加数据,用户自定义的参数，将会在webhook通�
 message\_detail | String         | 渠道详细信息， 当need_detail传入true时返回
 create\_time | Long       | 退款创建时间, 毫秒时间戳, 13位
 
+<br>
+## 8. 退款总数查询
 
-## 7. 退款状态更新
+#### URL:   */2/rest/refunds/count*
+#### Method: GET
+
+#### 请求参数类型: JSON，以para=**{}**的方式请求
+
+示例: para={"key\_a":1,"key\_b":"value\_b"}, 需要对para=后面的部分做URL encode.
+
+#### 请求参数详情:
+
+参数名 | 类型 | 含义 | 描述 | 例子 | 是否必填
+----  | ---- | ---- | ---- | ---- | ----
+app_id | String | BeeCloud应用APPID | BeeCloud的唯一标识 | 0950c062-5e41-44e3-8f52-f89d8cf2b6eb | 是
+timestamp | Long | 签名生成时间 | 时间戳，毫秒数 | 1435890533866 | 是
+app_sign | String | 加密签名 | 算法: md5(app\_id+timestamp+app\_secret)，不区分大小写 | b927899dda6f9a04afc57f21ddf69d69 | 是
+channel| String | 渠道类型 | 根据不同场景选择不同的支付方式 | WX、WX\_NATIVE、WX\_JSAPI、ALI、ALI\_APP、ALI\_WEB、ALI\_QRCODE、ALI\_OFFLINE_QRCODE、ALI_WAP、UN、UN\_APP、UN\_WEB、PAYPAL、PAYPAL\_SANDBOX、PAYPAL\_LIVE、JD_WAP、JD_WEB、YEE_WAP、YEE_WEB、KUAIQIAN_WAP、KUAIQIAN_WEB、JD、YEE、KUAIQIAN、BD、BD\_APP、BD\_WEB、BD\_WAP(详见2.支付附注）| 否
+bill_no | String | 商户订单号 | 发起支付时填写的订单号 | 201506101035040000001 | 否
+refund_no | String | 商户退款单号 | 发起退款时填写的退款单号 | 201506101035040000001 | 否
+start_time | Long | 起始时间 | 毫秒时间戳, 13位 | 1435890530000 | 否
+end_time | Long | 结束时间 | 毫秒时间戳, 13位   | 1435890540000 | 否
+need_approval | Bool | 需要审核 | 标识退款记录是否为预退款   | true | 否
+
+> 注：  
+1. bill\_no, refund\_no, start\_time, end\_time等查询条件互相为**<mark>且</mark>**关系.   
+2. start\_time, end\_time指的是订单生成的时间，而不是订单支付的时间.   
+
+
+#### 返回类型: *JSON, Map*
+#### 返回详情:
+
+- 公共返回参数
+
+参数名 | 类型 | 含义 
+---- | ---- | ----
+result\_code | Integer| 返回码，0为正常
+result\_msg  | String | 返回信息， OK为正常
+err\_detail  | String | 具体错误信息
+count | Integer | 查询退款结果数量
+
+> 公共返回参数取值及含义参见支付公共返回参数部分
+
+
+<br>
+## 9. 退款状态更新
 
 #### URL:   */2/rest/refund/status*
 #### Method: GET
@@ -482,7 +567,7 @@ refund_status | String | 退款状态
 
 > 公共返回参数取值及含义参见支付公共返回参数部分
 
-## 8. 支付宝批量打款
+## 10. 支付宝批量打款
 #### URL: /2/rest/transfers
 #### Method: POST
 ####请求参数类型: JSON
@@ -520,7 +605,7 @@ result\_msg  | String | 返回信息， OK为正常
 err\_detail  | String | 具体错误信息
 url | String | 需要跳转到支付宝输入密码确认批量打款
 
-## 9. 退款订单查询(指定ID)
+## 11. 退款订单查询(指定ID)
 
 #### URL:   */2/rest/refund/{id}*
 #### Method: *GET*
@@ -568,7 +653,7 @@ refund_fee | Integer | 退款金额，单位为分
 refund_no | String | 退款单号
 message\_detail | String         | 渠道详细信息
 
-## 10. 支付订单查询(指定ID)
+## 12. 支付订单查询(指定ID)
 
 #### URL:   */2/rest/bill/{id}*
 #### Method: *GET*
