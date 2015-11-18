@@ -76,7 +76,6 @@ act_name | String | 红包活动名称 32位 | BeeCloud开发者红包轰动
 result_code | Integer | 返回码，0为正常
 result_msg  | String | 返回信息， OK为正常
 err_detail  | String | 具体错误信息
-id  | String | 成功发起打款后返回打款表记录唯一标识
 url | String | 支付宝需要跳转到支付宝链接输入支付密码确认
 >> 
 >> 注1: 错误码（错误详细信息 参考 **err_detail**字段)
@@ -111,7 +110,7 @@ url | String | 支付宝需要跳转到支付宝链接输入支付密码确认
 app_id | String | BeeCloud平台的AppID | App在BeeCloud平台的唯一标识 | 0950c062-5e41-44e3-8f52-f89d8cf2b6eb | 是
 timestamp | Long | 签名生成时间 | 时间戳，毫秒数 | 1435890533866 | 是
 app_sign | String | 加密签名 | 算法: md5(app\_id+timestamp+**master\_secret**)，32位16进制格式,不区分大小写 | b927899dda6f9a04afc57f21ddf69d69 | 是
-channel| String | 渠道类型 | 根据不同场景选择不同的支付方式 | 目前只支持ALI\_TRANSFER| 是
+channel| String | 渠道类型 | 根据不同场景选择不同的支付方式 | 目前只支持ALI| 是
 batch_no | String | 打款单号 | 支付宝为11-32位数字字母组合 | 2015110525023331aa | 是
 account_name | String | 付款方名称| 付款账号账户全称 | 苏州xx科技有限公司 | 是
 transfer_data | List<Map> | 付款详细 | 包含每一笔的具体信息(参见注释) |  -- | 是
@@ -133,7 +132,6 @@ transfer_note | String | 打款备注 | 赔款
 result_code | Integer | 返回码，0为正常
 result_msg  | String | 返回信息， OK为正常
 err_detail  | String | 具体错误信息
-id  | String | 成功发起打款后返回打款表记录唯一标识
 url | String | 支付宝需要跳转到支付宝链接输入支付密码确认
 >> 
 >> 支付宝返回result\_code 0 需要跳转到url 地址的页面去输入支付宝支付密码
