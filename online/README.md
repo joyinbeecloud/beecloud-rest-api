@@ -566,7 +566,7 @@ refund_no | String | 商户退款单号 | 发起退款时填写的退款单号 |
 result\_code | Integer | 返回码，0为正常
 result\_msg  | String | 返回信息， OK为正常
 err\_detail  | String | 具体错误信息
-refund_status | String | 退款状态
+refund\_status | String | 退款状态
 
 - 返回码和返回信息取值及含义参见支付公共返回参数部分
 
