@@ -254,7 +254,7 @@ result\_msg  | String | 返回信息，OK为正常
 err\_detail  | String | 具体错误信息
 id  | String | 成功发起预退款或者直接退款后返回退款表记录唯一标识
 
-- 公共返回参数取值及含义参见支付公共返回参数部分, 以下是退款所特有的
+- 返回码和返回信息取值及含义参见支付公共返回参数部分, 以下是退款所特有的
 
 result\_code | result\_msg                | 含义
 ----        | ----      			       | ----
@@ -306,6 +306,7 @@ result\_code | Integer | 返回码，0为正常
 result\_msg  | String | 返回信息，OK为正常
 err\_detail  | String | 具体错误信息
 
+- 返回码和返回信息取值及含义参见支付公共返回参数部分
 
 **当agree为true时，以下字段在result_code为0时有返回**
  
@@ -353,7 +354,7 @@ limit| Integer | 查询的条数 | 默认为10，最大为50. 设置为10表示�
 #### 返回类型: *JSON: Map*
 #### 返回参数:
 
-- 公共返回参数
+- 返回参数
 
 参数名 | 类型 | 含义 
 ---- | ---- | ----
@@ -363,7 +364,7 @@ err\_detail  | String | 具体错误信息
 count | Integer | 查询订单结果数量
 bills | List<Map> | 订单列表
 
-> 公共返回参数取值及含义参见支付公共返回参数部分  
+- 返回码和返回信息取值及含义参见支付公共返回参数部分  
 
 - bills说明，每个Map的key\-value
 
@@ -413,7 +414,7 @@ end_time | Long | 结束时间 | 毫秒时间戳, 13位   | 1435890540000 | 否
 #### 返回类型: *JSON: Map*
 #### 返回参数:
 
-- 公共返回参数
+- 返回参数
 
 参数名 | 类型 | 含义 
 ---- | ---- | ----
@@ -422,7 +423,7 @@ result\_msg  | String | 返回信息， OK为正常
 err\_detail  | String | 具体错误信息
 count | Integer | 查询订单结果数量
 
-> 公共返回参数取值及含义参见支付公共返回参数部分  
+- 返回码和返回信息取值及含义参见支付公共返回参数部分
 
 <br>
 ## 7. 退款查询
@@ -459,7 +460,7 @@ limit| Integer | 查询的条数 | 默认为10，最大为50. 设置为10，表�
 #### 返回类型: *JSON, Map*
 #### 返回详情:
 
-- 公共返回参数
+- 返回参数
 
 参数名 | 类型 | 含义 
 ---- | ---- | ----
@@ -469,7 +470,7 @@ err\_detail  | String | 具体错误信息
 count | Integer | 查询退款结果数量
 refunds | List<Map> | 退款列表
 
-> 公共返回参数取值及含义参见支付公共返回参数部分
+- 返回码和返回信息取值及含义参见支付公共返回参数部分
 
 - refunds说明，每个Map的key\-value
 
@@ -521,7 +522,7 @@ need_approval | Bool | 需要审核 | 标识退款记录是否为预退款   | t
 #### 返回类型: *JSON, Map*
 #### 返回详情:
 
-- 公共返回参数
+- 返回参数
 
 参数名 | 类型 | 含义 
 ---- | ---- | ----
@@ -530,7 +531,7 @@ result\_msg  | String | 返回信息， OK为正常
 err\_detail  | String | 具体错误信息
 count | Integer | 查询退款结果数量
 
-> 公共返回参数取值及含义参见支付公共返回参数部分
+- 返回码和返回信息取值及含义参见支付公共返回参数部分
 
 
 <br>
@@ -558,7 +559,7 @@ refund_no | String | 商户退款单号 | 发起退款时填写的退款单号 |
 #### 返回类型: *JSON, Map*
 #### 返回详情:
 
-- 公共返回参数
+- 返回参数
 
 参数名 | 类型 | 含义 
 ---- | ---- | ----
@@ -567,8 +568,7 @@ result\_msg  | String | 返回信息， OK为正常
 err\_detail  | String | 具体错误信息
 refund_status | String | 退款状态
 
-> 公共返回参数取值及含义参见支付公共返回参数部分
-
+- 返回码和返回信息取值及含义参见支付公共返回参数部分
 
 ## 10. 退款订单查询(指定ID)
 
@@ -591,7 +591,7 @@ app_sign | String | 加密签名 | 算法: md5(app\_id+timestamp+app\_secret)，
 #### 返回类型: *JSON: Map*
 #### 返回参数:
 
-- 公共返回参数
+- 返回参数
 
 参数名 | 类型 | 含义 
 ---- | ---- | ----
@@ -599,6 +599,8 @@ result\_code | Integer| 返回码，0为正常
 result\_msg  | String | 返回信息， OK为正常
 err\_detail  | String | 具体错误信息，有错误时，不会返回refund结果
 refund | Map | 退款结果
+
+- 返回码和返回信息取值及含义参见支付公共返回参数部分
 
 - refund说明，每个Map的key\-value
 
@@ -639,7 +641,7 @@ app_sign | String | 加密签名 | 算法: md5(app\_id+timestamp+app\_secret)，
 #### 返回类型: *JSON: Map*
 #### 返回参数:
 
-- 公共返回参数
+- 返回参数
 
 参数名 | 类型 | 含义 
 ---- | ---- | ----
@@ -647,6 +649,8 @@ result\_code | Integer| 返回码，0为正常
 result\_msg  | String | 返回信息， OK为正常
 err\_detail  | String | 具体错误信息，有错误时，不会返回pay结果
 pay | Map | 支付结果
+
+- 返回码和返回信息取值及含义参见支付公共返回参数部分
 
 - pay说明，每个Map的key\-value
 
