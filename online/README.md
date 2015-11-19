@@ -609,7 +609,7 @@ refund | Map | 退款结果
 id      | String       | 退款记录的唯一标识，可用于查询单笔记录
 bill\_no | String | 支付订单号
 channel | String | WX、ALI、UN、JD、KUAIQIAN、BD、YEE
-sub\_channel | String | WX\_NATIVE、WX\_JSAPI、WX\_APP、ALI\_APP、ALI\_WEB、ALI\_QRCODE、ALI\_OFFLINE_QRCODE、ALI_WAP、UN\_APP、UN\_WEB、YEE\_WEB、YEE\_WAP、BD\_WEB、BD\_WAP、BD\_APP (详见 2. 支付 附注）
+sub\_channel | String | WX\_NATIVE、WX\_JSAPI、WX\_APP、ALI\_APP、ALI\_WEB、ALI\_QRCODE、ALI_WAP、UN\_APP、UN\_WEB、YEE\_WEB、YEE\_WAP、BD\_WEB、BD\_WAP、BD\_APP (详见 2. 支付 附注）
 finish | Bool | 退款是否完成
 create_time | Long | 退款创建时间, 毫秒时间戳, 13位
 optional | String | 附加数据,用户自定义的参数，将会在webhook通知中原样返回，该字段是JSON格式的字符串 {"key1":"value1","key2":"value2",...}
@@ -659,7 +659,7 @@ pay | Map | 支付结果
 id      | String       | 订单记录的唯一标识，可用于查询单笔记录
 bill\_no | String | 支付订单号
 channel | String | WX、ALI、UN、JD、KUAIQIAN、YEE、BD、PAYPAL
-sub\_channel | String | WX\_NATIVE、WX\_JSAPI、WX\_APP、ALI\_APP、ALI\_WEB、ALI\_QRCODE、ALI\_OFFLINE_QRCODE、ALI_WAP、UN\_APP、UN\_WEB、YEE\_WEB、YEE\_WAP、BD\_WEB、BD\_APP、BD\_WAP、PAYPAL\_SANDBOX、PAYPAL\_LIVE (详见 2. 支付 附注）
+sub\_channel | String | WX\_NATIVE、WX\_JSAPI、WX\_APP、ALI\_APP、ALI\_WEB、ALI\_QRCODE、ALI_WAP、UN\_APP、UN\_WEB、YEE\_WEB、YEE\_WAP、BD\_WEB、BD\_APP、BD\_WAP、PAYPAL\_SANDBOX、PAYPAL\_LIVE (详见 2. 支付 附注）
 trade\_no | String | 渠道返回的交易号，当支付成功时有值
 create\_time | Long | 订单创建时间, 毫秒时间戳, 13位
 optional | String | 附加数据,用户自定义的参数，将会在webhook通知中原样返回，该字段是JSON格式的字符串 {"key1":"value1","key2":"value2",...}
