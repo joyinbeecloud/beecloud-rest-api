@@ -172,7 +172,7 @@ sign_type  | String | 签名类型，固定为MD5
 ---- | ---- | ----
 order\_string | String | 支付宝签名串
 
-- ALI_WEB
+- ALI_WEB，ALI_WAP
 
 参数名 | 类型 | 含义 
 ---- | ---- | ----
