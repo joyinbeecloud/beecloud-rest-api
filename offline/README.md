@@ -25,7 +25,7 @@ apihz.beecloud.cn| 杭州
 
 此接口为支付流程的第一步，主要功能在于生成订单，获取必要的参数信息，来进行下一步的支付流程. 对于不同的渠道和支付方式，接口的返回值与后续的操作（例如微信App支付需要调用微信支付SDK的接口，支付宝网页支付需要跳转到获取的一段HTML网址等）都不尽相同，请根据每一个channel的详细描述分别处理.
 
-#### URL:   */1/rest/offline/bill*
+#### URL:   */2/rest/offline/bill*
 #### Method: *POST*
 #### 请求参数格式: *JSON: Map*
 
@@ -103,7 +103,7 @@ code_url | String | 二维码地址
 
 ### 3. 订单状态查询
 
-#### URL:   */1/rest/offline/bill/status*
+#### URL:   */2/rest/offline/bill/status*
 #### Method: POST
 
 #### 请求参数类型:JSON
@@ -134,7 +134,7 @@ pay_result | Bool | 订单是否成功
 
 ### 4. 撤销订单
 
-#### URL:   */1/rest/offline/bill/{bill_no}*
+#### URL:   */2/rest/offline/bill/{bill_no}*
 #### Method: POST JSON
 #### bill_no : 订单号
 
@@ -167,7 +167,7 @@ revert_status | bool | 订单是否取消
 
 ### 5. 订单查询
 
-#### URL:   */1/rest/offline/bills*
+#### URL:   */2/rest/offline/bills*
 #### Method: *GET*
 
 #### 请求参数类型: *JSON, 以para=**{}**的方式请求*
