@@ -167,7 +167,7 @@ revert_status | bool | 订单是否取消
 
 ### 5. 订单查询
 
-#### URL:   */2/rest/offline/bills*
+#### URL:   */2/rest/bills*
 #### Method: *GET*
 
 #### 请求参数类型: *JSON, 以para=**{}**的方式请求*
@@ -202,7 +202,6 @@ limit| Integer | 查询的条数 | 默认为10，最大为50. 设置为10表示�
 result\_code | Integer| 返回码，0为正常
 result\_msg  | String | 返回信息， OK为正常
 err\_detail  | String | 具体错误信息
-count | Integer | 查询订单结果数量
 bills | List<Map> | 订单列表
 
 > 公共返回参数取值及含义参见支付公共返回参数部分  
@@ -211,12 +210,19 @@ bills | List<Map> | 订单列表
 
 参数名         | 类型          | 含义 
 ----          | ----         | ----
+id      | String       | 订单记录的唯一标识，可用于查询单笔记录
 bill\_no      | String       | 订单号
-total\_fee    | Integer      | 订单金额，单位为分
-channel       | String       |  WX\_NATIVE、WX_SCAN、ALI\_OFFLINE\_QRCODE、ALI\_SCAN(详见支付附注）
+total\_fee    | Integer         | 订单金额，单位为分
+trade\_no    | String         | 渠道交易号， 当支付成功时有值
+channel       | String       | 渠道类型 WX、ALI、UN、JD、YEE、KUAIQIAN、PAYPAL、BD
+sub_channel         | String       | 子渠道类型 WX_APP、WX_NATIVE、WX_JSAPI、WX_SCAN、ALI_APP、ALI_SCAN、ALI_WEB、ALI_QRCODE、ALI_OFFLINE_QRCODE、ALI_WAP、UN_APP、UN_WEB、PAYPAL_SANDBOX、PAYPAL_LIVE、JD_WAP、JD_WEB、YEE_WAP、YEE_WEB、YEE_NOBANKCARD、KUAIQIAN_WAP、KUAIQIAN_WEB、BD_APP、BD_WEB、BD_WAP
 title         | String       | 订单标题
-pay\_result   | Bool         | 订单是否成功
-created\_time | Long         | 订单创建时间, 毫秒时间戳, 13位
+spay\_result  | Bool         | 订单是否成功
+create_time | Long         | 订单创建时间, 毫秒时间戳, 13位
+optional | String | 附加数据,用户自定义的参数，将会在webhook通知中原样返回，该字段是JSON格式的字符串 {"key1":"value1","key2":"value2",...}
+message_detail | String         | 渠道详细信息， 当need_detail传入true时返回
+revert_result  | Bool         | 订单是否已经撤销
+refund_result  | Bool         | 订单是否已经退款
 
 ## Part2. 应用场景简介
 
