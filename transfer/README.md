@@ -82,17 +82,17 @@ url | String | 支付宝需要跳转到支付宝链接输入支付密码确认
 >> 
 >> 注1: 错误码（错误详细信息 参考 **err_detail**字段)
 >> 
->> result_code | result_msg             | 含义
-----        | ----      		       | ----
+>> result_code | result_msg          | 含义
+----        | ----                   | ----
 0           | OK                     | 调用成功
 1           | APP\_INVALID           | 根据app\_id找不到对应的APP或者app\_sign不正确
-2           | PAY\_FACTOR_NOT\_SET   | 支付要素在后台没有设置
+2           | PAY\_FACTOR\_NOT\_SET  | 支付要素在后台没有设置
 3           | CHANNEL\_INVALID       | channel参数不合法
 4           | MISS\_PARAM            | 缺少必填参数
 5           | PARAM\_INVALID         | 参数不合法
 6           | CERT\_FILE\_ERROR      | 证书错误
 7           | CHANNEL\_ERROR         | 渠道内部错误
-14          | RUNTIME_ERROR          | 运行时
+14          | RUNTIME\_ERROR         | 运行时错误
 >> 
 >> 注2:  
 >> 微信返回result_code 0 代表打款成功  
@@ -180,7 +180,7 @@ err_detail  | String | 具体错误信息
 1              | APP\_INVALID           | 根据app\_id找不到对应的APP或者app\_sign不正确
 4              | MISS\_PARAM            | 缺少必填参数
 5              | PARAM\_INVALID         | 参数不合法
-14             | RUNTIME\_ERROR       | 运行时未知错误
+14             | RUNTIME\_ERROR         | 运行时错误
 15             | NETWORK\_ERROR         | 网络异常错误
 
 
