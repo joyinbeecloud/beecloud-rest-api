@@ -125,16 +125,16 @@ id  | String | if OK, the distinct ID for your payment in BeeCloud
 - **result_code and result_msg you may meet**
 
 result_code | result_msg             | Description
-----        | ----      		       | ----
+----        | ----                   | ----
 0           | OK                     | success
-1           | APP\_INVALID           | app\_id means NO APP for BeeCloud  or app\_sign is incorrect
-2           | PAY\_FACTOR_NOT\_SET   | data for Third Party Payment not set in BeeCloud
-3           | CHANNEL\_INVALID       | channel illegal
-4           | MISS\_PARAM            | missing common or required param 
-5           | PARAM\_INVALID         | param illegal
-6           | CERT\_FILE\_ERROR      | error of certification for Third Party Payment
-7           | CHANNEL\_ERROR         | origin error from Third Party Payment
-14          | RUN\_TIME_ERROR        | unknown situation, please contact BeeCloud
+1           | APP\_INVALID           | App is not created properly in BeeCloud, or app\_sign is incorrect
+2           | PAY\_FACTOR_NOT\_SET   | Config data for third party payment channels not set in BeeCloud
+3           | CHANNEL\_INVALID       | Channel not valid
+4           | MISS\_PARAM            | Required parameter missing 
+5           | PARAM\_INVALID         | Parameter not valid
+6           | CERT\_FILE\_ERROR      | error of certification for third party payment channels
+7           | CHANNEL\_ERROR         | Error from third party payment channels
+14          | RUNTIME\_ERROR         | Runtime error
 
 > **err\_detail would be useful when shit happens**
 

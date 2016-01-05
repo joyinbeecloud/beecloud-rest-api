@@ -81,7 +81,7 @@ result_code | result_msg             | 含义
 5           | PARAM\_INVALID         | 参数不合法
 6           | CERT\_FILE\_ERROR      | 证书错误
 7           | CHANNEL\_ERROR         | 渠道内部错误
-14          | RUN\_TIME_ERROR        | 实时未知错误，请与技术联系帮助查看
+14          | RUNTIME\_ERROR         | 运行时错误
 
 > **当result_code不为0时，如需详细信息，请查看err\_detail字段**
 
