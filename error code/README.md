@@ -25,4 +25,7 @@ result_code | result_msg | 含义
 11          | ALREADY\_REFUNDING         | 该订单已有正在处理中的退款， 一般发生在退款时，这笔订单已经有正在提交的退款了
 12          | REFUND\_AMOUNT\_TOO\_LARGE | 提交的退款金额超出可退额度，一般发生在退款时，这笔订单的退款总额超出了订单总金额
 13          | NO\_SUCH\_REFUND           | 没有该退款记录，一般发生在退款状态查询时，传入的退款单号找不到退款记录
-14          | RUN\_TIME_ERROR        | 实时未知错误，请与技术联系帮助查看
+14          | RUNTIME\_ERROR          | 运行时错误
+15          | NETWORK_ERROR           | 网络异常错误
+16          | PREREFUND\_DUPLICATE    | 预退款记录重复
+17          | BILL\_NO\_DUPLICATE     | 订单号重复
