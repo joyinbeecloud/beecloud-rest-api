@@ -1,4 +1,4 @@
-## BeeCloud 线下 REST API (beta）
+## BeeCloud 线下 REST API
 
 ## 简介
 
