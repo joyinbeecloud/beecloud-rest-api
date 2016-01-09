@@ -1,4 +1,4 @@
-## BeeCloud REST API Version 2
+## BeeCloud REST API (Version 2)
 
 ## 简介
 
