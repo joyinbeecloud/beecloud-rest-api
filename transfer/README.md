@@ -18,7 +18,7 @@
 1. 注册成为BeeCloud用户并通过企业认证
 2. 选择您需要的支付渠道及产品， 自助开通或**关注BeeCloud官网是否开放代申请服务**
 3. 选择使用的SDK  &ensp;&ensp;[SDK下载地址](https://beecloud.cn/download/)&ensp;&ensp;[在线文档地址](https://beecloud.cn/doc/) &ensp;&ensp; [SDK开源代码库](https://github.com/beecloud/)
-4. 参考在[在线文档](https://beecloud.cn/doc/)及SDK里的demo工程，开发您自己的优秀产品!!!
+4. 参考在[在线文档](https://beecloud.cn/doc/)及SDK里的demo工程，开发您自己的优秀产品
 5. 附： [FAQ页面](https://beecloud.cn/faq/) &ensp;&ensp; [错误码对照表](https://github.com/beecloud/beecloud-rest-api/tree/master/error%20code)
 
 ### Server 列表
