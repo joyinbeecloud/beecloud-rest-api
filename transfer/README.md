@@ -29,9 +29,54 @@ apidynamic.beecloud.cn | 随机DNS解析到以下一台上
 apibj.beecloud.cn| 北京 
 apisz.beecloud.cn| 深圳 
 apiqd.beecloud.cn| 青岛 
-apihz.beecloud.cn| 杭州 
+apihz.beecloud.cn| 杭州
 
-## 单笔打款
+## BC代付 - 银行卡
+
+### URL: */2/rest/bc_transfer/*
+### METHOD: *POST*
+### Content-type: *application/json*
+### 请求参数详情
+
+参数名 | 类型 | 含义 | 描述 | 例子 | 是否必填
+----  | ---- | ---- | ---- | ---- | ----
+app_id | String | BeeCloud平台的AppID | App在BeeCloud平台的唯一标识 | 0950c062-5e41-44e3-8f52-f89d8cf2b6eb | 是
+timestamp | Long | 签名生成时间 | 时间戳，毫秒数 | 1435890533866 | 是
+app_sign | String | 加密签名 | 算法: md5(app\_id + timestamp + **master\_secret**)，32位16进制格式,不区分大小写 | b927899dda6f9a04afc57f21ddf69d69 | 是
+total_fee | Integer | 下发订单总金额 | 必须是正整数，单位为分 | 1 | 是
+bill_no | String | 商户订单号 | 8到32位数字和/或字母组合，请自行确保在商户系统中唯一，同一订单号不可重复提交，否则会造成订单重复 | 201506101035040000001 | 是
+title| String | 下发订单标题 | UTF8编码格式，32个字节内，最长支持16个汉字 | 白开水 | 是
+trade_source | String | 交易源| UTF8编码格式，目前只能填写OUT_PC | OUT_PC | 是
+bank_code| String | 银行编码| 银行缩写编码 | 中国银行 BOC | 是
+bank\_associated\_code| String | 银行联行行号 | 需要向银行咨询| 104305045636 代表中国银行股份有限公司苏州相门支行 | 是
+bank\_full\_name | String | 银行全名 | 银行全称 | 中国银行，而不能写成"中行",因为“中行”也是中信银行和中兴银行的缩写 | 是
+card_type|String | 银行卡类型 | 区分借记卡和信用卡 | DE代表借记卡，CR代表信用卡，其他值为非法 | 是
+account_type|String | 收款帐户类型 | 区分对公和对私 | 帐户类型，P代表私户，C代表公户，其他值为非法 | 是
+account_no|String | 收款帐户号 | 收款方的银行卡号 | 6222691921993848888 | 是
+account_name|String | 收款帐户名称 | 收款方的姓名或者单位名 | 黄晓明 | 是
+mobile | String | 银行绑定的手机号 | 银行绑定的手机号，当需要手机收到银行入账信息时，该值必填，前提是该手机在银行有短信通知业务，否则收不到银行信息 | 13888888888 | 否
+optional | Map | 附加数据 | 用户自定义的参数，将会在Webhook通知中原样返回，该字段主要用于商户携带订单的自定义数据 | {"key1":"value1","key2":"value2",...} | 否
+
+### 返回结果 (JSON, Map)
+
+参数名 | 类型 | 含义 
+---- | ---- | ----
+result_code | Integer | 返回码，0为正常
+result_msg  | String | 返回信息， OK为正常
+err_detail  | String | 具体错误信息
+
+注1: 错误码（错误详细信息 参考 **err_detail** 字段)
+
+result_code | result_msg             | 含义
+----           | ----     	        | ----
+0              | OK                     | 调用成功
+1              | APP\_INVALID           | 根据app\_id找不到对应的APP或者app\_sign不正确
+4              | MISS\_PARAM            | 缺少必填参数
+5              | PARAM\_INVALID         | 参数不合法
+14             | RUNTIME\_ERROR         | 运行时错误
+15             | NETWORK\_ERROR         | 网络异常错误
+
+## 单笔打款 - 支付宝/微信
 
 ### URL: */2/rest/transfer/*
 ### METHOD: *POST*
@@ -92,7 +137,7 @@ result_code | result_msg          | 含义
 微信返回result\_code 0 代表打款成功  
 支付宝返回result\_code 0 需要跳转到url 地址的页面去输入支付宝支付密码
 
-## 批量打款
+## 批量打款 - 支付宝
 
 ### URL: */2/rest/transfers/*
 ### METHOD: *POST*
@@ -129,51 +174,6 @@ err_detail  | String | 具体错误信息
 url | String | 支付宝需要跳转到支付宝链接输入支付密码确认
 
 支付宝返回result\_code 0 需要跳转到url 地址的页面去输入支付宝支付密码
-
-## 银行卡代付
-
-### URL: */2/rest/bc_transfer/*
-### METHOD: *POST*
-### Content-type: *application/json*
-### 请求参数详情
-
-参数名 | 类型 | 含义 | 描述 | 例子 | 是否必填
-----  | ---- | ---- | ---- | ---- | ----
-app_id | String | BeeCloud平台的AppID | App在BeeCloud平台的唯一标识 | 0950c062-5e41-44e3-8f52-f89d8cf2b6eb | 是
-timestamp | Long | 签名生成时间 | 时间戳，毫秒数 | 1435890533866 | 是
-app_sign | String | 加密签名 | 算法: md5(app\_id + timestamp + **master\_secret**)，32位16进制格式,不区分大小写 | b927899dda6f9a04afc57f21ddf69d69 | 是
-total_fee | Integer | 下发订单总金额 | 必须是正整数，单位为分 | 1 | 是
-bill_no | String | 商户订单号 | 8到32位数字和/或字母组合，请自行确保在商户系统中唯一，同一订单号不可重复提交，否则会造成订单重复 | 201506101035040000001 | 是
-title| String | 下发订单标题 | UTF8编码格式，32个字节内，最长支持16个汉字 | 白开水 | 是
-trade_source | String | 交易源| UTF8编码格式，目前只能填写OUT_PC | OUT_PC | 是
-bank_code| String | 银行编码| 银行缩写编码 | 中国银行 BOC | 是
-bank\_associated\_code| String | 银行联行行号 | 需要向银行咨询| 104305045636 代表中国银行股份有限公司苏州相门支行 | 是
-bank\_full\_name | String | 银行全名 | 银行全称 | 中国银行，而不能写成"中行",因为“中行”也是中信银行和中兴银行的缩写 | 是
-card_type|String | 银行卡类型 | 区分借记卡和信用卡 | DE代表借记卡，CR代表信用卡，其他值为非法 | 是
-account_type|String | 收款帐户类型 | 区分对公和对私 | 帐户类型，P代表私户，C代表公户，其他值为非法 | 是
-account_no|String | 收款帐户号 | 收款方的银行卡号 | 6222691921993848888 | 是
-account_name|String | 收款帐户名称 | 收款方的姓名或者单位名 | 黄晓明 | 是
-mobile | String | 银行绑定的手机号 | 银行绑定的手机号，当需要手机收到银行入账信息时，该值必填，前提是该手机在银行有短信通知业务，否则收不到银行信息 | 13888888888 | 否
-optional | Map | 附加数据 | 用户自定义的参数，将会在Webhook通知中原样返回，该字段主要用于商户携带订单的自定义数据 | {"key1":"value1","key2":"value2",...} | 否
-
-### 返回结果 (JSON, Map)
-
-参数名 | 类型 | 含义 
----- | ---- | ----
-result_code | Integer | 返回码，0为正常
-result_msg  | String | 返回信息， OK为正常
-err_detail  | String | 具体错误信息
-
-注1: 错误码（错误详细信息 参考 **err_detail** 字段)
-
-result_code | result_msg             | 含义
-----           | ----     	        | ----
-0              | OK                     | 调用成功
-1              | APP\_INVALID           | 根据app\_id找不到对应的APP或者app\_sign不正确
-4              | MISS\_PARAM            | 缺少必填参数
-5              | PARAM\_INVALID         | 参数不合法
-14             | RUNTIME\_ERROR         | 运行时错误
-15             | NETWORK\_ERROR         | 网络异常错误
 
 ## 联系我们
 - 如果有什么问题，可以到BeeCloud开发者5群: **532516744** 提问
