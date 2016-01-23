@@ -63,6 +63,7 @@ WX\_TRANSFER: 微信企业打款
 ALI_TRANSFER: 支付宝企业打款 
 
 注2: redpack_info 参数列表
+
 参数名 | 类型 | 含义 | 例子
 ---- | ---- | ---- | ----
 send_name| String | 红包发送者名称 32位 | BeeCloud
@@ -92,7 +93,7 @@ result_code | result_msg          | 含义
 14          | RUNTIME\_ERROR         | 运行时错误
 
 注2:  
-微信返回result_code 0 代表打款成功  
+微信返回result\_code 0 代表打款成功  
 支付宝返回result\_code 0 需要跳转到url 地址的页面去输入支付宝支付密码
 
 ### 二. 批量打款
@@ -113,7 +114,7 @@ batch_no | String | 打款单号 | 支付宝为11-32位数字字母组合 | 2015
 account_name | String | 付款方名称| 付款账号账户全称 | 苏州xx科技有限公司 | 是
 transfer_data | List<Map> | 付款详细 | 包含每一笔的具体信息(参见注释) |  -- | 是
 
-注2: 支付宝时transfer_data 每一个Map的参数列表
+注2: 支付宝transfer_data每一个Map的参数列表
 
 参数名 | 类型 | 含义 | 例子
 ---- | ---- | ---- | ----
@@ -180,7 +181,7 @@ result_code | result_msg             | 含义
 15             | NETWORK\_ERROR         | 网络异常错误
 
 ## 联系我们
-- 如果有什么问题，可以到BeeCloud开发者3群:**102350518** 提问
+- 如果有什么问题，可以到BeeCloud开发者5群:**532516744** 提问
 - 如果发现了bug，欢迎提交[issue](https://github.com/beecloud/beecloud-rest-api/issues)
 - 如果有新的需求，欢迎提交[issue](https://github.com/beecloud/beecloud-rest-api/issues)
 
