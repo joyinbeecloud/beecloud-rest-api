@@ -181,7 +181,7 @@ result_code | result_msg             | 含义
 15             | NETWORK\_ERROR         | 网络异常错误
 
 ## 联系我们
-- 如果有什么问题，可以到BeeCloud开发者5群:**532516744** 提问
+- 如果有什么问题，可以到BeeCloud开发者5群: **532516744** 提问
 - 如果发现了bug，欢迎提交[issue](https://github.com/beecloud/beecloud-rest-api/issues)
 - 如果有新的需求，欢迎提交[issue](https://github.com/beecloud/beecloud-rest-api/issues)
 
