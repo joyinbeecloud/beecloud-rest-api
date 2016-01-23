@@ -183,6 +183,7 @@ app_sign | String | 加密签名 | 算法: md5(app\_id+timestamp+app\_secret)，
 channel| String | 渠道类型 | 根据不同场景选择不同的支付方式 | WX、WX\_APP、WX\_NATIVE、WX\_JSAPI、ALI、ALI\_APP、ALI\_WEB、ALI\_QRCODE、ALI_WAP、UN、UN\_APP、UN\_WEB、PAYPAL、PAYPAL\_SANDBOX、PAYPAL\_LIVE、JD_WAP、JD_WEB、YEE_WAP、YEE_WEB、KUAIQIAN_WAP、KUAIQIAN_WEB、JD、YEE、KUAIQIAN、BD、BD\_APP、BD\_WEB、BD\_WAP(详见附注）| 否
 bill_no | String | 商户订单号 | 发起支付时填写的订单号 | 201506101035040000001 | 否
 spay_result | Bool | 订单是否成功 | 标识订单是否支付成功 | true | 否
+refund_result | Bool | 订单是否已退款 | 标识订单是否已退款 | true | 否
 need_detail | Bool | 是否需要返回渠道详细信息 | 决定是否需要返回渠道的回调信息，true为需要 | true | 否
 start_time | Long | 起始时间 | 毫秒时间戳, 13位 | 1435890530000 | 否
 end_time | Long | 结束时间 | 毫秒时间戳, 13位   | 1435890540000 | 否
