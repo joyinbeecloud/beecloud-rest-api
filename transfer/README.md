@@ -6,9 +6,9 @@
 商户需要将资金从自己的账户/虚拟账户 转入他人的账户/虚拟账户，例如：  
 代理商返点；用户提现；用户返点
 2. 目前支持渠道及产品 （**持续增加中**）
+ - BeeCloud代付
  - 微信(公众号)  
  - 支付宝
- - BC代付
 3. 目前支持方式  
 单笔  
 批量（批量目前只支持支付宝）
@@ -31,7 +31,7 @@ apisz.beecloud.cn| 深圳
 apiqd.beecloud.cn| 青岛 
 apihz.beecloud.cn| 杭州
 
-## BC代付 - 银行卡
+## BeeCloud代付 - 银行卡
 
 ### URL: */2/rest/bc_transfer/*
 ### METHOD: *POST*
