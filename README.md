@@ -1,5 +1,11 @@
-### 线上产品请查看[线上产品RESTful API](online/README.md)
+# BeeCloud REST API
 
-### 线下产品请查看[线下产品RESTful API](offline/README.md)
+### [线上支付REST API](online/README.md)
 
-### 境外支付产品（开发中）请查看[境外产品RESTful API](international/README.md)
+### [线下扫码/被扫支付REST API](offline/README.md)
+
+### [打款REST API](transfer/README.md)
+
+### [国际支付REST API](international/README.md)
+
+### [错误码对照表](error_code/README.md)
