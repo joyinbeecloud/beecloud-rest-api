@@ -41,8 +41,9 @@ channel| String | 渠道类型 | 根据不同场景选择不同的支付方式 |
 total_fee | Integer | 订单总金额 | 必须是正整数，单位为分 | 1 | 是
 bill_no | String | 商户订单号 | 8到32位数字和/或字母组合，请自行确保在商户系统中唯一，同一订单号不可重复提交，否则会造成订单重复 | 201506101035040000001 | 是
 title| String | 订单标题 | UTF8编码格式，32个字节内，最长支持16个汉字 | 白开水 | 是
-optional | Map | 附加数据 | 用户自定义的参数，将会在webhook通知中原样返回，该字段主要用于商户携带订单的自定义数据 | {"key1":"value1","key2":"value2",...} | 否
 auth_code | String | 用户授权码| 当商户用扫码枪扫用户的条形码时得到的字符串 | 23891113455872 | 当channel参数为 WX_SCAN或ALI_SCAN 时为必填
+optional | Map | 附加数据 | 用户自定义的参数，将会在Webhook通知中原样返回，该字段主要用于商户携带订单的自定义数据 | {"key1":"value1","key2":"value2",...} | 否
+analysis | Map | 分析数据 | 用于统计分析的数据，将会在控制台的统计分析报表中展示，**<mark>用户自愿上传</mark>** | 包括以下基本字段：`os_name(系统名称，如"iOS"，"Android")` `os_version(系统版本，如"5.1")` `model(手机型号，如"iPhone 6")` `app_name(应用名称)` `app_version(应用版本号)` `device_id(设备ID)` `category(类别，用户可自定义，如游戏分发渠道，门店ID等)` `browser_name(浏览器名称)` `browser_version(浏览器版本)` | 否
 
 > 注1：channel的参数值含义：  
 WX\_NATIVE: 微信二维码支付   
