@@ -89,7 +89,7 @@ app_id | String | BeeCloud平台的AppID | App在BeeCloud平台的唯一标识 |
 timestamp | Long | 签名生成时间 | 时间戳，毫秒数 | 1435890533866 | 是
 app_sign | String | 加密签名 | 算法: md5(app\_id+timestamp+**master\_secret**)，32位16进制格式,不区分大小写 | b927899dda6f9a04afc57f21ddf69d69 | 是
 channel| String | 渠道类型 | 根据不同场景选择不同的支付方式 | WX_REDPACK, WX\_TRANSFER, ALI\_TRANSFER(详见附注）| 是
-transfer_no | String | 打款单号 | 支付宝为11-32位数字字母组合， 微信为10位数字 | udjfiienx2334/8372839123 | 是
+transfer_no | String | 打款单号 | 支付宝为11-32位数字字母组合， 微信打款为8-32位数字字母组合，微信红包为10位数字 | udjfiienx2334/8372839123 | 是
 total_fee | Int | 打款金额 | 此次打款的金额,单位分,正整数(微信红包1.00-200元，微信打款>=1元) | 1 | 是
 desc | String | 打款说明 | 此次打款的说明 | 赔偿 | 是
 channel_user\_id | String | 用户id | 支付渠道方内收款人的标示, 微信为openid, 支付宝为支付宝账户 | someone@126.com |是
