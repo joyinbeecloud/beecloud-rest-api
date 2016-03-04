@@ -36,7 +36,7 @@ total_fee | Integer | 订单总金额 | 正数，最多两位小数 | 0.01 | 是
 currency | String | 三位货币种类代码 | 见附录 | USD | 是
 bill_no | String | 商户订单号 | 8到32位数字和/或字母组合，请自行确保在商户系统中唯一，同一订单号不可重复提交，否则会造成订单重复 | 201506101035040000001 | 是
 title| String | 订单标题 | UTF8编码格式，32个字节内，最长支持16个汉字 | 白开水 | 是
-credit\_card_info | Map | 信用卡信息 | 行用卡信息 | {"card\_number":"420243123344","expire\_month":07,"expire\_year":2020,"cvv":"204","first\_name:"jim","last\_name":"Green", "card\_type":"visa"} | 当channel 为PAYPAL_CREDITCARD必填
+credit\_card_info | Map | 信用卡信息 | 信用卡信息 | {"card\_number":"420243123344","expire\_month":07,"expire\_year":2020,"cvv":"204","first\_name:"jim","last\_name":"Green", "card\_type":"visa"} | 当channel 为PAYPAL_CREDITCARD必填
 credit\_card_id| String | 信用卡id | 当使用PAYPAL_CREDITCARD支付完成后会返回一个credit\_card_id | CARD\_ADMJ324234DJLKJS | 当channel为PAYPAL_SAVED_CREDITCARD时为必填
 return_url | String | 同步返回页面| 支付渠道处理完请求后,当前页面自动跳转到商户网站里指定页面的http路径不包含?及& | http://baidu.com | 当channel参数为PAYPAL_PAYPAL时为必填
 
@@ -89,7 +89,7 @@ channel | 含义
 ---- | ---- | 
 PAYPAL_PAYPAL|	跳转到paypal使用paypal内支付  
 PAYPAL_CREDITCARD	|直接使用信用卡支付（paypal渠道） 
-PAYPAL_SAVED_CREDITCARD|	使用存储的行用卡id支付（信用卡信息存储在PAYPAL)  
+PAYPAL_SAVED_CREDITCARD|	使用存储的信用卡id支付（信用卡信息存储在PAYPAL)  
 
 - return_url说明  
    当channel为PAYPAL\_PAYPAL时， 用户支付完成后页面会跳转到return_url， 并带上以下参数(应只做展示用)
