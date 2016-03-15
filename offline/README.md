@@ -101,6 +101,12 @@ pay_result | boolean | 是否支付成功，false代表在等待用户输入密�
 ---- | ---- | ----
 code_url | String | 二维码地址
 
+- SCAN
+
+参数名 | 类型 | 含义 
+---- | ---- | ----
+channel_type | String | 具体条形码支付类型，ALI_SCAN或者WX_SCAN
+
 </br>
 
 ### 3. 订单状态查询
