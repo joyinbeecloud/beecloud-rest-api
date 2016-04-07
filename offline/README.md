@@ -307,11 +307,3 @@ result\_code | result\_msg                | 含义
 ####第二步： 商户收银员整理订单信息 使用下单接口；
 ####第三步： 利用下单接口返回的 **<mark>qr_code</mark>** 生成二维码图片供用户扫描支付
 ####第四步： 循环调用订单状态查询接口直至返回支付成功结果**<mark>可以结束此次支付**； 或者超时，超出重试次数， 调用 撤销订单接口
-
-## 联系我们
-- 如果有什么问题，可以到BeeCloud开发者1群:**321545822** 或 BeeCloud开发者2群:**427128840** 提问
-- 如果发现了bug，欢迎提交[issue](https://github.com/beecloud/beecloud-rest-api/issues)
-- 如果有新的需求，欢迎提交[issue](https://github.com/beecloud/beecloud-rest-api/issues)
-
-## 代码许可
-The MIT License (MIT).
