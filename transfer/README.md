@@ -175,11 +175,3 @@ err_detail  | String | 具体错误信息
 url | String | 支付宝需要跳转到支付宝链接输入支付密码确认
 
 支付宝返回result\_code 0 需要跳转到url 地址的页面去输入支付宝支付密码
-
-## 联系我们
-- 如果有什么问题，可以到BeeCloud开发者5群: **532516744** 提问
-- 如果发现了bug，欢迎提交[issue](https://github.com/beecloud/beecloud-rest-api/issues)
-- 如果有新的需求，欢迎提交[issue](https://github.com/beecloud/beecloud-rest-api/issues)
-
-## 代码许可
-The MIT License (MIT).
