@@ -675,12 +675,3 @@ total\_fee | Integer | 订单金额，单位为分
 message\_detail | String         | 渠道详细信息
 revert\_result  | Bool         | 订单是否已经撤销
 refund\_result  | Bool         | 订单是否已经退款
-
-
-## 联系我们
-- 如果有什么问题，可以到BeeCloud开发者1群:**321545822** 或 BeeCloud开发者2群:**427128840** 提问
-- 如果发现了bug，欢迎提交[issue](https://github.com/beecloud/beecloud-rest-api/issues)
-- 如果有新的需求，欢迎提交[issue](https://github.com/beecloud/beecloud-rest-api/issues)
-
-## 代码许可
-The MIT License (MIT).
