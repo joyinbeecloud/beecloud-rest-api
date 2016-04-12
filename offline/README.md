@@ -274,6 +274,7 @@ result\_code | Integer | 返回码，0为正常
 result\_msg  | String | 返回信息，OK为正常
 err\_detail  | String | 具体错误信息
 id  | String | 成功发起退款后返回退款表记录唯一标识
+refund_result | Bool | 退款是否成功
 
 > 公共返回参数取值及含义参见支付公共返回参数部分, 以下是退款所特有的
 
