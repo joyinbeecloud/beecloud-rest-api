@@ -32,7 +32,7 @@ app_id | String | BeeCloud平台的AppID | App在BeeCloud平台的唯一标识 |
 timestamp | Long | 签名生成时间 | 时间戳，毫秒数 | 1435890533866 | 是
 app_sign | String | 加密签名 | 算法: md5(app\_id+timestamp+app\_secret)，32位16进制格式,不区分大小写 | b927899dda6f9a04afc57f21ddf69d69 | 是
 channel| String | 渠道类型 | 根据不同场景选择不同的支付方式 | PAYPAL_PAYPAL, PAYPAL_CREDITCARD, PAYPAL_SAVED_CREDITCARD(详见附注）| 是
-total_fee | Integer | 订单总金额 | 正数，最多两位小数 | 0.01 | 是
+total_fee | Integer | 订单总金额 | 单位分 | 1 | 是
 currency | String | 三位货币种类代码 | 见附录 | USD | 是
 bill_no | String | 商户订单号 | 8到32位数字和/或字母组合，请自行确保在商户系统中唯一，同一订单号不可重复提交，否则会造成订单重复 | 201506101035040000001 | 是
 title| String | 订单标题 | UTF8编码格式，32个字节内，最长支持16个汉字 | 白开水 | 是
