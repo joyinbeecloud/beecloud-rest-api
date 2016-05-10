@@ -19,7 +19,7 @@
 
 1. 注册成为BeeCloud用户并通过企业认证
 2. 选择您需要的支付渠道及产品， 自助开通或**通过BeeCloud代申请服务**
-3. [FAQ](https://beecloud.cn/faq/) &ensp;&ensp; [错误码对照表](https://github.com/beecloud/beecloud-rest-api/tree/master/error%20code)
+3. [帮助中心](https://help.beecloud.cn/) &ensp;&ensp; [错误码对照表](https://github.com/beecloud/beecloud-rest-api/tree/master/error_code)
 
 <br>
 ## Server 列表
@@ -124,7 +124,7 @@ err_detail  | String | 具体错误信息
 
 result_code | result_msg          | 含义
 ----        | ----                   | ----
-0           | OK                     | 调用成功
+0           | OK                     | 微信企业打款成功 / 微信红包发送成功。
 1           | APP\_INVALID           | 根据app\_id找不到对应的APP或者app\_sign不正确
 2           | PAY\_FACTOR\_NOT\_SET  | 支付要素在后台没有设置
 3           | CHANNEL\_INVALID       | channel参数不合法
@@ -133,6 +133,4 @@ result_code | result_msg          | 含义
 6           | CERT\_FILE\_ERROR      | 证书错误
 7           | CHANNEL\_ERROR         | 渠道内部错误
 14          | RUNTIME\_ERROR         | 运行时错误
-
-注2:  
-微信返回result\_code 0 代表打款成功  
+ 
