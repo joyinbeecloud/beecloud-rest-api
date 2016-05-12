@@ -1,4 +1,4 @@
-# BeeCloud 打款 REST API
+# BeeCloud 企业打款 REST API
 
 <br>
 ## 简介
@@ -7,11 +7,14 @@
 商户需要将资金从自己的账户/虚拟账户 转入他人的账户/虚拟账户，例如：  
 代理商返点；用户提现；用户返点
 2. 目前支持渠道及产品 （**持续增加中**）
- - BeeCloud代付  
+ - BeeCloud企业打款  
  	打款到个人或者企业银行账户
  	
- - 微信(公众号)  
- 	打款到个人微信零钱；发红包给个人微信；
+ - 微信企业打款(公众号)  
+ 	打款到个人微信零钱
+ 	
+ - 微信红包  
+   发红包给个人微信
 
 
 <br>	
@@ -35,7 +38,7 @@ apiqd.beecloud.cn| 青岛
 apihz.beecloud.cn| 杭州
 
 <br>
-## BeeCloud代付 - 银行卡
+## BeeCloud企业打款 - 打款到银行卡
 
 ### URL: */2/rest/bc_transfer/*
 ### METHOD: *POST*
@@ -47,9 +50,9 @@ apihz.beecloud.cn| 杭州
 app_id | String | BeeCloud平台的AppID | App在BeeCloud平台的唯一标识 | 0950c062-5e41-44e3-8f52-f89d8cf2b6eb | 是
 timestamp | Long | 签名生成时间 | 时间戳，毫秒数 | 1435890533866 | 是
 app_sign | String | 加密签名 | 算法: md5(app\_id + timestamp + **master\_secret**)，32位16进制格式,不区分大小写 | b927899dda6f9a04afc57f21ddf69d69 | 是
-total_fee | Integer | 下发订单总金额 | 必须是正整数，单位为分 | 1 | 是
+total_fee | Integer | 打款订单总金额 | 必须是正整数，单位为分 | 1 | 是
 bill_no | String | 商户订单号 | 8到32位数字和/或字母组合，请自行确保在商户系统中唯一，同一订单号不可重复提交，否则会造成订单重复 | 201506101035040000001 | 是
-title| String | 下发订单标题 | UTF8编码格式，32个字节内，最长支持16个汉字 | 白开水 | 是
+title| String | 打款订单标题 | UTF8编码格式，32个字节内，最长支持16个汉字 | 白开水 | 是
 trade_source | String | 交易源| UTF8编码格式，目前只能填写OUT_PC | OUT_PC | 是
 bank_code| String | 银行编码| 银行缩写编码 | 中国银行 BOC | 是
 bank\_associated\_code| String | 银行联行行号 | 需要向银行咨询| 104305045636 代表中国银行股份有限公司苏州相门支行；小于5万时，只需填写字符串0即可。超过5万时，可以到http://www.lianhanghao.com/ 上查询银行联号。若未找到，请向银行咨询 | 是
@@ -68,7 +71,7 @@ optional | Map | 附加数据 | 用户自定义的参数，将会在Webhook通�
 result_code | Integer | 返回码，0为正常
 result_msg  | String | 返回信息， OK为正常
 err_detail  | String | 具体错误信息
-id| String| 代付记录唯一标识
+id| String| 打款记录唯一标识
 
 注1: 错误码（错误详细信息 参考 **err_detail** 字段)
 
