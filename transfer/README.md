@@ -55,6 +55,7 @@ bill_no | String | 商户订单号 | 8到32位数字和/或字母组合，请自
 title| String | 打款订单标题 | UTF8编码格式，32个字节内，最长支持16个汉字 | 白开水 | 是
 trade_source | String | 交易源| UTF8编码格式，目前只能填写OUT_PC | OUT_PC | 是
 bank\_associated\_code| String | 银行联行行号 | 需要向银行咨询| 104305045636 代表中国银行股份有限公司苏州相门支行；小于5万时，只需填写字符串0即可。超过5万时，可以到http://www.lianhanghao.com/ 上查询银行联号。若未找到，请向银行咨询 | 是
+bank_code| String | 银行编码| 银行缩写编码 | 中国银行 BOC | 是
 bank\_fullname | String | 银行全名 | 银行全称 | 中国银行，而不能写成"中行",因为“中行”也是中信银行和中兴银行的缩写 | 是
 card_type|String | 银行卡类型 | 区分借记卡和信用卡 | DE代表借记卡，CR代表信用卡，其他值为非法 | 是
 account_type|String | 收款帐户类型 | 区分对公和对私 | 帐户类型，P代表私户，C代表公户，其他值为非法 | 是
