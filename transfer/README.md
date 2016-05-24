@@ -54,7 +54,6 @@ total_fee | Integer | 打款订单总金额 | 必须是正整数，单位为分 
 bill_no | String | 商户订单号 | 8到32位数字和/或字母组合，请自行确保在商户系统中唯一，同一订单号不可重复提交，否则会造成订单重复 | 201506101035040000001 | 是
 title| String | 打款订单标题 | UTF8编码格式，32个字节内，最长支持16个汉字 | 白开水 | 是
 trade_source | String | 交易源| UTF8编码格式，目前只能填写OUT_PC | OUT_PC | 是
-bank_code| String | 银行编码| 银行缩写编码 | 中国银行 BOC | 是
 bank\_associated\_code| String | 银行联行行号 | 需要向银行咨询| 104305045636 代表中国银行股份有限公司苏州相门支行；小于5万时，只需填写字符串0即可。超过5万时，可以到http://www.lianhanghao.com/ 上查询银行联号。若未找到，请向银行咨询 | 是
 bank\_fullname | String | 银行全名 | 银行全称 | 中国银行，而不能写成"中行",因为“中行”也是中信银行和中兴银行的缩写 | 是
 card_type|String | 银行卡类型 | 区分借记卡和信用卡 | DE代表借记卡，CR代表信用卡，其他值为非法 | 是
@@ -84,7 +83,40 @@ result_code | result_msg             | 含义
 14             | RUNTIME\_ERROR         | 运行时错误
 15             | NETWORK\_ERROR         | 网络异常错误
 
+</br>
 <br>
+### BeeCloud企业打款 - 支持银行
+
+### URL: */2/rest/bc_transfer/banks*
+### METHOD: *GET*
+
+#### 请求参数类型: *JSON, 以para=**{}**的方式请求*
+
+示例: para={"key\_a":"value\_a"}, 需要对para=后面的部分做URL encode.
+
+参数名 | 类型 | 含义 | 描述 | 例子 | 是否必填
+----  | ---- | ---- | ---- | ---- | ----
+type | String | 业务类型 | 业务类型 | P\_DE:对私借记卡,P\_CR:对私信用卡,C:对公账户 | 是
+
+### 返回结果 (JSON, Map)
+
+参数名 | 类型 | 含义 
+---- | ---- | ----
+result_code | Integer | 返回码，0为正常
+result_msg  | String | 返回信息， OK为正常
+err_detail  | String | 具体错误信息
+size| Integer | 支持的银行个数
+bank_list | Map| key为银行全称，value为银行缩写编码
+
+注1: 错误码（错误详细信息 参考 **err_detail** 字段)
+
+result_code | result_msg             | 含义
+----           | ----     	        | ----
+0              | OK                     | 调用成功
+4              | MISS\_PARAM            | 缺少必填参数
+5              | PARAM\_INVALID         | 参数不合法
+
+</br>
 ## 微信企业打款/微信红包
 
 ### URL: */2/rest/transfer/*
