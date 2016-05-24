@@ -106,7 +106,7 @@ result_code | Integer | 返回码，0为正常
 result_msg  | String | 返回信息， OK为正常
 err_detail  | String | 具体错误信息
 size| Integer | 支持的银行个数
-bank_list | Map| key为银行全称，value为银行缩写编码
+bank_list | list| list节点值为支持银行的全称
 
 注1: 错误码（错误详细信息 参考 **err_detail** 字段)
 
