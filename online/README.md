@@ -41,7 +41,7 @@ apihz.beecloud.cn| 杭州
 app_id | String | BeeCloud平台的AppID | App在BeeCloud平台的唯一标识 | 0950c062-5e41-44e3-8f52-f89d8cf2b6eb | 是
 timestamp | Long | 签名生成时间 | 时间戳，毫秒数 | 1435890533866 | 是
 app_sign | String | 加密签名 | 算法: md5(app\_id+timestamp+app\_secret)，32位16进制格式,不区分大小写 | b927899dda6f9a04afc57f21ddf69d69 | 是
-channel| String | 渠道类型 | 根据不同场景选择不同的支付方式 | WX\_APP、WX\_NATIVE、WX\_JSAPI、ALI\_APP、ALI\_WEB、ALI\_QRCODE、ALI\_OFFLINE\_QRCODE、ALI\_WAP、UN\_APP、UN\_WEB、PAYPAL\_SANDBOX、PAYPAL\_LIVE、JD\_WAP、JD\_WEB、YEE\_WAP、YEE\_WEB、YEE\_NOBANKCARD、KUAIQIAN\_WAP、KUAIQIAN\_WEB、BD\_APP、BD\_WEB、BD\_WAP(详见附注）| 是
+channel| String | 渠道类型 | 根据不同场景选择不同的支付方式 | WX\_APP、WX\_NATIVE、WX\_JSAPI、ALI\_APP、ALI\_WEB、ALI\_QRCODE、ALI\_OFFLINE\_QRCODE、ALI\_WAP、UN\_APP、UN\_WEB、UN\_WAP、PAYPAL\_SANDBOX、PAYPAL\_LIVE、JD\_WAP、JD\_WEB、YEE\_WAP、YEE\_WEB、YEE\_NOBANKCARD、KUAIQIAN\_WAP、KUAIQIAN\_WEB、BD\_APP、BD\_WEB、BD\_WAP(详见附注）| 是
 total_fee | Integer | 订单总金额 | 必须是正整数，单位为分 | 1 | 是
 bill_no | String | 商户订单号 | 8到32位数字和/或字母组合，请自行确保在商户系统中唯一，同一订单号不可重复提交，否则会造成订单重复 | 201506101035040000001 | 是
 title| String | 订单标题 | UTF8编码格式，32个字节内，最长支持16个汉字 | 白开水 | 是
@@ -62,6 +62,7 @@ ALI\_OFFLINE_QRCODE: 支付宝线下二维码支付
 ALI\_WAP: 支付宝移动网页支付  
 UN\_APP: 银联手机原生APP支付  
 UN\_WEB: 银联PC网页支付  
+UN\_WAP: 银联移动网页支付  
 JD\_WAP: 京东移动网页支付   
 JD\_WEB: 京东PC网页支付  
 YEE\_WAP: 易宝移动网页支付  
@@ -204,7 +205,7 @@ url  | String | 支付宝内嵌二维码地址，是一个URL
 ---- | ---- | ----
 tn | String | 银联支付ticket number
 
-- UN\_WEB、JD\_WAP、JD\_WEB、KUAIQIAN\_WAP、KUAIQIAN\_WEB
+- UN\_WEB、UN\_WAP、JD\_WAP、JD\_WEB、KUAIQIAN\_WAP、KUAIQIAN\_WEB
 
 参数名 | 类型 | 含义 
 ---- | ---- | ----
@@ -344,7 +345,7 @@ url | String | 支付宝退款地址，需用户在支付宝平台上手动输�
 app_id | String | BeeCloud应用APPID | BeeCloud的唯一标识 | 0950c062-5e41-44e3-8f52-f89d8cf2b6eb | 是
 timestamp | Long | 签名生成时间 | 时间戳，毫秒数 | 1435890533866 | 是
 app_sign | String | 加密签名 | 算法: md5(app\_id+timestamp+app\_secret)，32位16进制格式,不区分大小写 | b927899dda6f9a04afc57f21ddf69d69 | 是
-channel| String | 渠道类型 | 根据不同场景选择不同的支付方式 | WX、WX\_APP、WX\_NATIVE、WX\_JSAPI、ALI、ALI\_APP、ALI\_WEB、ALI\_QRCODE、ALI_WAP、UN、UN\_APP、UN\_WEB、PAYPAL、PAYPAL\_SANDBOX、PAYPAL\_LIVE、JD_WAP、JD_WEB、YEE_WAP、YEE_WEB、KUAIQIAN_WAP、KUAIQIAN_WEB、JD、YEE、KUAIQIAN、BD、BD\_APP、BD\_WEB、BD\_WAP(详见附注）| 否
+channel| String | 渠道类型 | 根据不同场景选择不同的支付方式 | WX、WX\_APP、WX\_NATIVE、WX\_JSAPI、ALI、ALI\_APP、ALI\_WEB、ALI\_QRCODE、ALI_WAP、UN、UN\_APP、UN\_WEB、UN\_WAP、PAYPAL、PAYPAL\_SANDBOX、PAYPAL\_LIVE、JD_WAP、JD_WEB、YEE_WAP、YEE_WEB、KUAIQIAN_WAP、KUAIQIAN_WEB、JD、YEE、KUAIQIAN、BD、BD\_APP、BD\_WEB、BD\_WAP(详见附注）| 否
 bill_no | String | 商户订单号 | 发起支付时填写的订单号 | 201506101035040000001 | 否
 spay_result | Bool | 订单是否成功 | 标识订单是否支付成功 | true | 否
 refund_result | Bool | 订单是否已退款 | 标识订单是否已退款 | true | 否
@@ -382,7 +383,7 @@ bill\_no      | String       | 订单号
 total\_fee    | Integer         | 订单金额，单位为分
 trade\_no    | String         | 渠道交易号， 当支付成功时有值
 channel       | String       | 渠道类型 WX、ALI、UN、JD、YEE、KUAIQIAN、PAYPAL、BD
-sub_channel         | String       | 子渠道类型 WX_APP、WX_NATIVE、WX_JSAPI、WX_SCAN、ALI_APP、ALI_SCAN、ALI_WEB、ALI_QRCODE、ALI_OFFLINE_QRCODE、ALI_WAP、UN_APP、UN_WEB、PAYPAL_SANDBOX、PAYPAL_LIVE、JD_WAP、JD_WEB、YEE_WAP、YEE_WEB、YEE_NOBANKCARD、KUAIQIAN_WAP、KUAIQIAN_WEB、BD_APP、BD_WEB、BD_WAP(详见 2. 支付 附注）
+sub_channel         | String       | 子渠道类型 WX_APP、WX_NATIVE、WX_JSAPI、WX_SCAN、ALI_APP、ALI_SCAN、ALI_WEB、ALI_QRCODE、ALI_OFFLINE_QRCODE、ALI_WAP、UN_APP、UN_WEB、UN_WAP、PAYPAL_SANDBOX、PAYPAL_LIVE、JD_WAP、JD_WEB、YEE_WAP、YEE_WEB、YEE_NOBANKCARD、KUAIQIAN_WAP、KUAIQIAN_WEB、BD_APP、BD_WEB、BD_WAP(详见 2. 支付 附注）
 title         | String       | 订单标题
 spay\_result  | Bool         | 订单是否成功
 create_time | Long         | 订单创建时间, 毫秒时间戳, 13位
@@ -407,7 +408,7 @@ refund_result  | Bool         | 订单是否已经退款
 app_id | String | BeeCloud应用APPID | BeeCloud的唯一标识 | 0950c062-5e41-44e3-8f52-f89d8cf2b6eb | 是
 timestamp | Long | 签名生成时间 | 时间戳，毫秒数 | 1435890533866 | 是
 app_sign | String | 加密签名 | 算法: md5(app\_id+timestamp+app\_secret)，32位16进制格式,不区分大小写 | b927899dda6f9a04afc57f21ddf69d69 | 是
-channel| String | 渠道类型 | 根据不同场景选择不同的支付方式 | WX、WX\_APP、WX\_NATIVE、WX\_JSAPI、ALI、ALI\_APP、ALI\_WEB、ALI\_QRCODE、ALI_WAP、UN、UN\_APP、UN\_WEB、PAYPAL、PAYPAL\_SANDBOX、PAYPAL\_LIVE、JD_WAP、JD_WEB、YEE_WAP、YEE_WEB、KUAIQIAN_WAP、KUAIQIAN_WEB、JD、YEE、KUAIQIAN、BD、BD\_APP、BD\_WEB、BD\_WAP(详见附注）| 否
+channel| String | 渠道类型 | 根据不同场景选择不同的支付方式 | WX、WX\_APP、WX\_NATIVE、WX\_JSAPI、ALI、ALI\_APP、ALI\_WEB、ALI\_QRCODE、ALI_WAP、UN、UN\_APP、UN\_WEB、UN\_WAP、PAYPAL、PAYPAL\_SANDBOX、PAYPAL\_LIVE、JD_WAP、JD_WEB、YEE_WAP、YEE_WEB、KUAIQIAN_WAP、KUAIQIAN_WEB、JD、YEE、KUAIQIAN、BD、BD\_APP、BD\_WEB、BD\_WAP(详见附注）| 否
 bill_no | String | 商户订单号 | 发起支付时填写的订单号 | 201506101035040000001 | 否
 spay_result | Bool | 订单是否成功 | 标识订单是否支付成功 | true | 否
 start_time | Long | 起始时间 | 毫秒时间戳, 13位 | 1435890530000 | 否
@@ -449,7 +450,7 @@ count | Integer | 查询订单结果数量
 app_id | String | BeeCloud应用APPID | BeeCloud的唯一标识 | 0950c062-5e41-44e3-8f52-f89d8cf2b6eb | 是
 timestamp | Long | 签名生成时间 | 时间戳，毫秒数 | 1435890533866 | 是
 app_sign | String | 加密签名 | 算法: md5(app\_id+timestamp+app\_secret)，不区分大小写 | b927899dda6f9a04afc57f21ddf69d69 | 是
-channel| String | 渠道类型 | 根据不同场景选择不同的支付方式 | WX、WX\_NATIVE、WX\_JSAPI、ALI、ALI\_APP、ALI\_WEB、ALI\_QRCODE、ALI_WAP、UN、UN\_APP、UN\_WEB、JD_WAP、JD_WEB、YEE_WAP、YEE_WEB、KUAIQIAN_WAP、KUAIQIAN_WEB、JD、YEE、KUAIQIAN、BD、BD\_APP、BD\_WEB、BD\_WAP(详见2.支付附注）| 否
+channel| String | 渠道类型 | 根据不同场景选择不同的支付方式 | WX、WX\_NATIVE、WX\_JSAPI、ALI、ALI\_APP、ALI\_WEB、ALI\_QRCODE、ALI_WAP、UN、UN\_APP、UN\_WEB、UN\_WAP、JD_WAP、JD_WEB、YEE_WAP、YEE_WEB、KUAIQIAN_WAP、KUAIQIAN_WEB、JD、YEE、KUAIQIAN、BD、BD\_APP、BD\_WEB、BD\_WAP(详见2.支付附注）| 否
 bill_no | String | 商户订单号 | 发起支付时填写的订单号 | 201506101035040000001 | 否
 refund_no | String | 商户退款单号 | 发起退款时填写的退款单号 | 201506101035040000001 | 否
 start_time | Long | 起始时间 | 毫秒时间戳, 13位 | 1435890530000 | 否
@@ -489,7 +490,7 @@ total\_fee  | Integer      | 订单金额，单位为分
 refund\_fee | Integer      | 退款金额，单位为分
 title         | String       | 订单标题
 channel    | String      | 渠道类型 WX、ALI、UN、JD、YEE、KUAIQIAN、BD
-sub\_channel    | String      | 子渠道类型 WX\_NATIVE、WX\_JSAPI、WX\_APP、ALI\_APP、ALI\_WEB、ALI\_QRCODE、UN\_APP、UN\_WEB、JD_WAP、JD_WEB、YEE_WAP、YEE_WEB、KUAIQIAN_WAP、KUAIQIAN_WEB、BD\_APP、BD\_WEB、BD\_WAP(详见 1. 支付 附注）
+sub\_channel    | String      | 子渠道类型 WX\_NATIVE、WX\_JSAPI、WX\_APP、ALI\_APP、ALI\_WEB、ALI\_QRCODE、UN\_APP、UN\_WEB、UN\_WAP、JD_WAP、JD_WEB、YEE_WAP、YEE_WEB、KUAIQIAN_WAP、KUAIQIAN_WEB、BD\_APP、BD\_WEB、BD\_WAP(详见 1. 支付 附注）
 finish     | bool        | 退款是否完成
 result     | bool        | 退款是否成功
 optional | String | 附加数据,用户自定义的参数，将会在webhook通知中原样返回，该字段是JSON格式的字符串 {"key1":"value1","key2":"value2",...}
@@ -513,7 +514,7 @@ create\_time | Long       | 退款创建时间, 毫秒时间戳, 13位
 app_id | String | BeeCloud应用APPID | BeeCloud的唯一标识 | 0950c062-5e41-44e3-8f52-f89d8cf2b6eb | 是
 timestamp | Long | 签名生成时间 | 时间戳，毫秒数 | 1435890533866 | 是
 app_sign | String | 加密签名 | 算法: md5(app\_id+timestamp+app\_secret)，不区分大小写 | b927899dda6f9a04afc57f21ddf69d69 | 是
-channel| String | 渠道类型 | 根据不同场景选择不同的支付方式 | WX、WX\_NATIVE、WX\_JSAPI、ALI、ALI\_APP、ALI\_WEB、ALI\_QRCODE、ALI_WAP、UN、UN\_APP、UN\_WEB、JD_WAP、JD_WEB、YEE_WAP、YEE_WEB、KUAIQIAN_WAP、KUAIQIAN_WEB、JD、YEE、KUAIQIAN、BD、BD\_APP、BD\_WEB、BD\_WAP(详见2.支付附注）| 否
+channel| String | 渠道类型 | 根据不同场景选择不同的支付方式 | WX、WX\_NATIVE、WX\_JSAPI、ALI、ALI\_APP、ALI\_WEB、ALI\_QRCODE、ALI_WAP、UN、UN\_APP、UN\_WEB、UN\_WAP、JD_WAP、JD_WEB、YEE_WAP、YEE_WEB、KUAIQIAN_WAP、KUAIQIAN_WEB、JD、YEE、KUAIQIAN、BD、BD\_APP、BD\_WEB、BD\_WAP(详见2.支付附注）| 否
 bill_no | String | 商户订单号 | 发起支付时填写的订单号 | 201506101035040000001 | 否
 refund_no | String | 商户退款单号 | 发起退款时填写的退款单号 | 201506101035040000001 | 否
 start_time | Long | 起始时间 | 毫秒时间戳, 13位 | 1435890530000 | 否
@@ -615,7 +616,7 @@ refund | Map | 退款结果
 id      | String       | 退款记录的唯一标识，可用于查询单笔记录
 bill\_no | String | 支付订单号
 channel | String | WX、ALI、UN、JD、KUAIQIAN、BD、YEE
-sub\_channel | String | WX_APP、WX_NATIVE、WX_JSAPI、ALI_APP、ALI_WEB、ALI_QRCODE、ALI_WAP、UN_APP、UN_WEB、JD_WAP、JD_WEB、YEE_WAP、YEE_WEB、KUAIQIAN_WAP、KUAIQIAN_WEB、BD_APP、BD_WEB、BD_WAP (详见 2. 支付 附注）
+sub\_channel | String | WX_APP、WX_NATIVE、WX_JSAPI、ALI_APP、ALI_WEB、ALI_QRCODE、ALI_WAP、UN_APP、UN_WEB、UN_WAP、JD_WAP、JD_WEB、YEE_WAP、YEE_WEB、KUAIQIAN_WAP、KUAIQIAN_WEB、BD_APP、BD_WEB、BD_WAP (详见 2. 支付 附注）
 finish | Bool | 退款是否完成
 create_time | Long | 退款创建时间, 毫秒时间戳, 13位
 optional | String | 附加数据,用户自定义的参数，将会在webhook通知中原样返回，该字段是JSON格式的字符串 {"key1":"value1","key2":"value2",...}
@@ -665,7 +666,7 @@ pay | Map | 支付结果
 id      | String       | 订单记录的唯一标识，可用于查询单笔记录
 bill\_no | String | 支付订单号
 channel | String | WX、ALI、UN、JD、KUAIQIAN、YEE、BD、PAYPAL
-sub\_channel | String | WX_APP、WX_NATIVE、WX_JSAPI、WX_SCAN、ALI_APP、ALI_SCAN、ALI_WEB、ALI_QRCODE、ALI_OFFLINE_QRCODE、ALI_WAP、UN_APP、UN_WEB、PAYPAL_SANDBOX、PAYPAL_LIVE、JD_WAP、JD_WEB、YEE_WAP、YEE_WEB、YEE_NOBANKCARD、KUAIQIAN_WAP、KUAIQIAN_WEB、BD_APP、BD_WEB、BD_WAP (详见 2. 支付 附注）
+sub\_channel | String | WX_APP、WX_NATIVE、WX_JSAPI、WX_SCAN、ALI_APP、ALI_SCAN、ALI_WEB、ALI_QRCODE、ALI_OFFLINE_QRCODE、ALI_WAP、UN_APP、UN_WEB、UN_WAP、PAYPAL_SANDBOX、PAYPAL_LIVE、JD_WAP、JD_WEB、YEE_WAP、YEE_WEB、YEE_NOBANKCARD、KUAIQIAN_WAP、KUAIQIAN_WEB、BD_APP、BD_WEB、BD_WAP (详见 2. 支付 附注）
 trade\_no | String | 渠道返回的交易号，当支付成功时有值
 create\_time | Long | 订单创建时间, 毫秒时间戳, 13位
 optional | String | 附加数据,用户自定义的参数，将会在webhook通知中原样返回，该字段是JSON格式的字符串 {"key1":"value1","key2":"value2",...}
