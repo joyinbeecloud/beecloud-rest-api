@@ -6,6 +6,7 @@
 ## return_url返回页面所带的参数 
 
 ## 1. 支付宝
+### 请求方式：GET
 key |  说明  | 
 ---- | ----
 subject| 标题 
@@ -17,6 +18,7 @@ total_fee | 支付金额，单位为元
 trade_status| "TRADE\_FINISHED" 和 "TRADE_SUCCESS"代表成功 
 
 ## 2. 银联
+###  请求方式：POST
 key |  说明  | 
 ---- | ----
 subject| 标题 
