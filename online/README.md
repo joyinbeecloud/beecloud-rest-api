@@ -273,7 +273,7 @@ result\_code | result\_msg                | 含义
 12          | REFUND\_AMOUNT\_TOO\_LARGE | 提交的退款金额超出可退额度
 13          | NO\_SUCH\_REFUND           | 没有该退款记录
 
-**当channel为`ALI_APP`、`ALI_WEB`、`ALI_QRCODE`，并且不是预退款时，以下字段在result_code为0时有返回**
+**当channel为`ALI`，并且不是预退款时，以下字段在result_code为0时有返回**
  
 参数名 | 类型 | 含义 
 ---- | ---- | ----
