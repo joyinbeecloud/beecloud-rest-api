@@ -1,5 +1,6 @@
 # BeeCloud 错误码对应详细信息
-##返回码简介
+
+## 返回码简介
 
 参数 | 含义
 ----|----
@@ -7,11 +8,11 @@ result_code | 结果码
 result_msg  | 结果信息描述
 err_detail  | 详细错误信息
 
-##错误码对应详细信息表
+## 错误码对应详细信息表
 
 result_code | result_msg | 含义
 ----        |  --------   | -------
-0           | OK                     | 调用成功
+0           | OK                     | 调用成功，此时 err_detail 为 ""
 1           | APP\_INVALID           | app_id错误，或者签名错误，或者timestamp过期
 2           | PAY\_FACTOR_NOT\_SET   | 支付要素在后台没有设置， 参考err_detail给的具体错误信息
 3           | CHANNEL\_INVALID       | channel参数不合法， 参考err_detail给的具体错误信息  
