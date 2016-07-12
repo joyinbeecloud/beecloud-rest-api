@@ -61,12 +61,13 @@ ALI\_QRCODE: 支付宝内嵌二维码支付
 ALI\_OFFLINE_QRCODE: 支付宝线下二维码支付  
 ALI\_WAP: 支付宝移动网页支付  
 UN\_APP: 银联手机原生APP支付  
-UN\_WEB: 银联PC网页支付  
+UN\_WEB: 银联PC网页支付
+UN\_WAP: 银联移动网页支付
 JD\_WAP: 京东移动网页支付   
 JD\_WEB: 京东PC网页支付  
 YEE\_WAP: 易宝移动网页支付  
 YEE\_WEB: 易宝PC网页支付  
-YEE\_NOBANKCARDB: 易宝充值卡支付
+YEE\_NOBANKCARD: 易宝充值卡支付
 KUAIQIAN\_WAP: 快钱移动网页支付  
 KUAIQIAN\_WEB: 快钱PC网页支付  
 PAYPAL\_LIVE: PAYPAL生产环境支付   
