@@ -42,7 +42,7 @@ app_id | String | BeeCloud平台的AppID | App在BeeCloud平台的唯一标识 |
 timestamp | Long | 签名生成时间 | 时间戳，毫秒数 | 1435890533866 | 是
 app_sign | String | 加密签名 | 算法: md5(app\_id+timestamp+app\_secret)，32位16进制格式,不区分大小写 | b927899dda6f9a04afc57f21ddf69d69 | 是
 channel| String | 渠道类型 | 根据不同场景选择不同的支付方式 | WX\_APP、WX\_NATIVE、WX\_JSAPI、ALI\_APP、ALI\_WEB、ALI\_QRCODE、ALI\_OFFLINE\_QRCODE、ALI\_WAP、UN\_APP、UN\_WEB、PAYPAL\_SANDBOX、PAYPAL\_LIVE、JD\_WAP、JD\_WEB、YEE\_WAP、YEE\_WEB、YEE\_NOBANKCARD、KUAIQIAN\_WAP、KUAIQIAN\_WEB、BD\_APP、BD\_WEB、BD\_WAP(详见附注）| 是
-total_fee | Integer | 订单总金额 | 必须是正整数，单位为分，范围在大于等于1分小于等于200000万分 | 1 | 是
+total_fee | Integer | 订单总金额 | 必须是正整数，单位为分，范围在大于等于1分小于等于20亿分，如果渠道限额小于20亿分的以渠道为准 | 1 | 是
 bill_no | String | 商户订单号 | 8到32位数字和/或字母组合，请自行确保在商户系统中唯一，同一订单号不可重复提交，否则会造成订单重复 | 201506101035040000001 | 是
 title| String | 订单标题 | UTF8编码格式，32个字节内，最长支持16个汉字 | 白开水 | 是
 optional | Map | 附加数据 | 用户自定义的参数，将会在webhook通知中原样返回，该字段主要用于商户携带订单的自定义数据 | {"key1":"value1","key2":"value2",...} | 否
