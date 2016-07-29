@@ -88,6 +88,12 @@ openid| String | 用户相对于微信公众号的唯一id | 0950c062-5e41-44e3-
 ---- | ---- | ---- | ----
 show_url| String | 商品展示地址以http://开头 | http://beecloud.cn
 
+- 以下是`支付宝移动网页支付(ALI_WAP)`的**<mark>选填</mark>**参数
+
+参数名 | 类型 | 含义 | 例子
+---- | ---- | ---- | ----
+use_app| Bool | 是否尝试掉起支付宝APP原生支付 | true
+
 - 以下是`支付宝内嵌二维码支付(ALI_QRCODE)`的**<mark>必填</mark>**参数
 
 参数名 | 类型 | 含义 | 例子
