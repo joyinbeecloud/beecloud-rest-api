@@ -76,13 +76,13 @@ PAYPAL\_SANDBOX: PAYPAL沙箱环境支付
 BD\_APP: 百度手机原生APP支付   
 BD\_WAP: 百度移动网页支付   
 BD\_WEB: 百度PC网页支付   
-BC\_GATEWAY: BC版网关支付
-BC\_EXPRESS: BC版快捷支付
-BC\_APP: BC版手机APP支付
-BC\_NATIVE: BC版微信二维码支付
-BC\_WX\_WAP: BC版微信手机WAP支付
-BC\_WX\_JSAPI: BC版微信公众号支付
-BC\_ALI\_QRCODE: BC版支付宝线下扫码支付
+BC\_GATEWAY: BC版网关支付 
+BC\_EXPRESS: BC版快捷支付 
+BC\_APP: BC版手机APP支付 
+BC\_NATIVE: BC版微信二维码支付 
+BC\_WX\_WAP: BC版微信手机WAP支付 
+BC\_WX\_JSAPI: BC版微信公众号支付 
+BC\_ALI\_QRCODE: BC版支付宝线下扫码支付 
 
 - 以下是`微信公众号支付(WX\_JSAPI、BC\_WX\_JSAPI)`的**<mark>必填</mark>**参数
 
